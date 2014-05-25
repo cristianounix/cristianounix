@@ -1,12 +1,12 @@
 ---
 layout: page
-title: Latest Posts
-description: "A simple and clean responsive Jekyll theme for words and photos."
-tags: [Jekyll, theme, themes, responsive, blog, minimalism]
+title: CristianoUnix
+description: "I am a developer, i love tech, and a good beer"
+tags: [WebDeveloper, javascript, php, ruby, arduino, C/C++, ShellScript]
 ---
 
 <ul class="post-list">
-{% for post in site.posts limit:10 %} 
+{% for post in site.posts limit:10 %}
   <li><article><a href="{{ site.url }}{{ post.url }}">{{ post.title }} <span class="entry-date"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time></span></a></article></li>
 {% endfor %}
 </ul>
