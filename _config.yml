@@ -2,9 +2,54 @@
 title: CristianoUnix
 email: cristianounix@gmail.com
 description: "....."
+search: true
 baseurl: ""
 url: "http://cristianounix.com.br"
+
 
 # Build settings
 markdown: kramdown
 permalink: pretty
+
+
+
+
+# Owner/author information
+owner:
+  name: Your Name
+  avatar: your-photo.jpg
+  email: your@email.com
+  twitter:
+  facebook:
+  github:
+  linkedin:
+  instagram:
+  tumblr:
+  google_plus: "http://plus.google.com/123123123123132123"
+
+
+
+
+# Analytics and webmaster tools stuff goes here
+  google_analytics:
+  google_verify:
+# https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
+  bing_verify:
+# Links to include in top navigation
+# For external links add external: true
+  links:
+  - title: About
+    url: /about/
+  - title: Articles
+    url: /articles/
+  - title: Google
+    url: http://google.com
+  external: true
+
+  # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  timezone:    America/Sao_Paulo
+  pygments:    true
+  markdown:    kramdown
+
+# https://github.com/mojombo/jekyll/wiki/Permalinks
+   permalink:   /:categories/:title/
