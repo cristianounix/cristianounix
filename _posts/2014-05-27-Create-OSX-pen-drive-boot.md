@@ -13,7 +13,7 @@ share: true
 # Heading 1
 ## Heading 2
 
-{% highlight %}
+{% highlight css %}
 
 sudo "/Applications/Install OS X Mavericks.app/Contents/Resources/createinstallmedia" --volume /Volumes/Untitled --applicationpath "/Applications/Install OS X Mavericks.app"
 
