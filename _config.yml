@@ -13,16 +13,16 @@ owner:
   avatar: bio-photo.jpg
   email: cristianounix@email.com
   # Social networking links used in footer. Update and remove as you like.
-  twitter: https://twitter.com/cristianounix
-  facebook: https://facebook.com/cristianounix
-  github: https://github.com/cristianounix
+  twitter: cristianounix
+  facebook: cristianounix
+  github: cristianounix
   stackexchange:
-  linkedin:
-  instagram:
-  flickr:
+  linkedin: cristianounix
+  instagram: cristianounix
+  flickr: cristianounix
   tumblr:
   # For Google Authorship https://plus.google.com/authorship
-  google_plus:
+  google_plus: cristianounix
 
 # Analytics and webmaster tools stuff goes here
 google_analytics:
