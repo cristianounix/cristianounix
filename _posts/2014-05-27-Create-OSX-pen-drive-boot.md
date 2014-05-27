@@ -9,13 +9,13 @@ comments: true
 share: true
 ---
 
+# Formating MacBook with Pen Drive OSX
 
-# Heading 1
-## Heading 2
+{% highlight Shell %}
 
-{% highlight css %}
-
-sudo "/Applications/Install OS X Mavericks.app/Contents/Resources/createinstallmedia" --volume /Volumes/Untitled --applicationpath "/Applications/Install OS X Mavericks.app"
+sudo "/Applications/Install OS X Mavericks.app/Contents/Resources/createinstallmedia"
+      --volume /Volumes/Untitled
+      --applicationpath "/Applications/Install OS X Mavericks.app"
 
 {% endhighlight %}
 
