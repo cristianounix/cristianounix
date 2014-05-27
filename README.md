@@ -1,48 +1,6 @@
-# So Simple Theme
-
-Looking for a simple, responsive, theme for your Jekyll powered blog? Well look no further. Here be **So Simple Theme**, the followup to [**Minimal Mistakes**](http://mmistakes.github.io/minimal-mistakes/) -- by designer slash illustrator [Michael Rose](http://mademistakes.com).
-
-## So Simple Theme is all about:
-
-* Responsive templates. Looking good on mobile, tablet, and desktop.
-* Readable typography to make your words shine.
-* Gracefully degrading in older browsers. Compatible with Internet Explorer 9+ and all modern browsers.
-* Minimal embellishments and subtle animations. 
-* Support for large images to call out your favorite posts.
-* Disqus comments if you choose to enable.
-* Tags for [Open Graph](https://developers.facebook.com/docs/opengraph/) and [Twitter Cards](https://dev.twitter.com/docs/cards) for a better social sharing experience.
-* Vanilla [custom 404 page]({{ site.url }}/404.html) to get you started.
-* Stylesheets for Pygments and Coderay [syntax highlighting](http://mmistakes.github.io/articles/so-simple-theme/code-highlighting-post/) to make your code examples look snazzy.
-* Simple search that overlays results based on post title.
-* Grunt build script for easier theme development.
-* [Sitemap](https://github.com/mmistakes/so-simple-theme/blob/master/sitemap.xml) for search engines
-
-![screenshot of So Simple Theme](http://mmistakes.github.io/so-simple-theme/images/so-simple-theme-preview.jpg)
-
-General notes and suggestions for customizing So Simple Theme.
-
----
-
-## Basic Setup for new Jekyll site
-
-1. [Install Bundler](http://bundler.io) `gem install bundler` and then install [Jekyll](http://jekyllrb.com) and all dependencies `bundle install`.
-2. Fork the [So Simple Theme repo](https://github.com/mmistakes/so-simple-theme/fork).
-3. Clone the repo you just forked and rename it.
-4. Edit `_config.yml` to personalize your site.
-5. Check out the sample posts in `_posts` to see examples for pulling in large feature images, assigning categories and tags, and other YAML data.
-6. Read the documentation below for further customization pointers and documentation.
-
-[Demo the Theme](http://mmistakes.github.io/so-simple-theme/)
-
-**Pro-tip:** Remove the sample posts in `_posts` and the `gh-pages` branch after cloning. There is a bunch of garbage in the `gh-pages` branch used for the theme's demo site.
-
----
+# crunix theme customization of So Simple Theme
 
 ## Setup for Existing Jekyll site
-
-1. Clone the following folders: `_includes`, `_layouts`, `assets`, and `images`.
-2. Clone the following files and personalize content as need: `about.md`, `articles.html`, `index.html`, `tags.html`, `feed.xml`, and `sitemap.xml`.
-3. Set the following variables in your `config.yml` file:
 
 ``` yaml
 title:            Site Title
@@ -132,23 +90,17 @@ so-simple-theme/
 ---
 
 ## Customization
-
 For full customization details and more information on the theme check out the [So Simple theme setup guide](http://mmistakes.github.io/so-simple-theme/theme-setup/).
 
 ---
 
 ## Questions?
-
 Having a problem getting something to work or want to know why I setup something in a certain way? Ping me on Twitter [@mmistakes](http://twitter.com/mmistakes) or [file a GitHub Issue](https://github.com/mmistakes/so-simple-theme/issues/new).
 
 ---
 
 ## License
-
 This theme is free and open source software, distributed under the [GNU General Public License](LICENSE) version 2 or later. So feel free to to modify this theme to suit your needs. 
-
 If you'd like to give me credit somewhere on your blog or tweet a shout out to [@mmistakes](https://twitter.com/mmistakes), that would be pretty sweet.
-
-
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/mmistakes/so-simple-theme/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
