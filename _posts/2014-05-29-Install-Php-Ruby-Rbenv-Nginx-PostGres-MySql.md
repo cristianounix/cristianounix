@@ -28,6 +28,8 @@ Dont forget run '$ rbenv rehash' if you install any gem not using Gemfile Ex. '$
 After you install ruby set your global version
 
     $ rbenv global [ruby-version]
+    $ gem install bundler
+    $ rbenv rehash
 
 For more options use: '$ rbenv'
 
