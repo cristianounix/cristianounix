@@ -46,6 +46,10 @@ For more options use: '$ rbenv'
     $ brew tap homebrew/dupes
     $ brew options php54
     $ brew install --without-apache --with-fpm --with-mysql --with-pgsql --with-debug php55
+    $ cp /usr/local/Cellar/php55/5.5.12/homebrew.mxcl.php55.plist ~/Library/LaunchAgents/
+    $ launchctl load -w ~/Library/LaunchAgents/homebrew-php.josegonzalez.php54.plist (Start)
+    $ launchctl unload -w ~/Library/LaunchAgents/homebrew-php.josegonzalez.php54.plist (Stop)
+
 
 
 ### PostGres
