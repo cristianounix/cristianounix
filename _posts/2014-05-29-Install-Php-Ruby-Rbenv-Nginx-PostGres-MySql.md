@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Install php, ruby, rbenv, mysql, ngix, postgres all this on mac
+title: Install php, ruby, rbenv, mysql, nginx, postgres all this on mac
 description: "Install php, ngix, mysql, postgres on mac"
 modified: 2014-05-29
 category: macbook
