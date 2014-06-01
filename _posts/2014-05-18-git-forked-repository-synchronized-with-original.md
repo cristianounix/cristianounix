@@ -1,6 +1,6 @@
 ---
 layout: post
-title: You forked repository on git, and now you would like update this repository ! what you do ¿? delete this repo and fork again ? cry? pray?
+title: Repository forked, update.... What you do ¿?
 description: "Repository forked on github sinchronized with original"
 modified: 2014-05-18
 category: macbook
