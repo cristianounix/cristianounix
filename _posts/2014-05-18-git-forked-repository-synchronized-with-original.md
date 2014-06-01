@@ -1,6 +1,6 @@
 ---
 layout: post
-title: You foked repository on git, and now you would like update this repository ! what you do ¿? delete this repo and fork again ? cry? pray?
+title: You forked repository on git, and now you would like update this repository ! what you do ¿? delete this repo and fork again ? cry? pray?
 description: "Repository forked on github sinchronized with original"
 modified: 2014-05-18
 category: macbook
@@ -9,7 +9,7 @@ comments: true
 share: true
 ---
 
-## You foked repository on git, and now you would like update this repository ! what you do ¿? delete this repo and fork again ? cry? pray?
+## You forked repository on git, and now you would like update this repository ! what you do ¿? delete this repo and fork again ? cry? pray?
 
     $ git remote add upstream [ADDRESS REPO ORIGINAL]
     $ git fetch upstream
