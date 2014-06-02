@@ -82,6 +82,7 @@ Put line "include sites-enabled/*.conf;" on block http{}
 
 ## Other:
 
+    $ brew install tmux
     $ brew install tig
     $ brew isntall htop
     $ brew install wget
@@ -90,5 +91,5 @@ Put line "include sites-enabled/*.conf;" on block http{}
     $ brew install openssl
     $ brew install git
     $ brew install autoconf
-
+    $ gem install tmuxinator && rbenv rehash
 
