@@ -37,6 +37,28 @@ share: true
   $ bundle exec cap install STAGES=development,production
 
   Configure your sever address, folder target, public keys and roles
+  :application
+  :repository
+  :deploy_to
+  :user
+
+  This will create folders on :deploy_to server
+
+  $ bundle exec cap deploy:setup
+
+  This check your configs
+
+  $ bundle exec cap deploy:check
+
+
+  if you need more tasks see: deploy.rb
+
+    Example:
+
+    after "deploy", "deploy:symlink_config_files"
+    after "deploy", "deploy:restart"
+    after "deploy", "deploy:cleanup"
+
 
   $ bundle exec cap [STAGE] deploy
 
