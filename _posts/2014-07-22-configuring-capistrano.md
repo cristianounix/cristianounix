@@ -20,15 +20,16 @@ share: true
   $ bundle exec cap install
 
   Check this files:
-  ├── Capfile
-  ├── config
-  │   ├── deploy
-  │   │   ├── production.rb
-  │   │   └── staging.rb
-  │   └── deploy.rb
-  └── lib
-      └── capistrano
-                  └── tasks
+
+  ├── Capfile\n
+  ├── config\n
+  │   ├── deploy\n
+  │   │   ├── production.rb\n
+  │   │   └── staging.rb\n
+  │   └── deploy.rb\n
+  └── lib\n
+      └── capistrano\n
+                  └── tasks\n
 
 
   For create different stages
