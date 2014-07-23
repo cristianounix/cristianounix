@@ -21,15 +21,15 @@ share: true
 
   Check this files:
 
-  ├── Capfile\n
-  ├── config\n
-  │   ├── deploy\n
-  │   │   ├── production.rb\n
-  │   │   └── staging.rb\n
-  │   └── deploy.rb\n
-  └── lib\n
-      └── capistrano\n
-                  └── tasks\n
+  ├── Capfile<br />
+  ├── config<br />
+  │   ├── deploy<br />
+  │   │   ├── production.rb<br />
+  │   │   └── staging.rb<br />
+  │   └── deploy.rb<br />
+  └── lib<br />
+      └── capistrano<br />
+                  └── tasks<br />
 
 
   For create different stages
