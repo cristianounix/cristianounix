@@ -63,4 +63,9 @@ share: true
   $ bundle exec cap [STAGE] deploy
 
 
+
+  Obs: Don`t forget uncomment Capfile:
+  *rbenv, *bundler, *bower, *npm or *migrations if you neeed
+
+
   More about Capistrano --> https://github.com/capistrano/capistrano
