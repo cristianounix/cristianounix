@@ -28,8 +28,8 @@ share: true
   │   │   └── staging.rb<br />
   │   └── deploy.rb<br />
   └── lib<br />
-      └── capistrano<br />
-                  └── tasks<br />
+  _____ └── capistrano<br />
+  ______________ └── tasks<br />
 
 
   For create different stages
