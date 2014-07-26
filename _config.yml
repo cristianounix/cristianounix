@@ -7,7 +7,7 @@ description: "Fluid, responsive blog theme for Jekyll"
 # Your name. Will show in your footer + sidebar 
 author: "Cristiano S. Oliveira"
 
-url: "http://0.0.0.0:4000"
+url: "http://cristianounix.github.io/"
 baseurl: ""
 
 # A short presentation of yourself. Will show in the sidebar, under your name. Best usage would be between 30 to 50 words. 
@@ -20,18 +20,13 @@ github: cristianounix
 dribbble: cristianounix
 instagram: cristianounix
 
-# Google Analytics (you may want to changes these with yours or even delete :)
-
-ga_domain: cristianounix.github.io
-
 
 # Other (refer to http://jekyllrb.com/docs/home/ for further details on the below)
-
 markdown: kramdown
 permalink: pretty
 highlighter: pygments
 
-paginate: 10
+paginate: 15
 paginate_path: "/page/:num"
 
 # SCSS
