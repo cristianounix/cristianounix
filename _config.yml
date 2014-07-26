@@ -32,10 +32,11 @@ highlighter: pygments
 paginate: 15
 paginate_path: "/page/:num"
 
-# SCSS
+exclude: ['vendor']
 
+# SCSS
 sass:
   sass_dir: _scss
-  style: :compressed
+  style: compressed
 
-exclude: ['vendor']
+
