@@ -1,68 +1,43 @@
-title: CristianoUnix
-description: I love tech...
-logo: null
-disqus_shortname: cristianounix
-search: true
-# Change url to your domain. Leave localhost server or blank when working locally.
-# You don't need to specify the protocol if you want it available on http and https. Example: //localhost:4000
-url: http://cristianounix.github.io
+# Title of your blog; shows in the header
+name: "cristianounix"
 
-# Owner/author information
-owner:
-  name: Cristiano S. Oliveira
-  avatar: bio-photo.jpg
-  email: cristianounix@email.com
-  # Social networking links used in footer. Update and remove as you like.
-  twitter: cristianounix
-  facebook: cristianounix
-  github: cristianounix
-  stackexchange:
-  linkedin: cristianounix
-  instagram: cristianounix
-  flickr: cristianounix
-  tumblr:
-  # For Google Authorship https://plus.google.com/authorship
-  google_plus: cristianounix
+# Description of your content (will only be used on Google Search)
+description: "Fluid, responsive blog theme for Jekyll"
 
-# Analytics and webmaster tools stuff goes here
-google_analytics:
-google_verify:
-# https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
-bing_verify:
+# Your name. Will show in your footer + sidebar 
+author: "Cristiano S. Oliveira"
 
-# Links to include in top navigation
-# For external links add external: true
-links:
-  - title: About
-    url: /about/
-  - title: Articles
-    url: /articles/
-#  - title: Made Mistakes
-#    url: http://mademistakes.com
-#    external: true
+url: "http://0.0.0.0:4000"
+baseurl: ""
 
-# http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-timezone:    America/Sao_Paulo
-future:      true
+# A short presentation of yourself. Will show in the sidebar, under your name. Best usage would be between 30 to 50 words. 
+author-bio: "I'm a dog. I develop things. This is my blog so why don't you close this damn side panel (cursed by most UX Designers but I don't care, I do whatever I want) and start reading my awesome stuff?"
+
+# Social Accounts (mine, as placeholders)
+
+twitter: cristianounix
+github: cristianounix
+dribbble: cristianounix
+instagram: cristianounix
+
+# Google Analytics (you may want to changes these with yours or even delete :)
+
+ga_domain: cristianounix.github.io
+
+
+# Other (refer to http://jekyllrb.com/docs/home/ for further details on the below)
+
+markdown: kramdown
+permalink: pretty
 highlighter: pygments
-markdown:    kramdown
 
-# https://github.com/mojombo/jekyll/wiki/Permalinks
-permalink:   /:categories/:title/
+paginate: 10
+paginate_path: "/page/:num"
 
-kramdown:
-  auto_ids: true
-  footnote_nr: 1
-  entity_output: as_char
-  toc_levels: 1..6
-  use_coderay: false
+# SCSS
 
-  coderay:
-    coderay_line_numbers:
-    coderay_line_numbers_start: 1
-    coderay_tab_width: 4
-    coderay_bold_every: 10
-    coderay_css: class
+sass:
+  sass_dir: _scss
+  style: :compressed
 
-include: [".htaccess"]
-exclude: ["lib", "config.rb", "Gemfile", "Capfile", "README.md", "LICENSE", "Gemfile.lock", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules"]
+exclude: ['vendor']
