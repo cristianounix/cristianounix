@@ -8,7 +8,7 @@ description: "Fluid, responsive blog theme for Jekyll"
 author: "John Doge"
 
 url: "http://cristianounix.github.io"
-baseurl: ""
+baseurl: "cristianounix.github.io"
 
 # A short presentation of yourself. Will show in the sidebar, under your name. Best usage would be between 30 to 50 words. 
 author-bio: "I develop things."
