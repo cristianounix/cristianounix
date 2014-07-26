@@ -6,9 +6,10 @@ description: "Fluid, responsive blog theme for Jekyll"
 
 # Your name. Will show in your footer + sidebar 
 author: "Cristiano S. Oliveira"
+email: cristianounix@email.com
 
-url: "http://cristianounix.github.io/"
-baseurl: ""
+url: "http://cristianounix.github.io"
+baseurl: "/"
 
 # A short presentation of yourself. Will show in the sidebar, under your name. Best usage would be between 30 to 50 words. 
 author-bio: "I'm a dog. I develop things. This is my blog so why don't you close this damn side panel (cursed by most UX Designers but I don't care, I do whatever I want) and start reading my awesome stuff?"
@@ -19,6 +20,8 @@ twitter: cristianounix
 github: cristianounix
 dribbble: cristianounix
 instagram: cristianounix
+linkedin: cristianounix
+google_plus: cristianounix
 
 
 # Other (refer to http://jekyllrb.com/docs/home/ for further details on the below)

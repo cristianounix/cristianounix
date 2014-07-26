@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+      <title>cristianounix - Fluid, responsive blog theme for Jekyll</title>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <meta http-equiv="content-language" content="en-gb" />
+      <meta name="description" content="Fluid, responsive blog theme for Jekyll.">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+      <link href="//fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700|Lora:400,700,400italic" rel="stylesheet" type="text/css">
+      <link rel="stylesheet" type="text/css" href="//css/main.css" />
+      <link href="atom.xml" type="application/atom+xml" rel="alternate" title="Site ATOM Feed">
+  </head>
+
+  <body>
+    <!--[if lt IE 7]>
+        <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div class="off-canvas">
+      <figure class="avatar">
+        <img src="//assets/img/avatar.jpg" alt="Picture" title="That's me, Cristiano S. Oliveira.">
+      </figure>
+      <div class="bio">
+          <h1>Hi, I'm Cristiano S. Oliveira.</h1>
+          <p>I'm a dog. I develop things. This is my blog so why don't you close this damn side panel (cursed by most UX Designers but I don't care, I do whatever I want) and start reading my awesome stuff?</p>
+      </div>
+      <nav>
+        <h6>Follow me on</h6>
+        <ul>
+          
+          <li><a target="_blank" href="http://twitter.com/cristianounix">Twitter</a></li>
+          
+          
+          <li><a target="_blank" href="cristianounix">Github</a></li>
+          
+          
+          <li><a target="_blank" href="cristianounix">Dribbble</a></li>
+          
+          
+          <li><a target="_blank" href="cristianounix">Instagram</a></li>
+          
+        </ul>
+      </nav>
+    </div>
+
+
+    <div class="site-wrapper">
+
+      <header>
+        <div class="h-wrap">
+          <h1 class="title"><a href="/" title="Back to Homepage">cristianounix</a></h1>
+          <a class="menu-icon" title="Open Bio"><span class="lines"></span></a>
+        </div>
+      </header>
+
+      <main>
+        <section class="single-wrap">
+  <article class="single-content" itemscope itemtype="http://schema.org/BlogPosting">
+    <div class="feat">
+      <h5 class="page-date">
+        <time datetime="2014-05-29T00:00:00-03:00" itemprop="datePublished">
+          29 May 2014
+        </time>
+      </h5>
+    </div>
+    <h1 class="page-title" itemprop="name headline">Install php, ruby, rbenv, mysql, nginx, postgres all this on mac</h1>
+    <div itemprop="articleBody">
+      <h1 id="install-homebrew-php-ruby-rbenv-ngix-mysql-postgres">Install Homebrew, Php, Ruby, Rbenv, Ngix, MySql, PostGres</h1>
+
+<h3 id="rbenv">Rbenv:</h3>
+
+<pre><code>$ git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+$ git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+$ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' &gt;&gt; ~/.bash_profile
+$ echo 'eval "$(rbenv init -)"' &gt;&gt; ~/.bash_profile
+</code></pre>
+
+<p>Dont forget run ‘$ rbenv rehash’ if you install any gem not using Gemfile Ex. ‘$ gem install foo’</p>
+
+<h3 id="ruby">Ruby:</h3>
+
+<pre><code>$ rbenv install [ruby-version]
+</code></pre>
+
+<p>After you install ruby set your global version</p>
+
+<pre><code>$ rbenv global [ruby-version]
+$ gem install bundler
+$ rbenv rehash
+</code></pre>
+
+<p>For more options use: ‘$ rbenv’</p>
+
+<h3 id="homebrew">HomeBrew:</h3>
+
+<pre><code>$ brew ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+$ brew doctor
+</code></pre>
+
+<h3 id="php-with-fpm-without-apache-mod-and-with-pgsql">PHP (with fpm, without apache mod and with pgsql):</h3>
+
+<pre><code>$ brew tap josegonzalez/php
+$ brew tap homebrew/dupes
+$ brew options php54
+$ brew install --without-apache --with-fpm --with-mysql --with-pgsql --with-debug php55
+$ brew install php55-mcrypt
+$ cp /usr/local/Cellar/php55/5.5.12/homebrew.mxcl.php55.plist ~/Library/LaunchAgents/
+$ launchctl load -w ~/Library/LaunchAgents/homebrew-php.josegonzalez.php54.plist (Start)
+$ launchctl unload -w ~/Library/LaunchAgents/homebrew-php.josegonzalez.php54.plist (Stop)
+</code></pre>
+
+<h3 id="postgres">PostGres</h3>
+
+<pre><code>$ brew install postgresql
+</code></pre>
+
+<h3 id="mysql">Mysql:</h3>
+
+<pre><code>$ brew install mysql --enable-debug
+$ mysql_secure_installation
+$ mysql.server {start|stop|restart|reload|force-reload|status}
+</code></pre>
+
+<h4 id="workbench">WorkBench:</h4>
+
+<pre><code>$ ln -s /usr/local/Cellar/mysql/5.6.10 /usr/local/mysql
+$ sudo ln -s /usr/local/Cellar/mysql/5.6.10/my.cnf /etc/my.cnf
+</code></pre>
+
+<h3 id="ngix">NgiX:</h3>
+
+<pre><code>$ brew install nginx
+$ cp /usr/local/Cellar/nginx/1.4.1/homebrew.mxcl.nginx.plist ~/Library/LaunchAgents/
+$ launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist (Start)
+$ launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist (Stop)
+$ vim /usr/local/etc/nginx/nginx.conf
+</code></pre>
+
+<p>Put line “include sites-enabled/*.conf;” on block http{}</p>
+
+<h2 id="other">Other:</h2>
+
+<pre><code>$ brew install tmux
+$ brew install tig
+$ brew isntall htop
+$ brew install wget
+$ brew install node
+$ brew install vim
+$ brew install openssl
+$ brew install git
+$ brew install autoconf
+$ gem install tmuxinator &amp;&amp; rbenv rehash
+</code></pre>
+
+
+    </div>
+    <div class="feat share">
+      <a href="http://twitter.com/share" class="popup">
+        <span class="icon-twitter"></span>
+      </a>
+    </div>
+    
+      <a rel="next" href="//ruby,%20deploy,%20capistrano/2014/07/22/configuring-capistrano/" id="next">
+        <span class="nav-title nav-title-next">newer</span> &rarr;
+      </a>
+    
+    
+      <a rel="prev" href="//macbook/2014/05/27/Create-OSX-pen-drive-boot/" id="prev">
+        &larr; <span class="nav-title nav-title-prev">older</span>
+      </a>
+    
+  </article>
+</section>
+
+      </main>
+
+      <footer>
+        <small>Powered by Jekyll - Theme: <a href="https://github.com/m3xm/hikari-for-Jekyll">hikari</a> - &copy; Cristiano S. Oliveira</small>
+      </footer>
+
+    </div> 
+    
+
+    <script src="//js/main.js"></script>
+    
+    
+
+  </body>
+</html>
