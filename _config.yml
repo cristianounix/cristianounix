@@ -1,43 +1,27 @@
-# Title of your blog; shows in the header
 name: "cristianounix"
 
-# Description of your content (will only be used on Google Search)
 description: "Fluid, responsive blog theme for Jekyll"
 
-# Your name. Will show in your footer + sidebar 
-author: "John Doge"
+author: "Cristiano S. Oliveira - cristianounix"
 
-url: "http://cristianounix.github.io"
+url: "http://0.0.0.0:4000"
 baseurl: ""
 
-# A short presentation of yourself. Will show in the sidebar, under your name. Best usage would be between 30 to 50 words. 
-author-bio: "I develop things."
+author-bio: "I am developer"
 
-# Social Accounts (mine, as placeholders)
+twitter: cristianounix
+github: cristianounix
+dribbble: cristianounix
+instagram: cristianounix
+facebook: cristianounix
 
-twitter: mx3m
-github: m3xm
-dribbble: m3xm
-instagram: m3xm
-
-# Google Analytics (you may want to changes these with yours or even delete :)
-
-ga_domain: cristianounix.github.io
-ga_tracking_id: UA-47727049-1
-
-# Other (refer to http://jekyllrb.com/docs/home/ for further details on the below)
 
 markdown: kramdown
 permalink: pretty
 highlighter: pygments
 
-paginate: 10
+
+paginate: 8
 paginate_path: "/page/:num"
 
 exclude: ['vendor']
-
-# SCSS
-
-sass:
-  sass_dir: _scss
-  style: :compressed
