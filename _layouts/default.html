@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
-      <title>{{ site.name }} - {{ site.description }}</title>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
-      <meta name="description" content="Fluid, responsive blog theme for Jekyll.">
-      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-      <link href="//fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700|Lora:400,700,400italic" rel="stylesheet" type="text/css">
-      <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/css/main.css" />
-      <link href="atom.xml" type="application/atom+xml" rel="alternate" title="Site ATOM Feed">
+    <title>{{ site.name }} - {{ site.description }}</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="Fluid, responsive blog theme for Jekyll.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/css/main.css" />
   </head>
 
-  <body> 
+  <body>
 
 
 
@@ -20,7 +23,7 @@
       <h1 class="title"><a href="{{ site.url }}" title="Back to Homepage">{{ site.name }}</a></h1>
 
       <div id="window">
-        
+
 
 
         <div id="toolbar">
@@ -30,7 +33,7 @@
                 <div class="glyph">×</div>
                 <div class="shine"></div>
                 <div class="glow"></div>
-              </div>        
+              </div>
               <div class="light yellow">
                 <div class="glyph">-</div>
                 <div class="shine"></div>
@@ -56,37 +59,37 @@
           </div>
         </div>
         <div id="body">
-          <p> 
-            Last login: Thu May 24 12:18:16 on ttys006 <br /> Doms-MacBook-Pro:flight dom$  
-            <h1>Hi, I'm {{ site.author }}.</h1>
-            <p>{{ site.author-bio }}</p>
-            {% if site.twitter %}
-            <a target="_blank" href="http://twitter.com/{{ site.twitter }}">Twitter</a> |
-            <a target="_blank" href="http://github.com/{{ site.github }}">Github</a> |  
-            <a target="_blank" href="http://linkedin.com/{{ site.instagram }}">Instagram</a> 
-            {% endif %}  
-          </p>  
-          <div class="cursor"></div>  
+          <p>
+          Last login: Thu May 24 12:18:16 on ttys006 <br /> Doms-MacBook-Pro:flight dom$
+          <h1>Hi, I'm {{ site.author }}.</h1>
+          <p>{{ site.author-bio }}</p>
+          {% if site.twitter %}
+          <a target="_blank" href="http://twitter.com/{{ site.twitter }}">Twitter</a> |
+          <a target="_blank" href="http://github.com/{{ site.github }}">Github</a> |
+          <a target="_blank" href="http://linkedin.com/{{ site.instagram }}">Instagram</a>
+          {% endif %}
+          </p>
+          <div class="cursor"></div>
 
           <main>
-            {{ content }}
+          {{ content }}
           </main>
 
-        </div>  
+        </div>
       </div>
 
 
 
       <footer>
-        <small>Powered by CristianoUnix</small>
+      <small>Powered by CristianoUnix</small>
       </footer>
 
-    </div> 
+    </div>
     {% comment %} site-wrapper {% endcomment %}
 
     <script src="{{ site.baseurl }}/js/main.js"></script>
     {% comment %} Google Analytics {% endcomment %}
- 
+
 
   </body>
 </html>
