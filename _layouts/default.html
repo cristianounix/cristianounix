@@ -18,78 +18,68 @@
 
 
 
+
     <div class="site-wrapper">
 
-      <h1 class="title"><a href="{{ site.url }}" title="Back to Homepage">{{ site.name }}</a></h1>
+      <div class="site-wrapper-inner">
 
-      <div id="window">
+        <div class="cover-container">
 
-
-
-        <div id="toolbar">
-          <div class="top">
-            <div id="lights">
-              <div class="light red">
-                <div class="glyph">×</div>
-                <div class="shine"></div>
-                <div class="glow"></div>
-              </div>
-              <div class="light yellow">
-                <div class="glyph">-</div>
-                <div class="shine"></div>
-                <div class="glow"></div>
-              </div>
-              <div class="light green">
-                <div class="glyph">+</div>
-                <div class="shine"></div>
-                <div class="glow"></div>
-              </div>
-            </div>
-            <div id="title">
-              <div class="folder">
-                <div class="tab"></div>
-                <div class="body"></div>
-              </div>
-              {{ page.title }}
-            </div>
-            <div id="bubble">
-              <div class="shine"></div>
-              <div class="glow"></div>
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand marca">
+              </h3>
+              <ul class="nav masthead-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Features</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
             </div>
           </div>
-        </div>
-        <div id="body">
-          <p>
-          Last login: Thu May 24 12:18:16 on ttys006 <br /> Doms-MacBook-Pro:flight dom$
-          <h1>Hi, I'm {{ site.author }}.</h1>
-          <p>{{ site.author-bio }}</p>
-          {% if site.twitter %}
-          <a target="_blank" href="http://twitter.com/{{ site.twitter }}">Twitter</a> |
-          <a target="_blank" href="http://github.com/{{ site.github }}">Github</a> |
-          <a target="_blank" href="http://linkedin.com/{{ site.instagram }}">Instagram</a>
-          {% endif %}
-          </p>
-          <div class="cursor"></div>
+          <div>
+            {{ page.title }}
+          </div>
 
-          <main>
-          {{ content }}
-          </main>
+
+
+          <div class="inner cover">
+            <h1 class="cover-heading"><a href="{{ site.url }}" title="Back to Homepage">{{ site.name }}</a></h1>
+            <p class="lead">
+            {{ site.author }}
+            {{ site.author-bio }}
+            </p>
+            <p class="lead">
+            <a href="#" class="btn btn-lg btn-default">Learn more</a>
+            </p>
+          </div>
+
+          <div class="mastfoot">
+            <p>
+            {% if site.twitter %}
+            <a target="_blank" href="http://twitter.com/{{ site.twitter }}">Twitter</a> |
+            <a target="_blank" href="http://github.com/{{ site.github }}">Github</a> |
+            <a target="_blank" href="http://linkedin.com/{{ site.instagram }}">Instagram</a>
+            {% endif %}
+            </p>
+          </div>
 
         </div>
+
+
+
+
+
+
       </div>
 
-
-
-      <footer>
-      <small>Powered by CristianoUnix</small>
-      </footer>
-
     </div>
-    {% comment %} site-wrapper {% endcomment %}
 
-    <script src="{{ site.baseurl }}/js/main.js"></script>
-    {% comment %} Google Analytics {% endcomment %}
 
+    <main>
+    {{ content }}
+    </main>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
   </body>
 </html>
