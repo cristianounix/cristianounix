@@ -20,16 +20,17 @@ layout: default
         <span class="icon-twitter"></span>
       </a>
     </div>
-    {% if page.next %}
-      <a rel="next" href="{{ site.baseurl }}{{ page.next.url }}" id="next">
-        <span class="nav-title nav-title-next">newer</span> &rarr;
-      </a>
-    {% endif %}
-    {% if page.previous %}
-      <a rel="prev" href="{{ site.baseurl }}{{ page.previous.url }}" id="prev">
-        &larr; <span class="nav-title nav-title-prev">older</span>
-      </a>
-    {% endif %}
+
+
+    <ul class="pager">
+      {% if page.next %} 
+        <li class="next"><a href="{{ site.baseurl }}{{ page.next.url }}">Newer &rarr;</a></li>
+      {% endif %}
+      {% if page.previous %} 
+        <li class="previous"><a href="{{ site.baseurl }}{{ page.previous.url }}">&larr; Older</a></li>
+      {% endif %} 
+    </ul>
+
   </article>
 
 

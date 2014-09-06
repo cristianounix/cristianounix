@@ -1,148 +1,77 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{{ site.name }} - {{ site.description }}</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="description" content="Fluid, responsive blog theme for Jekyll.">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <title>{{ site.name }} - {{ site.description }}</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="description" content="Fluid, responsive blog theme for Jekyll.">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="css/main.css">
 
-  </head>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-  <body>
+</head>
 
-
-
-<div class="container">
-
-  <div class="row">
-
-    <nav class="col-sm-2"><!--nav-->
-      <div class="row">
-        <div class="col-sm-12"><!--logo-->
-          <img src="http://placehold.it/200&text=Logo" alt="test" class="img-circle img-responsive center" />
-        </div><!--/logo-->
-        <ul class="nav nav-pills nav-stacked">
-          <li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Home</a></li>
-          <li><a href="#"><span class="glyphicon glyphicon-cutlery"></span>&nbsp;&nbsp;Recipes</a></li>
-          <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;About</a></li>
-          <li><a href="#"><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;Contact</a></li>
-
-        </ul>
-
-      </nav><!--/nav-->
-
-      <div class="col-sm-10">
+<body>
 
 
 
+  <div class="container">
+
+    <div class="row">
+
+      <nav class="col-sm-2">
         <div class="row">
-          <div class="col-xs-12">
-
-            <div class="row">
-              <div class="col-md-3 col-sm-6 post">
-                 <a href="#" class="thumbnail"><img src="http://placehold.it/500" alt="" /></a>
-                <h2>Post 1</h2><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                <span class="btn btn-default">More</span>
-              </div>
-              <div class="col-md-3 col-sm-6 post">
-                 <a href="#" class="thumbnail"><img src="http://placehold.it/500" alt="" /></a>
-                <h2>Post 2</h2><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                <span class="btn btn-default">More</span>
-              </div>
-              <div class="col-md-3 col-sm-6 post">
-                 <a href="#" class="thumbnail"><img src="http://placehold.it/500" alt="" /></a>
-                <h2>Post 3</h2><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                <span class="btn btn-default">More</span>
-              </div>
-              <div class="col-md-3 col-sm-6 post">
-                 <a href="#" class="thumbnail"><img src="http://placehold.it/500" alt="" /></a>
-                <h2>Post 4</h2><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                <span class="btn btn-default">More</span>
-              </div>
-            </div>
+          <div class="col-sm-12">
+            <a href="/" title="">
+            <img src="http://www.gravatar.com/avatar/41a435ddb47e02e3af3af41bf57f6df3?s=300" alt="test" class="img-circle img-responsive center" />
+            </a>
           </div>
+          <div>
+            {{ site.author }}
+            {{ site.author-bio }}
+          </div>
+          <ul class="nav nav-pills nav-stacked">
+            {% if site.twitter %}
+            <li>
+              <a target="_blank" href="http://twitter.com/{{ site.twitter }}">Twitter</a>
+            </li>
+            <li>
+              <a target="_blank" href="http://github.com/{{ site.github }}">Github</a>
+            </li>  
+            <li>
+              <a target="_blank" href="http://instagram.com/{{ site.instagram }}">Instagram</a>
+            </li>  
+            <li>
+              <a target="_blank" href="http://br.linkedin.com/in/cristianounix/">Linkedin</a>
+            </li>   
+            {% endif %}
+          </ul>
+
+        </nav>
+
+        <div class="col-sm-10">
+
+          <main>
+            {{ content }}
+          </main>
+
+
         </div>
       </div>
-    </div>
 
- </div><!--/.content-->
+    </div>
     <footer class="row footer">
-      <div class="panel-footer"><p>&copy; 2013 Jane Smith</p></div>
+      <div class="panel-footer"><p> - ☢ - ☁ - ⅀ - ☲ - ∰ - ∞ - ✖ - β - Ω - Φ</p></div>
     </footer>
 
 
-
-
-
-
-
-
-    <div class="site-wrapper">
-
-      <div class="site-wrapper-inner">
-
-        <div class="cover-container">
-
-          <div class="masthead clearfix">
-            <div class="inner">
-              <h3 class="masthead-brand marca">
-              </h3>
-              <ul class="nav masthead-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Features</a></li>
-                <li><a href="#">Contact</a></li>
-              </ul>
-            </div>
-          </div>
-          <div>
-            {{ page.title }}
-          </div>
-
-
-
-          <div class="inner cover">
-            <h1 class="cover-heading"><a href="{{ site.url }}" title="Back to Homepage">{{ site.name }}</a></h1>
-            <p class="lead">
-            {{ site.author }}
-            {{ site.author-bio }}
-            </p>
-            <p class="lead">
-            <a href="#" class="btn btn-lg btn-default">Learn more</a>
-            </p>
-          </div>
-
-          <div class="mastfoot">
-            <p>
-            {% if site.twitter %}
-            <a target="_blank" href="http://twitter.com/{{ site.twitter }}">Twitter</a> |
-            <a target="_blank" href="http://github.com/{{ site.github }}">Github</a> |
-            <a target="_blank" href="http://linkedin.com/{{ site.instagram }}">Instagram</a>
-            {% endif %}
-            </p>
-          </div>
-
-        </div>
-
-
-
-
-
-
-      </div>
-
-    </div>
-
-
-    <main>
-    {{ content }}
-    </main>
+    
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
   </body>
-</html>
+  </html>

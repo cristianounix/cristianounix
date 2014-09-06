@@ -20,8 +20,4 @@ markdown: kramdown
 permalink: pretty
 highlighter: pygments
 
-
-paginate: 8
-paginate_path: "/page/:num"
-
 exclude: ['vendor']

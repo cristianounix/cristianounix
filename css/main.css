@@ -37,18 +37,8 @@ nav div, h1, h2, h3, h4, h5, h6 {
   color: #000;
 }
 
-.carousel-control.left, .carousel-control.right {
-  top: 40%;
-  background: none;
-  font-size: 50px;
-}
-
-.carousel-caption {
-  font-size: 28px;
-  bottom: 0;
-}
-
 .post {
+  min-height: 262px;
   margin-bottom: 30px;
 }
 
@@ -60,20 +50,3 @@ footer p {
   text-align: center;
 }
 
-@media (max-width: 992px){
-  .carousel-caption {
-    font-size: 18px;
-  }
-  .nav li {
-    font-size: 20px;
-  }
-}
-
-@media (max-width: 768px){
-  .thumbnail {
-    border: none;
-  }
-  a.thumbnail:hover, a.thumbnail:focus{
-    border: none;
-  }
-}
