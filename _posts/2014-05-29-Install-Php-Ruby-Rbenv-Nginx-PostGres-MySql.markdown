@@ -12,7 +12,7 @@ share: true
 # Install Homebrew, Php, Ruby, Rbenv, Ngix, MySql, PostGres
 
 ### Rbenv:
-
+    $ brew install readline
     $ git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
     $ git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
     $ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
