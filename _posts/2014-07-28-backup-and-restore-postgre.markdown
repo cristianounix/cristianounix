@@ -5,7 +5,6 @@ date:   2014-07-28 15:17:21
 ---
 
 
-
 ## Backup Database
 
   $ pg_dump db_name > db_backup.pg
