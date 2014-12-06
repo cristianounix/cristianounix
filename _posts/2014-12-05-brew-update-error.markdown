@@ -1,10 +1,9 @@
 ---
 layout: post
-title: Configuring Capistrano
-description: "Install and Configure capistrano"
-modified: 2014-07-22
-category: ruby, deploy, capistrano
-tags: [git, ruby]
+title: Solve problems with brew update
+modified: 2014-12-05
+category: brew, git, macos
+tags: [git, ruby, brew, mac]
 comments: true
 share: true
 ---
