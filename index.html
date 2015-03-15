@@ -3,25 +3,14 @@ layout: default
 title: Homepage
 ---
 
-
-
-<section id="blog-intro" class="cyan section z-depth-1" style="background-image:url('http://gigabiting.com/wp-content/uploads/18458-mathematics-1920x1200-typography-wallpaper.jpg');">
-  <div class="container">
-    <div class="profile_header">
-        <img src="http://www.gravatar.com/avatar/41a435ddb47e02e3af3af41bf57f6df3?s=200" alt="">
-        {{ site.author }}
-        {{ site.author-bio }}
-    </div>
-    <h2 id="blog-title" class="white-text">rm -Rf /</h2>
-    <h5 class="white-text"></h5>
-  </div>
+<section id="blog-intro" class="light-blue section z-depth-1 large-header" style="background:url('{{ site.url }}assets/img/1.jpg'); background-repeat: no-repeat; background-attachment: fixed;">
+  <canvas id="demo-canvas"></canvas>
 </section>
 
 <section id="index-posts-container" class="container">
 
-
 {% for post in site.posts %}
-<article class="post ">
+<article class="post">
   <div class="card-panel z-depth-1">
     <div class="row">
       <div class="col s12">
@@ -46,7 +35,7 @@ title: Homepage
               </span>
             </p>
           </div>
-          <a href="{{ site.baseurl }}{{ post.url }}" class="read-more waves-effect waves-light btn cyan darken-2">Read more</a>
+          <a href="{{ site.baseurl }}{{ post.url }}" class="read-more waves-effect waves-light btn green">Read more</a>
         </section>
       </div>
     </div>
