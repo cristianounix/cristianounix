@@ -1,6 +1,5 @@
 module Jekyll
   class PersonalTags < Liquid::Tag
-
     def initialize(tag_name, param, tokens)
       super
     end
@@ -11,4 +10,5 @@ module Jekyll
   end
 end
 
-Liquid::Template.register_tag('randBg', Jekyll::PersonalTags)
+
+Liquid::Template.register_tag('rand', Jekyll::PersonalTags)

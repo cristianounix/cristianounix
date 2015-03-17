@@ -40,3 +40,13 @@ navigation:
   url: /tags/
 - text: Archive
   url : /archive/
+
+assets:
+  debug: true
+  js_compressor:  'uglifier'
+  css_compressor: 'sass'
+  sources:
+    - _assets/javascripts
+    - _assets/stylesheets
+    - _vendors/stylesheets
+    - _vendors/javascripts
