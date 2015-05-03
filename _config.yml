@@ -1,13 +1,13 @@
 name: "cristianounix"
-
+author: "Cristiano S. Oliveira - cristianounix"
+author-bio: "I am developer"
 description: "Fluid, responsive blog theme for Jekyll"
 
-author: "Cristiano S. Oliveira - cristianounix"
 
-url: "http://cristianounix.github.io/"
+url: "http://127.0.0.1:4000/"
 baseurl: ""
 
-author-bio: "I am developer"
+
 
 twitter: cristianounix
 github: cristianounix
@@ -19,5 +19,34 @@ facebook: cristianounix
 markdown: kramdown
 permalink: pretty
 highlighter: pygments
-
 exclude: ['vendor']
+
+# Permalinks
+#permalink:        /blog/:year/:month/:day/:title
+
+
+# Disqus
+disqushandler: 'testingblogo'
+
+# Navigation
+navigation:
+- text: About
+  url: /about/
+- text: Resume
+  url: /resume/
+- text: Blog
+  url: /blog/
+- text: Tags
+  url: /tags/
+- text: Archive
+  url : /archive/
+
+assets:
+  debug: true
+  js_compressor:  'uglifier'
+  css_compressor: 'sass'
+  sources:
+    - _assets/javascripts
+    - _assets/stylesheets
+    - _vendors/stylesheets
+    - _vendors/javascripts

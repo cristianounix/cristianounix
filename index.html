@@ -3,30 +3,49 @@ layout: default
 title: Homepage
 ---
 
+<section id="blog-intro" class="light-blue section z-depth-1 large-header" style="background:url('{{ site.url }}img/1.jpg'); background-repeat: no-repeat; background-attachment: fixed; background-position:5%;">
+  <canvas id="demo-canvas"></canvas>
+</section>
 
-<div class="row">
-  <div class="col-xs-12">
+<section id="index-posts-container" class="container">
 
+{% for post in site.posts %}
+<article class="post">
+  <div class="card-panel z-depth-1">
     <div class="row">
-      {% for post in site.posts %}
-      <div class="col-md-3 col-sm-6 post">
-       <!--
-       <a href="{{ site.baseurl }}{{ post.url }}" class="thumbnail">
-       <img src="http://placehold.it/500" alt="" />
-       </a>
-       -->
-       <h2>{{ post.title }}</h2>
-       <p>{{ post.date | date_to_string }}</p>
-       <a href="{{ site.baseurl }}{{ post.url }}">
-        <span class="btn btn-default">More</span>
-       </a>
-     </div>
-     {% endfor %}
-   </div>
- </div>
-</div>
+      <div class="col s12">
+        <header class="post-header">
+          <h4 class="post-title ">
+            <a class="grey-text darken-3" href="{{ site.baseurl }}{{ post.url }}">
+            {{ post.title }}
+            </a>
+          </h4>
+        </header>
+        <section class="post-excerpt">
+          <p class="flow-text"> {{ content }}</p>
+          <div class="post-meta">
+            <p>
+              <time class="post-date grey-text lighten-1" datetime="{{ post.date | date_to_xmlschema }}">
+              {{ post.date | date_to_string }}
+              </time>
+            </p>
+            <p class="tag-cloud">
+              <span>
+                {post.tags}
+              </span>
+            </p>
+          </div>
+          <a href="{{ site.baseurl }}{{ post.url }}" class="read-more waves-effect waves-light btn green">Read more</a>
+        </section>
+      </div>
+    </div>
+  </div>
+</article>
+
+{% endfor %}
 
 
+</section>
 
 {% if paginator.total_pages > 1 %}
 <ul class="pager">
@@ -38,13 +57,13 @@ title: Homepage
   {% endif %}
   {% else %}
     <li class="next"><a href="#">Newer &rarr;</a></li>
-  {% endif %}  
+  {% endif %}
 
   {% if paginator.next_page %}
     <li class="previous"><a href="/page/{{paginator.next_page}}">&larr; Older</a></li>
   {% else %}
     <li class="previous"><a href="#">&larr; Older</a></li>
-  {% endif %}  
+  {% endif %}
 </ul>
 {% endif %}
 
