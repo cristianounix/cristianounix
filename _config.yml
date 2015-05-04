@@ -1,12 +1,18 @@
 name: "cristianounix"
 author: "Cristiano S. Oliveira - cristianounix"
 author-bio: "I am developer"
-description: "Fluid, responsive blog theme for Jekyll"
+title: Your awesome title
+email: your-email@domain.com
+
+description: > # this means to ignore newlines until "baseurl:"
+              Write an awesome description for your new site here. You can edit this
+              line in _config.yml. It will appear in your document head meta (for
+              Google search results) and in your feed.xml site description.
 
 
-url: "http://127.0.0.1:4000/"
-baseurl: ""
+baseurl: "" # the subpath of your site, e.g. /blog/
 
+url: "http://127.0.0.1:4000/" # the base hostname & protocol for your site
 
 
 twitter: cristianounix
@@ -14,6 +20,8 @@ github: cristianounix
 dribbble: cristianounix
 instagram: cristianounix
 facebook: cristianounix
+
+disqushandler: 'cristianounix'
 
 
 markdown: kramdown
@@ -25,28 +33,6 @@ exclude: ['vendor']
 #permalink:        /blog/:year/:month/:day/:title
 
 
-# Disqus
-disqushandler: 'testingblogo'
 
-# Navigation
-navigation:
-- text: About
-  url: /about/
-- text: Resume
-  url: /resume/
-- text: Blog
-  url: /blog/
-- text: Tags
-  url: /tags/
-- text: Archive
-  url : /archive/
-
-assets:
-  debug: true
-  js_compressor:  'uglifier'
-  css_compressor: 'sass'
-  sources:
-    - _assets/javascripts
-    - _assets/stylesheets
-    - _vendors/stylesheets
-    - _vendors/javascripts
+# Build settings
+markdown: kramdown

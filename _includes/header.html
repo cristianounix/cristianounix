@@ -1,0 +1,24 @@
+
+  <nav id="toolbar" class="navbar navbar-inverse navbar-fixed-top" style="position:fixed; z-index: 10;">
+    <div class="nav-wrapper blue">
+      <ul id="nav-mobile" class="left side-nav">
+        <li><a href="/">HOME</a></li>
+        <li><a href="/about">ABOUT</a></li>
+        {% if site.twitter %}
+        <li>
+          <a target="_blank" href="http://twitter.com/{{ site.twitter }}">Twitter</a>
+        </li>
+        <li>
+          <a target="_blank" href="http://github.com/{{ site.github }}">Github</a>
+        </li>
+        <li>
+          <a target="_blank" href="http://instagram.com/{{ site.instagram }}">Instagram</a>
+        </li>
+        <li>
+          <a target="_blank" href="http://br.linkedin.com/in/cristianounix/">Linkedin</a>
+        </li>
+        {% endif %}
+      </ul>
+      <a class="button-collapse" href="#" data-activates="nav-mobile"><i class="mdi-navigation-menu"></i></a>
+    </div>
+  </nav>

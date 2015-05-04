@@ -1,56 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>
-    {% if page.title %}
-      {{ page.title }}
-    {% else %}
-      {{ site.title }}
-    {% endif %}
-  </title>
-  <meta name="description" content="" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-  {% stylesheet application %}
-  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+  {% include head.html %}
 </head>
+
 <body class="home-template grey lighten-5">
 
-  <nav id="toolbar" class="navbar navbar-inverse navbar-fixed-top" style="position:fixed; z-index: 10;">
-    <div class="nav-wrapper blue">
-      <ul id="nav-mobile" class="left side-nav">
-        <li><a href="/">HOME</a></li>
-        <li><a href="/about">ABOUT</a></li>
-        {% if site.twitter %}
-        <li>
-          <a target="_blank" href="http://twitter.com/{{ site.twitter }}">Twitter</a>
-        </li>
-        <li>
-          <a target="_blank" href="http://github.com/{{ site.github }}">Github</a>
-        </li>
-        <li>
-          <a target="_blank" href="http://instagram.com/{{ site.instagram }}">Instagram</a>
-        </li>
-        <li>
-          <a target="_blank" href="http://br.linkedin.com/in/cristianounix/">Linkedin</a>
-        </li>
-        {% endif %}
-      </ul>
-      <a class="button-collapse" href="#" data-activates="nav-mobile"><i class="mdi-navigation-menu"></i></a>
-    </div>
-  </nav>
-
+    {% include header.html %}
 
     {{ content }}
-
 
   <footer class="site-footer clearfix">
 
   </footer>
-   {% javascript application %}
+
+  {% include footer.html %}
+
 </body>
 
 </html>
