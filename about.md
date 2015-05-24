@@ -1,11 +1,34 @@
 ---
 layout: page
-title: About
+title: Cristiano S. Oliveira
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
+Com quase 10 anos de experiência na carreira, desenvolvi habilidades técnicas em desenvolvimento web e mobile, tais como:
 
-You can find the source code for the Jekyll new theme at: [github.com/jglovier/jekyll-new](https://github.com/jglovier/jekyll-new)
+  - Php (Zend Framework 1, Codeigniter, Laravel, CakePHP)
+  - Node.js (Express)
+  - Git flow
+  - REST
+  - Ruby (Rails e Sinatra)
+  - Mobile (Android Nativo ou Híbrido usando phonegap ou Titanium)
+  - C/C++ (PoS e Arduino)
+  - C# MVC4 e Entity FrameWork
+  - HTML 5 e CSS 3
+  - SASS e Less
+  - Composer
+  - Javascript e (jQuery e AngularJS)
+  - MySQL, MongoDB, Redis e Neo4J
+  - Webservers: Apache e Nginx
+  - Análise de Requisitos
+  - Amazon AWS: S3 e EC2
+  - Sistemas operacionais: Mac OS X e Linux
+  - ShellScript
 
-You can find the source code for Jekyll at [github.com/jekyll/jekyll](https://github.com/jekyll/jekyll)
+=============
+
+[Linkedin](https://www.linkedin.com/in/cristianounix)
+
+[Github](https://github.com/cristianounix)
+
+
