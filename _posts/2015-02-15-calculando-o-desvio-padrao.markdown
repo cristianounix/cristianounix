@@ -1,12 +1,12 @@
 ---
 layout: post
-title: Calculando o desvio padrão
+title: Calculando o desvio padrão e o coeficiente de variação
 modified: 2015-02-15
 category: Mat
 tags: ['mat, calc']
 ---
 
-## Vou tentar explicar de forma bem simples e rápida o cálculo do desvio padrão.
+## De forma bem simples e rápida vou mostrar o cálculo do desvio padrão.
 
 
 O que seria o Desvio Padrão ?
@@ -119,6 +119,19 @@ para evitar a tendência do resultado para zero.
 Desvio padrão é: &radic;[variância]
 
 &radic; 11.8056 => ```3.44 (aproximadamente)```
+
+
+###Para finalizar vamos ao Coeficiente de variação:###
+
+Coeficiente de variação: ([desvio_padrao]/[media])*100
+
+  ```(3.44/5.16)*100```
+
+  ```66.66%```
+
+
+
+
 
 Pronto !
 :)
