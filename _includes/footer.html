@@ -1,5 +1,11 @@
-<script src="{{ site.baseurl }}/js/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $('pre code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+</script>
 
 <script src="{{ site.baseurl }}/js/EasePack.min.js"></script>
 <script src="{{ site.baseurl }}/js/TweenLite.min.js"></script>
