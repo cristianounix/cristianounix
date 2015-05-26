@@ -11,7 +11,7 @@ comments: true
 ## Vai logo abrindo o terminal para criar sua gem ! 
 
 
-	```shell
+	```bash
 	$ bundle gem my_gem
  
 		create my_gem/Gemfile
@@ -47,7 +47,7 @@ Todos esses arquivos tem sua importância, mas os que mais se destacam são:
 	
 	Esse é um dos processos mais complexos de criação da gem, vejam:
 
-	```shell
+	```bash
 	$ gem build hello_world.gemspec
 
 		Successfully built RubyGem
@@ -61,13 +61,13 @@ Todos esses arquivos tem sua importância, mas os que mais se destacam são:
 	
 	Vamos instalar ela primeiro.
 
-	```shell
+	```bash
 	$ gem install my_gem-0.0.1.gem
 	```
 
 	Agora vamos fazer um teste.
 
-	```shell
+	```bash
 	$ irb
 	> require 'my_gem'
 	> h = Hello.new
