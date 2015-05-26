@@ -11,42 +11,49 @@ comments: true
 ## Vai logo abrindo o terminal para criar sua gem ! 
 
 
-	```
+	```shell
 	$ bundle gem my_gem
-	```
-
-	```
-	create my_gem/Gemfile
-	create my_gem/Rakefile
-	create my_gem /.gitignore
-	create my_gem/hello_world.gemspec
-	create my_gem/lib/my_gem.rb
-	create my_gem/lib/my_gem/version.rb
-	Initializating git repo in /Users/cristianounix/git/my_gem
+ 
+		create my_gem/Gemfile
+		create my_gem/Rakefile
+		create my_gem /.gitignore
+		create my_gem/hello_world.gemspec
+		create my_gem/lib/my_gem.rb
+		create my_gem/lib/my_gem/version.rb
+		Initializating git repo in /Users/cristianounix/git/my_gem
 	```
 
 Todos esses arquivos tem sua importância, mas os que mais se destacam são:
 
->	**hello_world.gemspec** - terá informações, como nome da gem, autor, email, descrição e etc é sempre bom colocar esses dados pois facilita que outros deves encontrem sua gem.
+**hello_world.gemspec** 
 	
->	**version.rb** - como o nome já diz, ele terá a versão de sua gem, para entender um pocuo do versionamento dá uma olhada aqui [Versionamento](http://semver.org/lang/pt-BR/).
+	Terá informações, como nome da gem, autor, email, descrição e etc é sempre bom 
+	colocar esses dados pois facilita que outros deves encontrem sua gem.
+	
+**version.rb** 
 
->	**my_gem.rb** - nesse aqui basicamente terá nossa gem propriamente dito, ou seja toda nossa lógica. Eu gosto de criar uma outra pasta dentro da lib e nela criar minhas classes 	separadas por módulos, acho que ajuda bastante na hora da manutenção.
+	Como o nome já diz, ele terá a versão de sua gem, 
+	para entender um pocuo do versionamento dá uma olhada aqui 
+	[Versionamento](http://semver.org/lang/pt-BR/).
+
+**my_gem.rb** 
+
+	Nesse aqui basicamente terá nossa gem propriamente dito, ou seja toda nossa lógica. 
+	Eu gosto de criar uma outra pasta dentro da lib, e nela criar minhas classes 
+	separadas por módulos, acho que ajuda bastante na hora da manutenção.
 
 
 ### Empacotando a danada
 	
 	Esse é um dos processos mais complexos de criação da gem, vejam:
 
-	```
+	```shell
 	$ gem build hello_world.gemspec
-	```
 
-	```
-	Successfully built RubyGem
-	Name: my_gem
-	Version: 0.0.1
-	File: my_gem-0.0.1.gem
+		Successfully built RubyGem
+		Name: my_gem
+		Version: 0.0.1
+		File: my_gem-0.0.1.gem
 	```
 
 
@@ -54,13 +61,13 @@ Todos esses arquivos tem sua importância, mas os que mais se destacam são:
 	
 	Vamos instalar ela primeiro.
 
-	```	
+	```shell
 	$ gem install my_gem-0.0.1.gem
 	```
 
 	Agora vamos fazer um teste.
 
-	```
+	```shell
 	$ irb
 	> require 'my_gem'
 	> h = Hello.new
