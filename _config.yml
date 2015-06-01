@@ -32,7 +32,3 @@ exclude: ['vendor']
 # Permalinks
 #permalink:        /blog/:year/:month/:day/:title
 
-
-
-# Build settings
-markdown: kramdown
