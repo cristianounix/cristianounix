@@ -27,9 +27,9 @@ Tensão fornecida pelas saídas digitais do Arduino = 5V
 
 Pela Lei de Ohm temos:
 
-´´´
+```
 R = V/I -> R = (5 – 2) / 0,010 -> R = 300 Ohms
-´´´
+```
 
 Portando, se for ligar Leds às saídas do seu Arduino use um resistor de 300 Ohms
 em série para não danificar seu projeto.
