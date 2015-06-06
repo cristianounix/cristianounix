@@ -78,18 +78,5 @@ $ irb
 
 Lindo né ?
 
-{% highlight html %}
-<html>
-<title>Teste</title>
-</html>
-{% endhighlight %}
-
-
-{% highlight php %}
-<?php
-echo "teste";
-?>
-{% endhighlight %}
-
 
 > PS: Caso tenha explicado alguma coisa errada, ou escrito algo errado gostaria do seu comentário e sua correção.
