@@ -55,13 +55,15 @@ Vamos fazer uns exemplos para entender:
 
 Antes vamos supor que temos 2 métodos implementados e testados que funcionam perfeitamente, são eles:
 
+{% highlight csharp %}
 1. List<int> GetPrimeNumbs(int min, int max)
 2. boll CheckIsPrimeNumb(int min, int max)
+{% endhighlight %}
 
 No item 1. o método retorna uma lista de números primos, essa lista obedeçe o intervalo do min e máx.
 Já O item 2. é um método usado internamete pelo item 1. ele verifica se cada ítem do intervalo é um primo ou não.
 
-Pronto sabendo disso agora vamos entender:
+Pronto sabendo disso let's code:
 
 ### Processo Síncrono
 
@@ -80,7 +82,11 @@ time.Start();
 int numThreads = 10;
 var primes = new List<int>[numThreads];
 Parallel.For(0,numThreads,i => primes[i] = GetPrimeNumbs(i== 0 ? 2 : i * 1000000 + 1, (i+1)*1000000));
-Console.WriteLine("Qtd. Números primos: {0}\n Tempo: {1}", primes.Sum(p => p.Count), time.ElapsedMilliseconds);
+
+Console.WriteLine("Qtd. Números primos: {0}\n Tempo: {1}",
+                      primes.Sum(p => p.Count),
+                      time.ElapsedMilliseconds);
+
 {% endhighlight %}
 
 No código assíncrono perceba que estou usando o Parallel e estou quebrando a tarefa em 10 tarefas (threads) e no final eu faço a contagem e mostro como foi o resultado.
@@ -94,7 +100,9 @@ int numThreads = 10;
 var primes = new Task<List<int>>[numThreads];
 for (int i = 0; i < numThreads; i++){
     int cnt = i;
-    primes[i] = Task.Factory.StartNew(() => GetPrimeNumbs(cnt == 0 ? 2 : cnt * 1000000 + 1, (cnt + 1) * 1000000));
+    primes[i] = Task.Factory.StartNew(
+                  () => GetPrimeNumbs(cnt == 0 ? 2 : cnt * 1000000 + 1, (cnt + 1) * 1000000)
+                );
 }
 Task.WaitAll(primes);
 Console.WriteLine("Qtd. Números primos: {0}\n Tempo: {1}", primes.Sum(p => p.Result.Count), time.ElapsedMilliseconds);
@@ -107,13 +115,13 @@ estamos pedindo para aguardar todas as tarefas lançadas no vetor para serem fin
 Um exemplo diferente para **Parallel Linq**
 {% highlight csharp %}
 var count = max - min + 1;
-return Enumerable.Range(minimum, count).AsParallel().Where(IsPrimeNumb).ToList();
+return Enumerable.Range(minimum, count).AsParallel().Where(CheckIsPrimeNumb).ToList();
 {% endhighlight %}
 
 Você deve tá se perguntando, mas porque ele usou um exemplo diferente para o LINQ?
-Porque da forma como eu estava pensando nos outros exemplo o método GetPrimeNumbs teria que ser escrito de formas diferente, pois internamente ele usa um outro método
-é o **IsPrimeNumb** e esse é o mais usado pela CPU visto que ele verifica todos os números
-dentro do intervalo do min e máx para identificar e gerar assim a lista de números primos.
+Porque da forma como eu estava pensando nos outros exemplo o método **GetPrimeNumbs** teria que ser escrito de formas diferente, pois internamente ele usa um outro método o **CheckIsPrimeNumb** e esse é o mais usado pela CPU visto que ele verifica todos os números
+dentro do intervalo do min e máx para identificar e gerar assim a lista de números primos,
+logo esse método teria que ser escrito pensando nessa abordagem asíncrona.
 
 
 ====
@@ -171,7 +179,28 @@ Parallel.ForEach(products, product =>
 {% endhighlight %}
 
 
-Como vou conseguir debugar isso?
+**Parallel.Invoke**
+{% highlight csharp %}
+Parallel.Invoke(
+  () =>
+  {
+     Console.WriteLine("Iniciando tarefa 1");
+     GetSizeWord("Qual o tamanho dessa frase?");
+  },
+  () =>
+  {
+     Console.WriteLine("Iniciando tarefa 2");
+     GetTotalWords("Quantas palavras tem nessa frase?");
+  }
+);
+{% endhighlight %}
+
+Perceba que usei o **Invoke** para chamar tarefas distintas que serão distribuidas nos meus núcleos de processamento.
+
+
+====
+
+Agora, como vou conseguir debugar isso?
 Bem uma forma que vi algumas pessoas nas comunidades .NET fazendo é:
 
 {% highlight csharp %}
