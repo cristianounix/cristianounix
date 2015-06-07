@@ -1,101 +1,94 @@
 ---
 layout: post
-title: MongoDb Basico
-description: "Comandos basicos do mongodb"
-modified: 2014-07-27
+title: MongoDB básico que precisa saber.
+description: "MongoDB básico"
+modified: 2012-10-20
 category: database, mongodb
 tags: [database, mongodb]
 comments: true
 share: true
 ---
 
-## Comandos MongoDb comparados ao MySQL
+### O Banco
 
-### Introdução
+MongoDb - Banco de dados NoSql orientado a documentos escrito em C++,
+seus dados são salvos em formas de documentos JSON (BSON - JSON "binarizado")
 
-MongoDb - Banco de dados NoSql orientado a documentos escrito em C++, seus dados são salvos em formas de documentos JSON (BSON - JSON "binarizado")
+> Essa descrição é algo que você encontra fácil pela internet.
 
-Execmplode de um JSON
-´´
-{nome:"Testando um JSON" , email: "json@gmail.com" , tel: "5454-5454" }
-´´
+Claro que você já sabe, mas não custa nada mostrar o exemplo de um documento JSON:
+
+{% highlight json %}
+{
+  "nome":"Testando um JSON",
+  "email":"json@gmail.com",
+  "tel":"5454-5454"
+}
+{% endhighlight %}
 
 ## Beleza vamos ao que interessa:
 
-Listando todas as bases do Mysql
-  $ Show databases
-
-Listando todas as bases do MongoDb
+Listando todas as bases
+{% highlight json %}
   $ show dbs
+{% endhighlight %}
 
-Listando todas as tabelas do Mysql
-  $ Show databases
-
-Listando todas as coleções do MongoDb
+Listando todas as coleções
+{% highlight bash %}
   $ show collections
-
-Criando Tabela
-  $ CREATE TABLE .....
+{% endhighlight %}
 
 Criando Coleção
+{% highlight bash %}
   $ db.createCollection("pessoas")
-
-Inserindo registros
-  $ INSERT INTO pessoas ....
+{% endhighlight %}
 
 Inserindo na Coleção
+{% highlight bash %}
   $ db.agenda.insert({nome:"Testando um JSON" , email: "json@gmail.com" , tel: "5454-5454" });
-
-Buscando registro na Tabela
-  $ SELECT * FROM pessoas WHERE id = 1
+{% endhighlight %}
 
 Buscando registro na Coleção
+{% highlight bash %}
   $ db.agenda.find({id:123})
-
-Removendo registro na tabela
-  $ DELETE FROM pessoas WHERE id = 123
+{% endhighlight %}
 
 Removendo registro da Coleção
+{% highlight bash %}
   $ db.agenda.remove({id:1});
+{% endhighlight %}
 
-Atualizando registro na Tabela
-  $ UPDATE pessoas SET email = 'pessoa@gmail.com' WHERE id = 123;
-
-Atualizando registro na Coleção
-
+Atualizando registro na Coleção.
+{% highlight bash %}
   $ var pess = db.pessoas.find({id:1});
   $ pess.email = "pessoa@gmail.com";
   $ db.pessoas.save(pess);
-
+{% endhighlight %}
   ou
-
+{% highlight bash %}
   $ db.pessoas.update({email: 'json@gmail.com'}, {$set: {email: "pessoa@gmail.com"}})
-    O $set faz com que todos os dados seja mantido, alterado apenas o email.
+{% endhighlight %}
 
-Buscnado Registros e limitando as ocorrencias
-  $ select * from pessoas limit 2
+O **$set** faz com que todos os dados seja mantido, alterado apenas o email.
 
-Buscnado Registros e limitando as ocorrencias
+Buscando eegistros e limitando as ocorrencias.
+{% highlight bash %}
   $ db.pessoas.find().limit(2)
+{% endhighlight %}
 
-Buscnado Registros e ordenando as ocorrencias
-  $ select * from pessoas order by email desc
+Buscando Registros e ordenando as ocorrencias.
+{% highlight bash %}
+  $ db.pessoas.find().sort({"email":-1}) // onde 1 ASC e -1 DESC
+{% endhighlight %}
 
-Buscnado Registros e ordenando as ocorrencias
-  $ db.pessoas.find().sort({"email":-1})
+Deletando uma base.
+{% highlight bash %}
+  $ db.dropDatabase() (irá deletar a base que vc está conectado)
+{% endhighlight %}
 
-
-Deletando um banco de dados
-  $ drop database pessoas
-
-Deletando uma Coleção
-  $ db.dropDatabase() (irá deletar a coleção que vc está conectado)
-
-Deletando um tabela
-  $ drop table pessoas
-
-Deletando uma coleção
+Deletando uma coleção.
+{% highlight bash %}
   $ db.pessoas.drop()
-
+{% endhighlight %}
 
 ## Esses são os básicos, depois vou colocando mais aqui

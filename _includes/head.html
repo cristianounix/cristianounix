@@ -19,11 +19,3 @@
 
   <script src="{{ site.baseurl }}/js/jquery.min.js"></script>
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
-
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $('pre code').each(function(i, block) {
-        hljs.highlightBlock(block);
-      });
-    });
-  </script>

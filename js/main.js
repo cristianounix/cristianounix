@@ -16,8 +16,12 @@ function init() {
 }
 window.onload = init();
 
+$(document).ready(function() {
 
-(function() {
+    $('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+    });
+
     var lastTime = 0;
     var vendors = ['ms', 'moz', 'webkit', 'o'];
     for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
@@ -40,9 +44,9 @@ window.onload = init();
         window.cancelAnimationFrame = function(id) {
             clearTimeout(id);
         };
-}());
+});
 
-(function() {
+$(document).ready(function() {
 
     var width, height, largeHeader, canvas, ctx, points, target, animateHeader = true;
 
@@ -227,5 +231,4 @@ window.onload = init();
         return Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2);
     }
 
-})();
-
+});
