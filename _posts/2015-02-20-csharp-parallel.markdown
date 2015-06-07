@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Programação Assincrona com c#, sim csharp :( Se vou mexer com isso é bom entender ne ?!
+title: Programação Assíncrona com c#, sim csharp :( Se vou mexer com isso é bom entender ne ?!
 description: "Programação Assincrona com c# usando parallel"
 modified: 2015-04-15
 category: .net, c#
