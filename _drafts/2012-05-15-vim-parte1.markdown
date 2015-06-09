@@ -1,0 +1,42 @@
+---
+layout: post
+title: Vim parte 1
+description: "Vim parte 1"
+modified: 2012-05-15
+category: vim, shell
+tags: [vim, shell]
+comments: true
+share: true
+---
+
+### VIM
+
+Modos do Vim
+Navegação básica
+Navegação like a boss
+Navegação em linha
+Scroll e jumps
+Navegação por palavras
+Dez maneiras de entrar no modo de inserção
+Saindo do modo de inserção
+Undo
+Redo
+Entrando no modo visual
+Navegando no modo visual
+Navegando no modo visual like a boss
+Recortando, copiando e colando texto
+Modo visual em bloco
+Removendo no modo normal
+Removendo no modo visual
+Cópia de linha
+Remoção de linha
+Remoção de caractere
+Remoção like a boss
+Salvando um novo arquivo
+Salvando um arquivo existente
+Fechando um arquivo
+Abrindo um novo arquivo em buffer
+Forçando salvamento/fechamento
+Fechando todos os arquivos
+Ir para linha
+
