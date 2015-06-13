@@ -9,34 +9,82 @@ comments: true
 share: true
 ---
 
-### VIM
+## VIM Comigo piá !
 
-Modos do Vim
-Navegação básica
-Navegação like a boss
-Navegação em linha
-Scroll e jumps
-Navegação por palavras
-Dez maneiras de entrar no modo de inserção
-Saindo do modo de inserção
-Undo
-Redo
+<p style="text-align: center;">
+  <img src="{{site.baseurl}}/img/posts/vim3.gif" alt="VIM">
+</p>
+
+### Modos do Vim
+1.Navegação básica
+  h
+  j
+  k
+  l
+
+2.Scroll e jumps
+
+3.Navegação por palavras
+  w
+
+4.Modo de inserção
+  i
+
+5.Saindo do modo de inserção
+  ESC
+
+6.Undo
+  u
+
+7.Redo
+  CRTL+r
 Entrando no modo visual
+  v
+
 Navegando no modo visual
-Navegando no modo visual like a boss
+
 Recortando, copiando e colando texto
+
 Modo visual em bloco
+
 Removendo no modo normal
+
 Removendo no modo visual
 Cópia de linha
-Remoção de linha
-Remoção de caractere
-Remoção like a boss
-Salvando um novo arquivo
-Salvando um arquivo existente
-Fechando um arquivo
-Abrindo um novo arquivo em buffer
-Forçando salvamento/fechamento
-Fechando todos os arquivos
-Ir para linha
+  yy
 
+Remoção de linha
+  dd
+
+Remoção like a boss
+
+Salvando um novo arquivo
+
+Salvando um arquivo existente
+
+Fechando um arquivo
+
+Abrindo um novo arquivo em buffer
+
+Forçando salvamento/fechamento
+  :x
+
+Fechando todos os arquivos
+
+Ir para linha
+  :[numero_da_linha]
+
+Sair e ignorar todas as alterações
+  :q!
+
+Ir para o final da linha
+  $
+
+Ir para o inicio da linha
+  |
+
+Ir para o final do arquivo
+  SHIFT + g
+
+Ir para o topo do arquivo aberto sem fazer scroll da tela
+  SHIFT + g
