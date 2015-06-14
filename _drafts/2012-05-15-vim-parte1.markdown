@@ -9,11 +9,52 @@ comments: true
 share: true
 ---
 
-## VIM Comigo piá !
+## VIM comigo piá !
 
 <p style="text-align: center;">
   <img src="{{site.baseurl}}/img/posts/vim3.gif" alt="VIM">
 </p>
+
+
+Antes de falar como fazer isso ou aquilo com o vim, acho importante saber um pouco sobre
+como o vim funciona e seus modos.
+
+<p style="text-align: center;">
+  <img src="{{site.baseurl}}/img/posts/modes_vim_gif.gif" alt="Modos VIM">
+</p>
+
+Bem quando você abre o terminal e digita:
+
+{% highlight bash %}
+$ vim
+{% endhighlight %}
+
+Ele está no modo **NORMAL**, e você não vai conseguir digitar nada, só vai escutar apitos e mais apitos,
+a não ser que você pressione a letra "i", que faz você entrar no modo **INSERT**,
+que é o modo para você editar seu texto, para voltar para o modo **NORMAL** basta pressionar [ESC].
+
+Esses 2 modos são os modos básicos do vim, mas... legal o modo **INSERT** serve para colocar meu textinho mas
+e o modo **NORMAL** serve pra que moço ?
+
+Nesse modo nós podemos comandar o vim, por exemplo vamos ver o help:
+
+{% highlight bash %}
+$ vim
+{% endhighlight %}
+
+Dentro do vim no modo normal basta digitar
+
+  :help
+
+Muito provavelmente quando fizer isso não vai saber bem o que deve ser feito pra sair do help,
+então faz assim:
+
+  :q
+
+E você acabou de fechar a janela do help
+:)
+
+
 
 ### Modos do Vim
 1.Navegação básica
@@ -37,7 +78,7 @@ share: true
   u
 
 7.Redo
-  CRTL+r
+  [CRTL] + r
 Entrando no modo visual
   v
 
@@ -84,7 +125,7 @@ Ir para o inicio da linha
   |
 
 Ir para o final do arquivo
-  SHIFT + g
+  [SHIFT] + g
 
 Ir para o topo do arquivo aberto sem fazer scroll da tela
-  SHIFT + g
+  [SHIFT] + g
