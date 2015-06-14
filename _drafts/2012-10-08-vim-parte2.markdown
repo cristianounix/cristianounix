@@ -12,17 +12,33 @@ share: true
 ### VIM
 
 Split horizontal
+  :split
+  :sp
 Split vertical
+  :vsplit
+  :vsp
+
 Navegando pelos splits
+
+
 Fechando um split
+  :hide
+
 Adicionando novo buffer
+
 Listando buffers
+
 Mudando de buffers
+  :bnext ou :bn
+  :bprev ou :bp
+
 Busca no arquivo
+
 Substituição no arquivo
+
 Substituição like a boss
+
 Busca no projeto
-Location list e Quickfix
 
 
 Instalando Plugins
