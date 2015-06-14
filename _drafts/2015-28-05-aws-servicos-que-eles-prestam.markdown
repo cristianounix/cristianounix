@@ -12,6 +12,11 @@ share: true
 
 Bem, antes de tudo tenho que dizer, não estou aqui para fazer propaganda da Amazon :)
 
+
+<p style="text-align: center;">
+<img src="{{site.baseurl}}/img/posts/aws-az.jpg" alt="Zonas da AWS">
+</p>
+
 ### Banco de Dados:
 
 1. RDS - Relational Database Services é basicamente um serviço que oferece banco
@@ -102,9 +107,3 @@ OBS: $0.01 por GB e $0.050 1.000 solicitações
 
 
 
-
-
-
-<p style="text-align: center;">
-<img src="{{site.baseurl}}/img/posts/aws-az.jpg" alt="Zonas da AWS">
-</p>
