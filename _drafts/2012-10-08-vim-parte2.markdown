@@ -18,6 +18,20 @@ Split vertical
   :vsplit
   :vsp
 
+Redimensaionando o tamanho dos splits
+  [CRTL]-w >  - aumenta em uma coluna o tamanho da split que vc está
+  ou você pode fazer assim
+  10[CRTL]-w > - Isso aumenta em 10 colunas
+
+  Para diminuir pasta usar o "<" ao invés do ">"
+
+  Para as linhas você usa assim
+  [CRTL]-w +  - aumenta em uma linha
+  também pode usar a forma
+  10[CRTL]-w +
+
+  Para diminuir pasta usar o "-" ao invés do "+"
+
 Navegando pelos splits
 
 
