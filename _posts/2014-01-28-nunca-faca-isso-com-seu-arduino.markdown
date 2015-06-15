@@ -10,12 +10,15 @@ share: true
 ---
 
 
-Nunca ligue seus Leds ou qualquer outro tipo de componente diretamente nas portas do Arduino sem suar um resistor.
+<p style="text-align: center;">
+  <img src="{{site.baseurl}}/img/posts/arduino_design_project.jpg" style="width:750px;" alt="Design Arduino">
+</p>
+
+
+Nunca ligue seus Leds ou qualquer outro tipo de componente diretamente nas portas do Arduino sem usar um resistor.
 As saídas do Arduino suportam no máximo 40mA de corrente.
 
 Usando a lei Ohm é facil perceber que terá dores de cabeça se fizer essa ligação direta nas portas digitais.
-
-A resistência do Led tende para  zero, e a corrente do Arduino tende a infinito seu projeto irá para o saco.
 
 Observer a forma correta:
 
@@ -40,16 +43,21 @@ O mesmo para qualquer tipo de componente.
 Cuidado quando estiver ligando os fios do seu circuito pois, sem querer,
 você poderá ligar um dos pinos do Arduino diretamente ao terra.
 
-Se o pino ligado desta forma for programado como saída digital você irá “torrar” sua plataforma.
+Se o pino ligado for programado como saída digital você irá “torrar” sua plataforma.
 
 O raciocínio é o mesmo do 1º Erro explicado anteriormente, ou seja,
 ao ligar um pino de saída ao terra você não limitará a corrente fornecida pelo
 microcontrolador e rapidamente ela ultrapassará o limite de 40mA já mencionado acabando com sua alegria.
 
+<p style="text-align: center;">
+  <img src="{{site.baseurl}}/img/posts/arduino_leds.png" style="width:400px;" alt="Leds arduino">
+</p>
 
-Ae vc logo pensa, vou ligar 10 Leds, um em cada porta, cada um com 25mA (para ficar bem “brilhante”) e farei uma sequencial de Leds.
+Ae vc logo pensa, vou ligar 10 Leds, um em cada porta,
+cada um com 25mA pra igual árvore de natal, e farei uma sequencial de Leds.
 
-Se em algum momento vc ligar um conjunto de leds fazendo com que a somatória das correntes consumidas ultrapasse um certo valor, você terá problemas.
+Se em algum momento vc ligar um conjunto de leds fazendo com que a somatória
+das correntes consumidas ultrapasse um certo valor, você terá problemas.
 
 A corrente máxima total que o microcontrolador é capaz de suportar são 200mA.
 
