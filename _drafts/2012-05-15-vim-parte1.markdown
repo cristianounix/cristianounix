@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Vim parte 1
-description: "Vim parte 1"
+title: VIM comigo piá ! (parte 1)
+description: "VIM comigo piá !"
 modified: 2012-05-15
 category: vim, shell
 tags: [vim, shell]
@@ -30,10 +30,10 @@ $ vim
 {% endhighlight %}
 
 Ele está no modo **NORMAL**, e você não vai conseguir digitar nada, só vai escutar apitos e mais apitos,
-a não ser que você pressione a letra "i", que faz você entrar no modo **INSERT**,
+a não ser que você pressione a letra que te faça entrar no modo **INSERT** (as letras mais usadas para isso são "a", "i"),
 que é o modo para você editar seu texto, para voltar para o modo **NORMAL** basta pressionar [ESC].
 
-Esses 2 modos são os modos básicos do vim, mas... legal o modo **INSERT** serve para colocar meu textinho mas
+Esses 2 modos são os modos básicos do vim, legal... o modo **INSERT** serve para colocar meu textinho mas
 e o modo **NORMAL** serve pra que moço ?
 
 Nesse modo nós podemos comandar o vim, por exemplo vamos ver o help:
@@ -51,19 +51,21 @@ então faz assim:
 
   :q
 
-E você acabou de fechar a janela do help
-:)
+  e pronto você acabou de fechar a janela do help :)
 
 
+Deixa eu te mostrar uns comandos básicos do vim.
 
 ### Modos do Vim
 1.Navegação básica
-  h
-  j
-  k
-  l
+  h - Esquerda
+  j - Desce
+  k - Sobre
+  l - Direita
 
-2.Scroll e jumps
+2.Scroll
+  [CRTL] + f - PageDown
+  [CRTL] + b - PageUp
 
 3.Navegação por palavras
   w
@@ -79,7 +81,8 @@ E você acabou de fechar a janela do help
 
 7.Redo
   [CRTL] + r
-Entrando no modo visual
+
+8.Entrando no modo visual
   v
 
 Navegando no modo visual
@@ -87,10 +90,8 @@ Navegando no modo visual
 Recortando, copiando e colando texto
 
 Modo visual em bloco
+  [CRTL] + v
 
-Removendo no modo normal
-
-Removendo no modo visual
 Cópia de linha
   yy
 
@@ -129,3 +130,8 @@ Ir para o final do arquivo
 
 Ir para o topo do arquivo aberto sem fazer scroll da tela
   [SHIFT] + g
+
+
+Uma dica de link para aprender vim é esse cara é o [Aurelio](http://aurelio.net/vim/)
+ele manda muito bem em muitos assuntos e o site dele me ajudou e ajuda muito a aprender
+mais sobre esse editor tosco feio mas que é muito foda !!
