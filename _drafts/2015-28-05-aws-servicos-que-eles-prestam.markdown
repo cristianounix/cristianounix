@@ -19,7 +19,7 @@ Bem, antes de tudo tenho que dizer, não estou aqui para fazer propaganda da Ama
 
 ### Banco de Dados:
 
-1. RDS - Relational Database Services é basicamente um serviço que oferece banco
+1.RDS - Relational Database Services é basicamente um serviço que oferece banco
 de dados relacional (como o nome mesmo disse). usando o RDS você não precisa ter uma
 instância de um banco rodando na sua máquina, pois ele vai está disponivel como um
 serviço na aws, os backups são feitos automaticamente e disponibilizados no S3,
@@ -28,17 +28,20 @@ recursos como replicação em zonas diferentes.
 Os bancos que o RDS suporta hoje são
 **MySQL**, **Oracle**, **PostgreSQL** e o **SQLServer** ou seja os principais do mercado.
 
-2. DynamoDB - É um serviço de banco de dados **NoSQL** ele é muito rápido altamente
+2.DynamoDB - É um serviço de banco de dados **NoSQL** ele é muito rápido altamente
 flexivel e tem uma latência abaixo de 10 milisegundos em qualquer escala.
 
-3. ElastiCache - Não tenho muito o que falar, quem já usou **redis**,
+3.ElastiCache - Não tenho muito o que falar, quem já usou **redis**,
 **memcache** Serviço de cache basicamente, que tem suporte a replicação
 dos nós integração **CloudWatch** entre muitos outros.
 
 
 ### Infraestrutura
 
-1. EC2 -
+1. EC2 - Elastic Compute (não sei pq o "2" :)) acho que é uma das partes mais importantes da
+AWS, o ec2 é um máquina virtual onde você pode aumentar ou diminuir seus recursos, além de você
+poder colocar sua instância numa melhor posição geografica afim de otimizar a latência e ainda
+pode criar redundâncias nas suas zonas como mostramos na imagem acima.
 
 2. VPC -
 
@@ -52,23 +55,46 @@ usar o Route53 para seus serviços fora da infra da Amazon.
 
 ### Aplicações
 
-1. SES -
+1. SES - Simple Email Service em poucas palavras é um serviço de envio (apenas) de emails,
+oferece acesso fácil e em tempo real às suas estatísticas de envio e notificações internas de
+devoluções.
 
-2. SQS -
+2. SQS -  Simple Queue Service é um sistema de filas distribuida,
+em já usou Sidekiq, Celery, Nats, ou qualquer outro serviço de fila vai se dá bem com o SQS.
+Uma coisa interessante a se notar é que como o SQS é distribuido ele não farante o first in, first out
+das mensagens colocadas na fila, caso você queira manter a fila na ordem então você deve colocar a informação
+da ordem junto com a mensagem enviada, e no final quando o serviço te devolver a mensagem vc deve
+ordenar da forma adequada.
 
+3. SNS - Simple Notification Service - serviço de notificações via push,
+permite enviar mensagens individuais ou para um grande número de usuários.
+Push para dispositivos móveis (Apple, Google, Fire OS e Windows), caixas de e-mail ou
+até mesmo para outros serviços como SQS ou Aws Lambda ou para qualquer endpoint HTTP.
+O SNS pode tabém enviar SMS para usuários de dispositivos móveis nos EUA.
+
+4. Lambda - Esse cara aqui é muito lega, bem, ele exeuta um código assim que algum evento
+acontece, por exemplo, se você quiser um serviço que ao fazer o upload de uma imagem no S3
+você pegue essa imagem processe ela em tons de cinza o AWS Lamda é o caminho, basicamente o
+evento para acionar o lambda foi o upload da imagem no S3, temos outros eventos como leitura
+do **DynamoDB**.
+Se quisermos chamar as funções temos [LambdaAPI](http://docs.aws.amazon.com/lambda/latest/dg/API_InvokeAsync.html)
+[Lambda Preços](http://aws.amazon.com/pt/lambda/pricing/)
 
 ### Automoção
 
-1. Beanstalk - Esse cara é bem legal, ele basicamente cria todo uma infraestrutura como
+1. Beanstalk - Esse cara é bem legal também, ele basicamente cria todo uma infraestrutura como
 provisionamento de recursos, balanceamento de carga, Auto Scaling e monitoramento.
 Depois você faz o deploy de sua aplicação e vai configurando do seu gosto.
 
 
-2. Cloud Formation -
+2. Cloud Formation - Esse serviço te permite fazer provisionamento de uma infraestrutura através de um modelo
+em Json, exemplo [veja esse modelo](https://s3-us-west-2.amazonaws.com/cloudformation-templates-us-west-2/Rails_Single_Instance.template),
+logo no início fica fácil de entender as configurações da infraestrutura. Ele parece fazer a mesma
+coisa que o *Beanstalk* faz né ? sim parece, mas o beanstalk está mais voltado a entregar ao desenvolvedor
+uma infraestrutura rápida, segura e fácil de escalar, já o cloud formation foca em provisionar a infraestrutura, preocupando-se
+mais con os serviços necessários para a sua aplicação.
 
-3. OpsWork -
-
-4. CodeDeploy - Automatiza todo processo de deploy de forma confiável e rápida.
+3. CodeDeploy - Automatiza todo processo de deploy de forma confiável e rápida.
 Esse serviço elete tem uma série de recusos interessante, e ainda te dá uma certa confiança
 de você poder fazer o deploy e se algo der errado o rollback de todo processo vai ser bem indolor.
 É possivél fazer deploy em todas as suas instâncias definindo as estratégia de deploy, tipo:
@@ -100,9 +126,6 @@ OBS: $0.03 por GB e $0.050 1.000 solicitações
 barato que o S3 e mais voltado para armazenamentos de backups, ativos empresariais,
 substituição de outras mídias como fitas magnéticas e etc.
 OBS: $0.01 por GB e $0.050 1.000 solicitações
-
-3. Storage Gateway -
-
 
 
 
