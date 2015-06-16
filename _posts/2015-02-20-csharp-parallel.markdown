@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Programação Assíncrona com c#, sim csharp :( Se vou mexer com isso é bom entender ne ?!
-description: "Programação Assincrona com c# usando parallel"
+title: Programação Paralela com c#, dividindo e conquistando mais território. | Se vou mexer com csharp é bom entender né ?!
+description: "Programação Paralela com c#, dividindo e conquistando mais território"
 modified: 2015-04-15
 category: .net, c#
 tags: [.net, c#, visualstudio]
