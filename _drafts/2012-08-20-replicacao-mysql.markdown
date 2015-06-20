@@ -105,5 +105,5 @@ os parâmetros:
 
 {% highlight bash %}
 mysql> start slave
-mysql> show slave statusG
+mysql> show slave status
 {% endhighlight %}
