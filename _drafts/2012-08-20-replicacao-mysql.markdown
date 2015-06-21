@@ -163,14 +163,14 @@ Sim, pq noso fato de crescimento é de 1 ou seja 1,2,3,4,5,....
 
 Se alteramos esse fato para 6 nossos IDs seriam assim 6,12,18,24,....
 
-> Obs: esse fator pode ser um numero entre 1 e 65365
+> Obs: esse fator pode ser um número entre 1 e 65365
 
 Fechado, e o que seria o nosso **auto-increment-offset** ?
 
 Esse cara é muito importante pois ele evita conflitos de IDs caso ocorra
 uma inserção simultânea na mesma tablea nas 2 bases em questão.
 
-Vamos ver na pratica como fica isso:
+Vamos ver na prática como fica isso:
 
 Servidor 1:
 increment = 2
