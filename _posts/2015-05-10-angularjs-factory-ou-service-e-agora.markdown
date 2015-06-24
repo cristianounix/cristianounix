@@ -72,7 +72,7 @@ function CrtlApp($scope, helloWorld_Factory, helloWorld_Service) {
 {% endhighlight %}
 
 
-Tem muitos outros Patters como:
+### O AngularJS tem muitos outros Patters como:
 
 1. Directives
 2. Scope
