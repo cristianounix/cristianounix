@@ -37,7 +37,40 @@ Sim, é isso mesmo que viu o Service retorna um factory
 
 {% highlight javascript %}
 
+var app = angular.module('app', []);
+
+app.service('helloWorld_Service', function() {
+    this.sayHello = function() {
+        return "Hello World"
+    };
+});
+
+app.factory('helloWorld_Factory', function() {
+    return {
+        sayHello: function() {
+            return "Hello World"
+        }
+    };
+});
+
+
+function CrtlApp($scope, helloWorld_Factory, helloWorld_Service) {
+    $scope.many_hello = [
+        helloWorld_Factory.sayHello(),
+        helloWorld_Service.sayHello()
+    ];
+}
+
 {% endhighlight %}
+
+
+{% highlight html %}
+<div ng-controller="CrtlApp">
+    {{many_hello}}
+</div>
+{% endhighlight %}
+
+
 
 
 
@@ -61,3 +94,6 @@ Providers
 Modules
 ....
 ...
+
+
+> Obs: Caso tenha explicado alguma coisa errada, ou escrito algo errado gostaria do seu comentário e sua correção.
