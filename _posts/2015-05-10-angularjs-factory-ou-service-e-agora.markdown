@@ -26,13 +26,14 @@ mas..
 
 
 Se você observar no codigo fonte do projeto vai perceber bem a diferença, 
-veja [aqui](https://github.com/angular/angular.js/blob/master/src/auto/injector.js) com seus proprios olhos
+veja [aqui](https://github.com/angular/angular.js/blob/master/src/auto/injector.js#L687) com seus proprios olhos
 
 Legal né ?
 
 Percebeu ? 
 
-Sim, é isso mesmo que viu o Service retorna um factory
+Sim, é isso mesmo que viu o Service retorna um factory, vamos fazer um exemplo para explicar melhor quem são esses caras:
+
 
 
 {% highlight javascript %}
@@ -66,34 +67,22 @@ function CrtlApp($scope, helloWorld_Factory, helloWorld_Service) {
 
 {% highlight html %}
 <div ng-controller="CrtlApp">
-    {{many_hello}}
+    { { many_hello } } 
 </div>
 {% endhighlight %}
 
 
-
-
-
-                             _                _  _____ 
-     /\                     | |              | |/ ____|
-    /  \   _ __   __ _ _   _| | __ _ _ __    | | (___  
-   / /\ \ | '_ \ / _` | | | | |/ _` | '__|   | |\___ \ 
-  / ____ \| | | | (_| | |_| | | (_| | | | |__| |____) |
- /_/    \_\_| |_|\__, |\__,_|_|\__,_|_|  \____/|_____/ 
-                  __/ |                                
-                 |___/                                 
-
 Tem muitos outros Patters como:
 
-Directives
-Scope
-Filter
-Validator
-Dependency Injection
-Providers
-Modules
-....
-...
+1. Directives
+2. Scope
+3. Filter
+4. Validator
+5. Dependency Injection
+6. Providers
+7. Modules
+8. ....
+9. ...
 
 
 > Obs: Caso tenha explicado alguma coisa errada, ou escrito algo errado gostaria do seu comentário e sua correção.
