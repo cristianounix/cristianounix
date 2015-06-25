@@ -20,21 +20,38 @@ share: true
 Quando começamos a usar o [AngularJS](https://angularjs.org/) logo nos deparamos com os conceitos de Factory e Service, 
 mas.. 
 
-1. Quem são esses caras ?
+1. Quem são esses caras ? 
 2. Eles não fazem a mesma coisa ?
 
-
-
-Se você observar no codigo fonte do projeto vai perceber bem a diferença, 
+Se você observar no cádigo fonte do projeto vai perceber bem a diferença, 
 veja [aqui](https://github.com/angular/angular.js/blob/master/src/auto/injector.js#L687) com seus proprios olhos
 
 Legal né ?
 
 Percebeu ? 
 
-Sim, é isso mesmo que viu o Service retorna um factory, vamos fazer um exemplo para explicar melhor quem são esses caras:
+Sim, é isso mesmo que viu o Service retorna um factory.
+
+Se olhar com mais atenção vai perceber que a "grande" diferença entre eles está aqui:
+
+{% highlight javascript %}
+return $injector.instantiate(constructor);
+{% endhighlight %}
+
+que cria uma nova instância de service.
 
 
+Mas quando devo usar um ou outro ?
+
+...................
+...................
+
+
+
+> Obs: Todos os Services e Factory em Angular são singletons
+
+
+Vamos fazer um exemplo para ilustrar melhor esses caras:
 
 {% highlight javascript %}
 
