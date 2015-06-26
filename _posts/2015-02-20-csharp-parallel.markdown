@@ -74,7 +74,7 @@ var primes = GetPrimeNumbs(2, 10000000);
 Console.WriteLine("Qtd. Numeros primos: {0}\n Tempo: {1}", primes.Count,time.ElapsedMilliseconds);
 {% endhighlight %}
 
-### Processo Asíncrono Utilizndo o **Parallel**
+### Processo Asíncrono Utilizando o **Parallel**
 
 {% highlight csharp %}
 var time = new Stopwatch();
@@ -141,7 +141,8 @@ Parallel.ForEach(products, product =>
 {% endhighlight %}
 
 Isso não é threadsafe, pois como vão haver threads separadas adicionando preços à lista,
-caso ocorra de preços sendo adicionado na mesmo tempo, um deles não vai ser adicionado e sua lista vai ficar incompleta. Para contornar isso usamos os **Locks**, veja:
+caso ocorra de preços sendo adicionado na mesmo tempo, um deles não vai ser adicionado (ou muito provavelmente vai ser lançado um erro) e sua lista vai ficar incompleta.
+Para contornar isso usamos os **Locks**, veja:
 
 {% highlight csharp %}
 List<decimal> prices;
@@ -214,6 +215,9 @@ Parallel.ForEach(products, opt, product =>
 Se o **MaxDegreeOfParallelism** estiver definido como -1, que é o padrão dele,
 etão ele vai usar quantos processos ele conseguir, entretanto, se for definido para 1,
 então ele vai se comportar de forma síncrona permitindo você fazer o debug.
+
+Obs: isso não quer dizer que você não consiga fazer debug de outra forma, só que se usar outra forma
+vai ter um bom trabalho :)
 
 
 
