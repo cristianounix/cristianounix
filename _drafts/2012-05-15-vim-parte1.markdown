@@ -23,7 +23,7 @@ como o vim funciona e seus modos.
   <img src="{{site.baseurl}}/img/posts/modes_vim_gif.gif" alt="Modos VIM">
 </p>
 
-Bem quando você abre o terminal e digita:
+Bem, quando você abre o terminal e digita:
 
 {% highlight bash %}
 $ vim
@@ -36,20 +36,20 @@ que é o modo para você editar seu texto, para voltar para o modo **NORMAL** ba
 Esses 2 modos são os modos básicos do vim, legal... o modo **INSERT** serve para colocar meu textinho mas
 e o modo **NORMAL** serve pra que moço ?
 
-Nesse modo nós podemos comandar o vim, por exemplo vamos ver o help:
+Nesse modo nós podemos "comandar" o vim, por exemplo vamos ver o help:
 
 {% highlight bash %}
 $ vim
 {% endhighlight %}
 
-Dentro do vim no modo normal basta digitar
+Dentro do vim no modo NORMAL basta digitar
 
-  :help
+  **:help**
 
 Muito provavelmente quando fizer isso não vai saber bem o que deve ser feito pra sair do help,
 então faz assim:
 
-  :q
+  **:q**
 
   e pronto você acabou de fechar a janela do help :)
 
@@ -57,46 +57,60 @@ então faz assim:
 Deixa eu te mostrar uns comandos básicos do vim.
 
 ### Modos do Vim
-1.Navegação básica
-  h - Esquerda
-  j - Desce
-  k - Sobre
-  l - Direita
 
-2.Scroll
-  [CRTL] + f - PageDown
-  [CRTL] + b - PageUp
+1) Navegação básica
 
-3.Navegação por palavras
-  w
+1. h - Esquerda
+2. j - Desce
+3. k - Sobre
+4. l - Direita
 
-4.Modo de inserção
-  i
+2) Scroll
 
-5.Saindo do modo de inserção
-  ESC
+1.  [CRTL] + f - PageDown
+2.  [CRTL] + b - PageUp
 
-6.Undo
-  u
+3) Navegação por palavras
 
-7.Redo
-  [CRTL] + r
+1.  w
 
-8.Entrando no modo visual
-  v
+4) Modo de inserção
+
+1.  i
+
+5) Saindo do modo de inserção
+
+1. ESC
+
+6) Undo
+
+1.  u
+
+7) Redo
+
+1. [CRTL] + r
+
+8) Entrando no modo visual
+
+1. v
+
+9) Modo visual em bloco
+
+1.  [CRTL] + v
+
+10) Cópia de linha
+
+1.  yy
+
+11) Remoção de linha
+
+1.  dd
 
 Navegando no modo visual
 
 Recortando, copiando e colando texto
 
-Modo visual em bloco
-  [CRTL] + v
 
-Cópia de linha
-  yy
-
-Remoção de linha
-  dd
 
 Remoção like a boss
 
@@ -135,3 +149,6 @@ Ir para o topo do arquivo aberto sem fazer scroll da tela
 Uma dica de link para aprender vim é esse cara é o [Aurelio](http://aurelio.net/vim/)
 ele manda muito bem em muitos assuntos e o site dele me ajudou e ajuda muito a aprender
 mais sobre esse editor tosco feio mas que é muito foda !!
+
+
+> Obs: Caso tenha explicado alguma coisa errada, ou escrito algo errado gostaria do seu comentário e sua correção.
