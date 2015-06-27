@@ -1,24 +1,26 @@
 
-  <nav id="toolbar" class="navbar navbar-inverse navbar-fixed-top" style="position:fixed; z-index: 10;">
-    <div class="nav-wrapper blue">
-      <ul id="nav-mobile" class="left side-nav">
-        <li><a href="/">HOME</a></li>
-        <li><a href="/about">ABOUT</a></li>
-        {% if site.twitter %}
-        <li>
-          <a target="_blank" href="http://twitter.com/{{ site.twitter }}">Twitter</a>
-        </li>
-        <li>
-          <a target="_blank" href="http://github.com/{{ site.github }}">Github</a>
-        </li>
-        <li>
-          <a target="_blank" href="http://instagram.com/{{ site.instagram }}">Instagram</a>
-        </li>
-        <li>
-          <a target="_blank" href="http://br.linkedin.com/in/cristianounix/">Linkedin</a>
-        </li>
-        {% endif %}
-      </ul>
-      <a class="button-collapse" href="#" data-activates="nav-mobile"><i class="mdi-navigation-menu"></i></a>
-    </div>
-  </nav>
+<nav id="toolbar" class="navbar navbar-inverse navbar-fixed-top" style="position:fixed; z-index: 10;">
+   <div class="nav-wrapper blue">
+     <ul id="nav-mobile" class="left hide-on-med-and-down">
+       <li><a href="http://twitter.com/{{ site.twitter }}" target="_blank"><i class="fa fa-twitter-square"></i></a></li>
+       <li><a href="http://github.com/{{ site.github }}" target="_blank"><i class="fa fa-github-square"></i></a></li>
+       <li><a href="http://instagram.com/{{ site.instagram }}" target="_blank"><i class="fa fa-instagram"></i></a></li>
+       <li><a href="http://br.linkedin.com/in/cristianounix/" target="_blank"><i class="fa fa-linkedin-square"></i></a></li>
+       <li><a href="/about"><i class="fa fa-user"></i></a></li>
+     </ul>
+
+     <a href="/" class="brand-logo center">
+       <img src="{{site.baseurl}}/img/cristianounix-mustache.png" alt="" />
+     </a>
+
+     <a href="#" data-activates="mobile-menu-top" class="button-collapse"><i class="material-icons">menu</i></a>
+
+     <ul class="left side-nav" id="mobile-menu-top">
+       <li><a href="http://twitter.com/{{ site.twitter }}" target="_blank">Twitter</a></li>
+       <li><a href="http://github.com/{{ site.github }}" target="_blank">Github</a></li>
+       <li><a href="http://instagram.com/{{ site.instagram }}" target="_blank">Instagram</a></li>
+       <li><a href="http://br.linkedin.com/in/cristianounix/" target="_blank">Linkedin</a></li>
+       <li><a href="/about">Sobre mim</a></li>
+     </ul>
+   </div>
+ </nav>

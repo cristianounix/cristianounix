@@ -17,6 +17,7 @@ function init() {
 window.onload = init();
 
 $(document).ready(function() {
+    $(".button-collapse").sideNav(); 
 
     $('pre code').each(function(i, block) {
         hljs.highlightBlock(block);
@@ -59,6 +60,10 @@ $(document).ready(function() {
         width = window.innerWidth;
         //height = window.innerHeight;
         height = 500;
+        if(window.location.pathname.length > 5){
+            height = 300;
+        }
+
         target = {x: width/2, y: height/2};
 
         largeHeader = document.getElementById('blog-intro');
