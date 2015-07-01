@@ -10,7 +10,7 @@ share: true
 ---
 
 <p style="text-align: center;">
-  <img src="{{site.baseurl}}/img/posts/php7-is-coming" alt="VIM">
+  <img src="{{site.baseurl}}/img/posts/php7-is-coming.png" alt="PHP7">
 </p>
 
 Bem se você achava o PHP rápido eu tenho algo pra te dizer, ele está 2 vezes mais rápido !!
@@ -29,15 +29,7 @@ O genoma ?
 - Declarações do tipo de retorno
 - Declarações tipo escalar
 - Classes anônimos
-
-
-Antes de falar como fazer isso ou aquilo com o vim, acho importante saber um pouco sobre os modos de operação funcionamento do mesmo.
-
-<p style="text-align: center;">
-  <img src="{{site.baseurl}}/img/posts/modes_vim_gif.gif" alt="Modos VIM">
-</p>
-
-
+ 
 Vamos a alguns exemplos do uso do 
 
 ### Coalesce Operator
