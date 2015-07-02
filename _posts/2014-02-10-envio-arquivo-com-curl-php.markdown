@@ -54,3 +54,10 @@ var_dump($_FILES);
 
 ?>
 {% endhighlight %}
+
+
+Pronto é isso ae, simples como tem que ser e lindo como o PHP é :) 
+
+
+
+> Obs: Caso tenha explicado alguma coisa errada, ou escrito algo errado gostaria do seu comentário e sua correção.
