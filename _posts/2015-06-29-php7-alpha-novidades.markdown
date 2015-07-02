@@ -14,34 +14,25 @@ share: true
 </p>
 
 Bem se você achava o PHP rápido eu tenho algo pra te dizer, ele está 2 vezes mais rápido !!
-E se você não achava isso, eu te pergunto: 
-O que você estava processando ? 
-O genoma ? 
 
 
-
-- A versão 7 é até duas vezes mais rápido que o PHP 5.6
-- Suporte de 64 bits consistente
-- Muitos erros fatais são agora Exceções
-- Remoção de SAPIs e extensões antigas e sem suporte
-- O operador nulo coalescente (??)
-- Operador de comparação combinada (<=>)
-- Declarações do tipo de retorno
-- Declarações tipo escalar
-- Classes anônimos
+* A versão 7 é até duas vezes mais rápido que o PHP 5.6
+* Suporte de 64 bits consistente
+* Muitos erros fatais são agora Exceções
+* Remoção de SAPIs e extensões antigas e sem suporte
+* O operador nulo coalescente (??)
+* Operador de comparação combinada (<=>)
+* Declarações do tipo de retorno
+* Declarações tipo escalar
+* Classes anônimos
  
-Vamos a alguns exemplos do uso do 
+Vamos a alguns exemplos desses caras acima:
 
-### Coalesce Operator
+#### Coalesce Operator
 
 {% highlight php %}
 <?php
 echo false ?? 'B'; // B
-?>
-{% endhighlight %}
-
-{% highlight php %}
-<?php
 echo null ?? 'B'; // B
 ?>
 {% endhighlight %}
@@ -49,20 +40,12 @@ echo null ?? 'B'; // B
 {% highlight php %}
 <?php
 var_dump(2 ?? 3 ? 4 : 5);      // (2 ?? 3) ? 4 : 5        => int(4)
-?>
-{% endhighlight %}
 
-{% highlight php %}
-<?php
 $x1 = NULL;
 $x2 = NULL;
 $x3 = 3;
 var_dump($x1 ?? $x2 ?? $x3); // int(3)
-?>
-{% endhighlight %}
 
-{% highlight php %}
-<?php
 var_dump(0 || 2 ?? 3 ? 4 : 5); // int(4)
 ?>
 {% endhighlight %}
@@ -83,9 +66,14 @@ var_dump(true ?? bla()); // bool(true)
 
 
 
-### Operador de comparação combinada 
+#### Operador de comparação combinada 
 
-Ele retorna 0 se são iguais, 1 se o da esquerda é o maior, e -1 se o da direita é o maior. 
+Retornos:
+
+- 0 se são iguais
+- 1 se o da esquerda é o maior
+- -1 se o da direita é o maior
+
 Ou seja: [ <, <=, ==, >=, > ]
 
 Exemplos:
@@ -96,11 +84,7 @@ Exemplos:
 echo 1 <=> 1; // 0
 echo 1 <=> 2; // -1
 echo 2 <=> 1; // 1
-?>
-{% endhighlight %}
 
-{% highlight php %} 
-<?php
 // Floats
 echo 1.5 <=> 1.5; // 0
 echo 1.5 <=> 2.5; // -1
@@ -114,11 +98,6 @@ echo 2.5 <=> 1.5; // 1
 echo "a" <=> "a"; // 0
 echo "a" <=> "b"; // -1
 echo "b" <=> "a"; // 1
-?>
-{% endhighlight %}
-
-{% highlight php %} 
-<?php
 echo "a" <=> "aa"; // -1
 echo "zz" <=> "aa"; // 1
 ?>
@@ -136,31 +115,20 @@ echo [1, 2, 3] <=> [1, 2, 4]; // -1
 {% endhighlight %}
 
 {% highlight php %} 
+<?php
 // Objects
 $a = (object) ["a" => "b"]; 
 $b = (object) ["a" => "b"]; 
 echo $a <=> $b; // 0
-?>
-{% endhighlight %}
-
-{% highlight php %} 
-<?php
+ 
 $a = (object) ["a" => "b"]; 
 $b = (object) ["a" => "c"]; 
 echo $a <=> $b; // -1
-?>
-{% endhighlight %}
-
-{% highlight php %}
-<?php
+ 
 $a = (object) ["a" => "c"]; 
 $b = (object) ["a" => "b"]; 
 echo $a <=> $b; // 1
-?>
-{% endhighlight %}
-
-{% highlight php %}
-<?php
+ 
 // only values are compared
 $a = (object) ["a" => "b"]; 
 $b = (object) ["b" => "b"]; 
@@ -170,7 +138,7 @@ echo $a <=> $b; // 0
 
 
 
-### Declarações do tipo de retorno
+#### Declarações do tipo de retorno
 
 {% highlight php %}
 <?php
@@ -178,11 +146,7 @@ function get_config(): array {
     return 42;
 }
 get_config();
-?>
-{% endhighlight %}
-
-{% highlight php %}
-<?php
+ 
 function answer(): int {
     return 42;
 }
@@ -192,7 +156,7 @@ answer();
 
 
 
-### Declarações tipo escalar
+#### Declarações tipo escalar
 
 Para que tenha uma rigorosa checkagem de tipos é necessário ativar, basta fazer:
 
@@ -215,11 +179,7 @@ function soma(float $a, float $b) {
 soma(1, 2); // float(3)
 soma(1.1, 2.2); // float(3.3)
 soma("1", "2"); // Erro - a non well formed numeric value encountered 
-?>
-{% endhighlight %}
-
-{% highlight php %} 
-<?php
+ 
 function soma(int $a, int $b) {
     return $a + $b;
 } 
@@ -230,7 +190,7 @@ soma("1", "2"); // Erro - Argument 1 passed to soma() must be of the type intege
 
 
 
-### Anonymous Class
+#### Anonymous Class
 
 {% highlight php %} s
 <?php
@@ -239,12 +199,8 @@ var_dump(new class($i) {
 		        $this->i = $i;
 		    }
 		});
-?>
-{% endhighlight %}
 
 
-{% highlight php %}
-<?php
 $bla->setMsg(new class {
 				  public function log() {
 				    echo "Oi galerinha !";
@@ -252,6 +208,7 @@ $bla->setMsg(new class {
 				});
 ?>
 {% endhighlight %}
+
 
 
 [PHP7 Doc](https://wiki.php.net/rfc#php_70)
