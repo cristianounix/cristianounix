@@ -43,7 +43,8 @@ AWS, o ec2 é um máquina virtual onde você pode aumentar ou diminuir seus recu
 poder colocar sua instância numa melhor posição geografica afim de otimizar a latência e ainda
 pode criar redundâncias nas suas zonas como mostramos na imagem acima.
 
-2. VPC -
+2. VPC - (Virtual Private Cloud) é basicamente uma rede virtual que se parece muito com uma rede 
+tradicional que montamos, na VPC você pode criar várias outras sub-nets.
 
 3. Direct Connect - É um serviço de rede que basicamente permite você
 conectar seu datacenter ou suas máquinas na infraestrutura da Amazon.
@@ -104,11 +105,10 @@ que estão sendo processadas se perca.
 
 ### Administração e Segurança
 
-1. IAM - Identity and Access Management
-
-2. Direct Service -
-
-3. CloudWatch - É um serviço de monitoramento para recursos da AWS,
+1. IAM - (Identity and Access Management ) Basicamente é um recurso que permite gerenciar os serviços e permissões que cada usuário
+tem acesso no console da Amazon.
+  
+2. CloudWatch - É um serviço de monitoramento para recursos da AWS,
 você pode coletar e rastrear métricas, coletar e monitorar arquivos de log,
 além de definir aletas dos serviços, ele pode monitorar Instancias EC2 tabelas
 do DynamoDB, instancias do RDS além de você poder personalizar/criar sua propria
