@@ -15,7 +15,7 @@ share: true
 
 Hoje vi uma pergunta de um cara novo na comunidade phpba.
 
-Ele perguntava: 
+Ele perguntava:
 
 > "Como faço para enviar um arquivo qualquer através de um script php para outro script php ?"
 
@@ -34,12 +34,12 @@ Arquivo ``send.php``
 {% highlight php %}
 <?php
 
-$ch = curl_init('upload.php');
-$cfile = new CURLFile('arquivo.zip','application/zip','name_file');
-$data = array('arquivo' => $cfile);
-curl_setopt($ch, CURLOPT_POST,1);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-curl_exec($ch);
+$curl = curl_init('upload.php');
+$curl_file = new CURLFile('arquivo.zip','application/zip','name_file');
+$file = array('arquivo' => $curl_file);
+curl_setopt($curl, CURLOPT_POST,1);
+curl_setopt($curl, CURLOPT_POSTFIELDS, $file);
+curl_exec($curl);
 
 ?>
 {% endhighlight %}
@@ -50,13 +50,13 @@ No seu arquivo ``upload.php``
 {% highlight php %}
 <?php
 
-var_dump($_FILES); 
+var_dump($_FILES);
 
 ?>
 {% endhighlight %}
 
 
-Pronto é isso ae, simples como tem que ser e lindo como o PHP é :) 
+Pronto é isso ae, simples como tem que ser e lindo como o PHP é :)
 
 
 
