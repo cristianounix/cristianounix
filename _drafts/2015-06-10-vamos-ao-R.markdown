@@ -1,0 +1,65 @@
+---
+layout: post
+title: Vamos ao [R]
+description: "Vamos ao falar um pouco da linguagem R"
+modified: 2015-06-10
+category: r
+tags: [r]
+comments: true
+share: true
+---
+
+<p style="text-align: center;">
+  <img src="{{site.baseurl}}/img/posts/R_logo.png" alt="linguagem R">
+</p>
+
+
+Instalando no MacOS:
+
+{% highlight bash %}
+$ brew tap homebrew/science
+$ brew install r
+{% endhighlight %}
+
+
+Legal vamos fazer uns testes, e para isso iniciaremos um terminal R:
+
+{% highlight bash %}
+$ R
+{% endhighlight %}
+
+
+Sintax e comandos básicos do ``**R**``
+
+{% highlight bash %}
+
+//Atribuir valor a uma variavel
+
+x <- 5
+x <- 3+2
+x <- (3+2)*(21)
+x //Saída 105
+
+x <- TRUE
+x //Saída TRUE
+
+{% endhighlight %}
+
+Vamos definir um arquivo CSV para brincarmos com algo diferente:
+
+Arquivo teste.csv
+
+{% highlight csv %}
+
+"Atleta"    ,"Agilidade"  ,"Força"
+"Pedro"     ,105          ,12
+"Fábio"     ,11           ,14
+"Júlio"     ,5            ,8
+"Cristiano" ,6            ,10
+"Marcus"    ,10.5         ,13
+"Bruno"     ,7            ,11
+
+{% endhighlight %}
+
+
+> Obs: Caso tenha explicado alguma coisa errada, ou escrito algo errado gostaria do seu comentário e sua correção.
