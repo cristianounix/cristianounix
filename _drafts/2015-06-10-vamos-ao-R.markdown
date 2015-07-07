@@ -1,0 +1,168 @@
+---
+layout: post
+title: Vamos ao [R]
+description: "Vamos ao falar um pouco da linguagem R"
+modified: 2015-06-10
+category: r
+tags: [r]
+comments: true
+share: true
+---
+
+<p style="text-align: center;">
+  <img src="{{site.baseurl}}/img/posts/R_logo.png" alt="linguagem R" style="height:350px;" >
+</p>
+
+
+Instalando no MacOS:
+
+{% highlight bash %}
+$ brew tap homebrew/science
+$ brew install r
+{% endhighlight %}
+
+
+Legal vamos fazer uns testes, e para isso iniciaremos um terminal R:
+
+{% highlight bash %}
+$ R
+{% endhighlight %}
+
+
+Sintax e comandos básicos do ``**R**``
+
+{% highlight bash %}
+
+//Atribuir valor a uma variavel
+
+x <- 5
+x <- 3+2
+x <- (3+2)*(21)
+x //Saída 105
+
+x <- TRUE
+x //Saída TRUE
+
+{% endhighlight %}
+
+Vamos definir um arquivo CSV para brincarmos com algo diferente:
+
+Arquivo teste.csv
+
+```
+"Atleta"    ,"Agilidade"  ,"Força"
+"Pedro"     ,105          ,12
+"Fábio"     ,11           ,14
+"Júlio"     ,5            ,8
+"Cristiano" ,6            ,10
+"Marcus"    ,10.5         ,13
+"Bruno"     ,7            ,11
+```
+
+
+```
+//Funções
+sum(1, 3, 5)
+rep("Yo ho!", times = 3)
+sqrt(16)
+```
+
+
+```
+//Listar arquivos
+list.files()
+
+//Carregando um arquivo
+source("bottle1.R")
+```
+
+
+Ajuda
+
+```
+help([nome_da_funcao])
+help(rep)
+```
+
+Exemplo
+
+```
+example([nome_da_funcao])
+example(min)
+```
+
+#### Vetores
+
+***OBS: Grande maioria das linguages se não todas iniciam o índice de seus vetores na posição 0 (zero), no R iniciamos sempre em 1 (um)***
+
+{% highlight bash %}
+
+//Criando um simples vetor
+
+x <- c(11,22,100)
+x[3] // Saída 100
+
+x <- c(11,"vinte e dois", TRUE)
+x[2] // Saída "vinte e dois"
+
+x <- 3:9 // Atribui a x o vetor [3,4,5,6,7,8,9]
+x <- seq(3, 9) // Faz o mesmo que o de cima, só que com o seq eu posso definir meu fator de incrementação
+x <- seq(3, 9, 1.5) // Atribui a x o vetor [3.0, 4.5, 6.0, 7.5, 9.0]
+
+//Acessando vetor com outro vetor
+x <- c('A', 'B', 'C', 'D')
+x[c(1,3)]  // Saída "A" "C"
+
+//Acessando vetor deforma sequencial
+x <- c('A', 'B', 'C', 'D', 'E', 'F', 'G')
+x[2:6]  // Saída "B" "C" "D" "E" "F"
+
+
+//Nomeando vetores
+atletas <- 1:3
+names(ranks) <- c("Atleta 1", "Atleta 2", "Atleta 3")
+//Saída
+Atleta 1 Atleta 2 Atleta 3
+       1        2        3
+
+//Colocando esses dados no gráfico, mas antes disso vamos ver como a plotagem funciona.
+barplot(1:100)
+
+//Agora vamos por aqueles dados no gráfico
+barplot(atletas)
+
+//Operações matemáticas com vetores
+a <- c(1,3,5)
+b <- c(2,4,6)
+c <- c(2,4,6,NA)
+
+a + 1 //2,4,6
+a - 1 //1,3,5
+
+a * b //2,12,30
+
+a == b //FALSE FALSE FALSE
+a < b  //TRUE TRUE TRUE
+
+
+sum(a) // 9
+sum(c) // Ops NA, nosso vetor tem um NA (not available) e para podermos fazer o calculo sem amolação basta avisar ao SUM sobre esse cara que ele irá ignorar
+sum(c, na.rm = TRUE) // 12
+
+sqrt(b) // 1.414214, 2.000000, 2.449490
+
+//Plotando mais gráficos pra encerrar a noite
+x <- seq(1, 15, 0.2)
+y <- sin(x)
+plot(x, y)
+
+
+{% endhighlight %}
+
+
+<p style="text-align: center;">
+  <img src="{{site.baseurl}}/img/posts/ultimo-grafico-r-linguagem.png" alt="linguagem R" style="height:380px;" >
+</p>
+
+
+> Obs: Caso tenha explicado alguma coisa errada, ou escrito algo errado gostaria do seu comentário e sua correção.
