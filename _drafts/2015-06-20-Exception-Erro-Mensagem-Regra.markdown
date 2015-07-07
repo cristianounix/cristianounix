@@ -31,7 +31,21 @@ Ação ou efeito de excetuar, de excluir.
 É uma consequência de uma ação inesperada, sem planejamento, conhecimento. Pode ser uma falha humano ou por equipamento.
 
 
-Legal agora que sabemos a diferença, vamos a alguns exemplos:
+Legal agora que sabemos a diferença, vamos a alguns exemplos, vou começar primeiro pelo **Erro**:
+
+
+{% highlight php %}
+<?php
+function dividir($num1, $num2) {
+    return $num1/$num2;
+}
+
+
+echo dividir(5,3)
+
+?>
+{% endhighlight %}
+
 
 
 Vamos pensar numa função de dividir dois números, essa função recebe 2 parametros que são os números a serem divididos.
@@ -74,12 +88,15 @@ echo dividir(3,0); // Saída - Warning:  Division by zero
 {% endhighlight %}
 
 
+Perceba que agora a mensagem foi diferente da que adotamos no primeiro exemplo, vamos entender o motivo.
 
-Vamos ver mais a fundo [AQUI](https://github.com/php/php-src/blob/94722e12cf4ba9a16f8a9f009d60b2e3f0f80e12/ext/standard/math.c) logo nas ultimas linhas vamos 
+Quando dividimos dois números inteiros uma função chamada intdiv é chamada.
+
+Olhando mais a fundo [AQUI](https://github.com/php/php-src/blob/94722e12cf4ba9a16f8a9f009d60b2e3f0f80e12/ext/standard/math.c) logo nas últimas linhas vamos 
 encontrar algo assim:
 
 {% highlight c %}
- PHP_FUNCTION(intdiv)
+PHP_FUNCTION(intdiv)
 {
   zend_long numerator, divisor; 
   if (zend_parse_parameters(ZEND_NUM_ARGS(), "ll", &numerator, &divisor) == FAILURE) {
@@ -98,4 +115,13 @@ encontrar algo assim:
   RETURN_LONG(numerator / divisor);
 } 
 {% endhighlight %}
+
+
+
+A função ***intdiv*** que está em (ext/standard/math.c) é responsavél por dividir 2 numeros interiros e caso o divisor seja igual a zero ele lança sua ***Exception*** 
+
+{% highlight c %}
+zend_throw_exception_ex(zend_ce_division_by_zero_error, 0, "Division by zero");
+{% endhighlight %}
+
 
