@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Exception Erro Mensagem Regra
+title: Não vá dizer que Exception é o mesmo que Erro !
 description: "Exception não é Erro"
 modified: 2012-10-08
 category: dev
@@ -29,6 +29,24 @@ Ação ou efeito de excetuar, de excluir.
 #### Erro
 É uma consequência de uma ação inesperada, sem planejamento, conhecimento. Pode ser uma falha humano ou por equipamento.
 
+<hr>
+
+No nosso mundo de programadores um bloco ***try catch*** é como um bloco "protegido" de falhas, 
+sendo mais direto quero dizer que quando ocorrer um problema no ***TRY** a execução do código irá desviar para a instrução ***CATCH***
+
+Sintax básica
+
+{% highlight java %}
+try {
+  //Meus comandos
+} 
+catch (Exception e) {
+ //Meu tratamento de exceção 
+}
+{% endhighlight %}
+
+
+Leia mais em: Blocos Try/Catch http://www.devmedia.com.br/blocos-try-catch/7339#ixzz3fJLw2ymn
 
 Legal agora que sabemos a diferença, vamos a alguns exemplos, vou começar primeiro pelo **Erro**:
 
@@ -127,7 +145,9 @@ zend_throw_exception_ex(zend_ce_division_by_zero_error, 0, "Division by zero");
 {% endhighlight %}
 
 
-Vamos fazer alguns Tray Catch em outras linguagens:
+<hr>
+
+### Vamos fazer alguns Tray Catch em outras linguagens:
 
 
 #### Ruby
