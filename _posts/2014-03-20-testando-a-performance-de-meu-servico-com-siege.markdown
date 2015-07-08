@@ -27,8 +27,9 @@ $ apt-get install siege
 
 #### Windows
 
-[Download]()
+[Download](http://download.joedog.org/siege/siege-2.55.tar.gz)
 
+> Basta descompactar navegar até a pasta com o console do windows e executar o siege.exe
 
 
 #### Realizando um teste básico
