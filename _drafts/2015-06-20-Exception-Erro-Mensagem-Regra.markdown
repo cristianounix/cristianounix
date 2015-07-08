@@ -1,0 +1,127 @@
+---
+layout: post
+title: Exception Erro Mensagem Regra
+description: "Exception não é Erro"
+modified: 2012-10-08
+category: dev
+tags: [dev]
+comments: true
+share: true
+---
+
+ 
+O que é Exception e o que é Erro ?
+
+O que quero chamar a atenção é para como desenvolvemos nossos projetos, 
+já sabemos que uma Exception é bem diferente de um Error não só sintaticamente falando, mas semanticamente também como já vimos.
+
+Segundo o Dicionário:
+
+#### Exceção:
+Ruptura de uma regra ou norma; desvio de um padrão estabelecido; rompimento do que se considera normal: não há regra sem exceção.
+Que não pertence ao todo: todos chegaram com exceção do filho. 
+Estado ou circunstância fora do comum: vantajosas eram as exceções.
+Figurado. Pessoa cujo modo de pensar ou de proceder não é comum.
+Jurídico. Mecanismo de proteção, ou de defesa, utilizado pelo réu com o propósito de anular os poderes do autor da ação ou de atrasar o seu prosseguimento.
+Indivíduo que não respeita, ou rejeita, normas, padrões e regras.
+Ação ou efeito de excetuar, de excluir. 
+
+
+#### Erro
+É uma consequência de uma ação inesperada, sem planejamento, conhecimento. Pode ser uma falha humano ou por equipamento.
+
+
+Legal agora que sabemos a diferença, vamos a alguns exemplos, vou começar primeiro pelo **Erro**:
+
+
+{% highlight php %}
+<?php
+function dividir($num1, $num2) {
+    return $num1/$num2;
+}
+
+
+echo dividir(5,3)
+
+?>
+{% endhighlight %}
+
+
+
+Vamos pensar numa função de dividir dois números, essa função recebe 2 parametros que são os números a serem divididos.
+
+
+{% highlight php %}
+<?php
+function dividir($num1, $num2) {
+    if (!$num2) {
+        throw new Exception('Não é possvél realizar a divisão por zero');
+    }
+    return $num1/$num2;
+}
+
+
+try {
+    echo dividir(5,3); // Saída 1.6666666666667
+    echo dividir(3,0); // Saída - Não é possvél realizar a divisão por zero
+} catch (Exception $e) {
+    echo 'Exceção: '.  $e->getMessage();
+}
+?>
+{% endhighlight %}
+
+
+Legal né :)
+
+
+Agora vamos a um exemplo sem **Try Catch**
+
+{% highlight php %}
+<?php
+function dividir($num1, $num2) {
+    return $num1/$num2;
+}
+
+echo dividir(5,3); // Saída 1.6666666666667
+echo dividir(3,0); // Saída - Warning:  Division by zero
+?>
+{% endhighlight %}
+
+
+Perceba que agora a mensagem foi diferente da que adotamos no primeiro exemplo, vamos entender o motivo.
+
+Quando dividimos dois números inteiros uma função chamada intdiv é chamada.
+
+Olhando mais a fundo [AQUI](https://github.com/php/php-src/blob/94722e12cf4ba9a16f8a9f009d60b2e3f0f80e12/ext/standard/math.c) logo nas últimas linhas vamos 
+encontrar algo assim:
+
+{% highlight c %}
+PHP_FUNCTION(intdiv)
+{
+  zend_long numerator, divisor; 
+  if (zend_parse_parameters(ZEND_NUM_ARGS(), "ll", &numerator, &divisor) == FAILURE) {
+    return;
+  } 
+  if (divisor == 0) {
+    zend_throw_exception_ex(zend_ce_division_by_zero_error, 0, "Division by zero");
+    return;
+  } else if (divisor == -1 && numerator == ZEND_LONG_MIN) {
+    /* Prevent overflow error/crash ... really should not happen:
+       We don't return a float here as that violates function contract */
+    zend_throw_exception_ex(zend_ce_arithmetic_error, 0, "Division of PHP_INT_MIN by -1 is not an integer");
+    return;
+  }
+
+  RETURN_LONG(numerator / divisor);
+} 
+{% endhighlight %}
+
+
+
+A função ***intdiv*** que está em (ext/standard/math.c) é responsavél por dividir 2 numeros interiros e caso o divisor seja igual a zero ele lança sua ***Exception*** 
+
+{% highlight c %}
+zend_throw_exception_ex(zend_ce_division_by_zero_error, 0, "Division by zero");
+{% endhighlight %}
+
+
