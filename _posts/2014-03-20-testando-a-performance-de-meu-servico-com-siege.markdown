@@ -16,20 +16,22 @@ share: true
 O [Siege](https://github.com/JoeDog/siege) é uma ferramenta stressar nosso serviço e vê até onde ele suporta esse stress.
 
 #### MacOS
+{% highlight bash %}
+$ brew install siege
+{% endhighlight %}
 
-	brew install siege
-	
 #### Linux
+{% highlight bash %}
+$ apt-get install siege
+{% endhighlight %}
 
-	apt-get install siege
-	
 #### Windows
 
-	[Download]()
+[Download]()
 
 
 
-#### Realizando um teste basico
+#### Realizando um teste básico
 
 Com esse comando abaixo o siege vai fazer um benchmark durante 60 segundos.
 
