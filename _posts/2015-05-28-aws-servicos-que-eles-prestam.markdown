@@ -19,7 +19,7 @@ Bem, antes de tudo tenho que dizer, não estou aqui para fazer propaganda da Ama
 
 ### Banco de Dados:
 
-1.RDS - Relational Database Services é basicamente um serviço que oferece banco
+1. RDS - Relational Database Services é basicamente um serviço que oferece banco
 de dados relacional (como o nome mesmo disse). usando o RDS você não precisa ter uma
 instância de um banco rodando na sua máquina, pois ele vai está disponivel como um
 serviço na aws, os backups são feitos automaticamente e disponibilizados no S3,
@@ -28,10 +28,10 @@ recursos como replicação em zonas diferentes.
 Os bancos que o RDS suporta hoje são
 **MySQL**, **Oracle**, **PostgreSQL** e o **SQLServer** ou seja os principais do mercado.
 
-2.DynamoDB - É um serviço de banco de dados **NoSQL** ele é muito rápido altamente
+2. DynamoDB - É um serviço de banco de dados **NoSQL** ele é muito rápido altamente
 flexivel e tem uma latência abaixo de 10 milisegundos em qualquer escala.
 
-3.ElastiCache - Não tenho muito o que falar, quem já usou **redis**,
+3. ElastiCache - Não tenho muito o que falar, quem já usou **redis**,
 **memcache** Serviço de cache basicamente, que tem suporte a replicação
 dos nós integração **CloudWatch** entre muitos outros.
 
@@ -43,7 +43,7 @@ AWS, o ec2 é um máquina virtual onde você pode aumentar ou diminuir seus recu
 poder colocar sua instância numa melhor posição geografica afim de otimizar a latência e ainda
 pode criar redundâncias nas suas zonas como mostramos na imagem acima.
 
-2. VPC - (Virtual Private Cloud) é basicamente uma rede virtual que se parece muito com uma rede 
+2. VPC - (Virtual Private Cloud) é basicamente uma rede virtual que se parece muito com uma rede
 tradicional que montamos, na VPC você pode criar várias outras sub-nets.
 
 3. Direct Connect - É um serviço de rede que basicamente permite você
@@ -107,7 +107,7 @@ que estão sendo processadas se perca.
 
 1. IAM - (Identity and Access Management ) Basicamente é um recurso que permite gerenciar os serviços e permissões que cada usuário
 tem acesso no console da Amazon.
-  
+
 2. CloudWatch - É um serviço de monitoramento para recursos da AWS,
 você pode coletar e rastrear métricas, coletar e monitorar arquivos de log,
 além de definir aletas dos serviços, ele pode monitorar Instancias EC2 tabelas
