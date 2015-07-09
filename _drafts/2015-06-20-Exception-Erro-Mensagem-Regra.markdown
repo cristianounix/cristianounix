@@ -31,7 +31,7 @@ Ação ou efeito de excetuar, de excluir.
 
 <hr>
 
-No nosso mundo de programadores um bloco ***try catch*** é como um bloco "protegido" de falhas, 
+No nosso mundo de programadores um bloco ***try catch*** é como um bloco "protegido" de falhas,
 sendo mais direto quero dizer que quando ocorrer um problema no ***TRY** a execução do código irá desviar para a instrução ***CATCH***
 
 Sintax básica
@@ -39,9 +39,9 @@ Sintax básica
 {% highlight java %}
 try {
   //Meus comandos
-} 
+}
 catch (Exception e) {
- //Meu tratamento de exceção 
+ //Meu tratamento de exceção
 }
 {% endhighlight %}
 
@@ -175,7 +175,7 @@ catch(err) {
 
 
 #### Swift
-{% highlight c %}
+{% highlight swift %}
 enum EncryptionError: ErrorType {
     case Empty
     case Short
