@@ -174,29 +174,5 @@ catch(err) {
 {% endhighlight %}
 
 
-#### Swift
-{% highlight swift %}
-enum EncryptionError: ErrorType {
-    case Empty
-    case Short
-}
-
-guard password.characters.count > 0 else { throw EncryptionError.Empty }
-guard password.characters.count >= 5 else { throw EncryptionError.Short }
-
-do {
-    let encrypted = try encryptString("secret information!", withPassword: "")
-    print(encrypted)
-} catch EncryptionError.Empty {
-    print("You must provide a password.")
-} catch EncryptionError.Short {
-    print("Passwords must be at least five characters, preferably eight or more.")
-} catch {
-    print("Something went wrong!")
-}
-{% endhighlight %}
-
-[Fonte desse exemplo](https://www.hackingwithswift.com/new-syntax-swift-2-error-handling-try-catch)
-
 
 > Obs: Caso tenha explicado alguma coisa errada, ou escrito algo errado gostaria do seu comentário e sua correção.

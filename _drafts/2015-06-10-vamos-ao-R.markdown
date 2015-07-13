@@ -45,20 +45,6 @@ x //Saída TRUE
 
 {% endhighlight %}
 
-Vamos definir um arquivo CSV para brincarmos com algo diferente:
-
-Arquivo teste.csv
-
-```
-"Atleta"    ,"Agilidade"  ,"Força"
-"Pedro"     ,105          ,12
-"Fábio"     ,11           ,14
-"Júlio"     ,5            ,8
-"Cristiano" ,6            ,10
-"Marcus"    ,10.5         ,13
-"Bruno"     ,7            ,11
-```
-
 
 ```
 //Funções
@@ -159,10 +145,24 @@ plot(x, y)
 
 {% endhighlight %}
 
-
 <p style="text-align: center;">
   <img src="{{site.baseurl}}/img/posts/ultimo-grafico-r-linguagem.png" alt="linguagem R" style="height:380px;" >
 </p>
+
+Vamos definir um arquivo CSV para brincarmos com algo diferente:
+
+Arquivo teste.csv
+
+```
+"Atleta"    ,"Agilidade"  ,"Força"
+"Pedro"     ,105          ,12
+"Fábio"     ,11           ,14
+"Júlio"     ,5            ,8
+"Cristiano" ,6            ,10
+"Marcus"    ,10.5         ,13
+"Bruno"     ,7            ,11
+```
+
 
 
 > Obs: Caso tenha explicado alguma coisa errada, ou escrito algo errado gostaria do seu comentário e sua correção.
