@@ -16,8 +16,8 @@ Sabemos que uma Exception é bem diferente de um Error não só sintaticamente f
 
 Segundo o Dicionário:
 
-#### Exceção:
-Ruptura de uma regra ou norma; desvio de um padrão estabelecido; rompimento do que se considera normal: não há regra sem exceção.
+#### Exceção
+> Ruptura de uma regra ou norma; desvio de um padrão estabelecido; rompimento do que se considera normal: não há regra sem exceção.
 Que não pertence ao todo: todos chegaram com exceção do filho.
 Estado ou circunstância fora do comum: vantajosas eram as exceções.
 Figurado. Pessoa cujo modo de pensar ou de proceder não é comum.
@@ -27,12 +27,13 @@ Ação ou efeito de excetuar, de excluir.
 
 
 #### Erro
-É uma consequência de uma ação inesperada, sem planejamento, conhecimento. Pode ser uma falha humano ou por equipamento.
+> É uma consequência de uma ação inesperada, sem planejamento, conhecimento. Pode ser uma falha humano ou por equipamento.
 
 <hr>
 
-No nosso mundo de programadores um bloco ***try catch*** é como um bloco "protegido" de falhas,
-sendo mais direto quero dizer que quando ocorrer um problema no ***TRY** a execução do código irá desviar para a instrução ***CATCH***
+No nosso mundo um bloco **try catch** é como um bloco "protegido" de falhas.
+
+Sendo mais direto quero dizer que quando ocorrer um problema no **TRY** a execução do código irá desviar para a instrução **CATCH**
 
 Sintax básica
 
@@ -45,8 +46,6 @@ catch (Exception e) {
 }
 {% endhighlight %}
 
-
-Leia mais em: Blocos Try/Catch http://www.devmedia.com.br/blocos-try-catch/7339#ixzz3fJLw2ymn
 
 Legal agora que sabemos a diferença, vamos a alguns exemplos, vou começar primeiro pelo **Erro**:
 
@@ -147,7 +146,7 @@ zend_throw_exception_ex(zend_ce_division_by_zero_error, 0, "Division by zero");
 
 <hr>
 
-### Vamos fazer alguns Tray Catch em outras linguagens:
+#### Tray Catch em outras linguagens:
 
 
 #### JavaScript
