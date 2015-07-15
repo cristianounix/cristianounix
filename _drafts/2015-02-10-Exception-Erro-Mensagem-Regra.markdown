@@ -2,7 +2,7 @@
 layout: post
 title: Não vá dizer que Exception é o mesmo que Erro !
 description: "Exception não é Erro"
-modified: 2012-10-08
+modified: 2015-02-10
 category: dev
 tags: [dev]
 comments: true
@@ -150,14 +150,6 @@ zend_throw_exception_ex(zend_ce_division_by_zero_error, 0, "Division by zero");
 ### Vamos fazer alguns Tray Catch em outras linguagens:
 
 
-#### Ruby
-
-
-
-#### Python
-
-
-
 #### JavaScript
 {% highlight javascript %}
 function dividir(n1, n2){
@@ -174,5 +166,11 @@ catch(err) {
 {% endhighlight %}
 
 
+#### Ruby
 
+[Colocar Exemplo]
+
+#### Python
+
+[Colocar Exemplo]
 > Obs: Caso tenha explicado alguma coisa errada, ou escrito algo errado gostaria do seu comentário e sua correção.
