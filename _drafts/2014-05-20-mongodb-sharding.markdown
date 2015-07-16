@@ -37,3 +37,7 @@ Escalar uma aplicação de forma **horizontal** nada mais é do que vc adicionar
 Já esclar de forma **vertical** quer dizer que você terá que por mais hardware na sua máquina afim de que ela suporte aquela demanda.
 
 Beleza, então vamos fazer esse tal de sharding:
+
+
+
+> Obs: Caso tenha explicado alguma coisa errada, ou escrito algo errado gostaria do seu comentário e sua correção.
