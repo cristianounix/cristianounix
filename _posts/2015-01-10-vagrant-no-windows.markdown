@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Instalando vagrant no Windows
+title: Instalando vagrant no Windows (eca ... )
 modified: 2015-01-10
 category: vagrant, linux
 tags: [vagrant, linux]
@@ -9,6 +9,7 @@ tags: [vagrant, linux]
 Sempre fui usuário Linux/Mac só que nesse inicio de 2015 com algumas mudanças no trabalho precisei começar
 e usar Windows, logo de cara senti a necessidade de uma maquina linux pq tinha problemas que conseguia resolver
 de forma bem limpa e facil usando um bom terminal (aquilo que vem no windows não deve ser chamado de terminal :) ).
+
 Eu já sabia da existência do Vagrant então não perdi tempo,
 instalei [Virtual Box](https://www.virtualbox.org/) depois [Vagrant](https://www.vagrantup.com/),
 antes de continuar falando sobre como foi o resto processo vou deixar claro para quem não sabe o que são esses caras acima.

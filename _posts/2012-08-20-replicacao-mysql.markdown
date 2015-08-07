@@ -9,9 +9,6 @@ comments: true
 share: true
 ---
 
-### MMMs - Criando réplicas Multi-Master MySQL
-
-
 <p style="text-align: center;">
 <img src="{{site.baseurl}}/img/posts/mysql-replication.png" alt="Réplicas do MySQL" style="height:350px;">
 </p>
