@@ -17,6 +17,10 @@ Bem, antes de tudo tenho que dizer, não estou aqui para fazer propaganda da Ama
 <img src="{{site.baseurl}}/img/posts/aws-az.jpg" alt="Zonas da AWS">
 </p>
 
+O motivo pelo qual estou fazendo esse post é que a AWS Summit de 2015 em São Paulo foi muitooo legal, bem melhor que nas versões anteriores, simplesmente pq quem estava palestrando eram os engenheiros que estavam por dentro do projeto, e não um cara que tinha uma visão comercial do produto, a organização com fones de ouvido foi uma coisa excelente pena que não dá para você pegar todas as paletras que você deseja pois elas ocorrem em paralelo.
+
+##### Mas chega de conversa e vamos falar um pouco da sopa de letrinhas da Amazon.
+
 ### Banco de Dados:
 
 1. RDS - Relational Database Services é basicamente um serviço que oferece banco
