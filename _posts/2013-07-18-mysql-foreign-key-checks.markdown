@@ -57,5 +57,4 @@ SELECT @@FOREIGN_KEY_CHECKS;
 SET FOREIGN_KEY_CHECKS = 1;
 {% endhighlight %}
 
-
-> Obs: Caso tenha explicado alguma coisa errada, ou escrito algo errado gostaria do seu comentário e sua correção.
+ 

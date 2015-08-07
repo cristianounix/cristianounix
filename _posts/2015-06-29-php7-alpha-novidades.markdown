@@ -192,7 +192,7 @@ soma("1", "2"); // Erro - Argument 1 passed to soma() must be of the type intege
 
 #### Anonymous Class
 
-{% highlight php %} s
+{% highlight php %}
 <?php
 var_dump(new class($i) {
 		    public function __construct($i) {
@@ -213,5 +213,4 @@ $bla->setMsg(new class {
 
 [PHP7 Doc](https://wiki.php.net/rfc#php_70)
 
-
-> Obs: Caso tenha explicado alguma coisa errada, ou escrito algo errado gostaria do seu comentário e sua correção.
+ 
