@@ -100,5 +100,4 @@ Options:
 
 {% endhighlight %}
 
-
-> Obs: Caso tenha explicado alguma coisa errada, ou escrito algo errado gostaria do seu comentário e sua correção.
+ 

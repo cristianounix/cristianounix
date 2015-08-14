@@ -1,7 +1,7 @@
 ---
 layout: post
-title: AngularJS Factory ou Service e agora josé ?
-description: " AngularJS Factory ou Service e agora josé ?"
+title: AngularJS Factory, Service ou Provider e agora josé ?
+description: "AngularJS Factory, Service ou Provider qual devo usar ?"
 modified: 2015-05-10
 category: angularjs, javascript
 tags: [angularjs, javascript]
@@ -16,8 +16,7 @@ share: true
 </p>
 
 
-
-Quando começamos a usar o [AngularJS](https://angularjs.org/) logo nos deparamos com os conceitos de Factory e Service.
+Quando começamos a usar o [AngularJS](https://angularjs.org/) logo nos deparamos com os conceitos de Factory, Service ou Provider.
 
 E depois que nos abituamos com esses caras vem aquela dúvida.
 
@@ -38,11 +37,7 @@ Se olhar com mais atenção vai perceber que a "grande" diferença entre eles es
 return $injector.instantiate(constructor);
 {% endhighlight %}
 
-
-...................
-...................
-
-
+......................................
 
 > Obs: Todos os Services e Factory em Angular são singletons
 
@@ -85,6 +80,25 @@ function CrtlApp($scope, helloWorld_Factory, helloWorld_Service) {
 {% endhighlight %}
 
 
+
+----------------------------------------
+|         | Instantiable | Configurable|
+----------------------------------------
+| Service | No           | No          |
+----------------------------------------
+| Factory | Yes          | No          |
+----------------------------------------
+| Provider| Yes          | Yes         |       
+----------------------------------------
+
+
+1. Use Serviço quando você precisa apenas de um objeto simples, como um Hash, por exemplo {bla; "oi", name: "eu"} mas você não pode instanciar-lo.
+
+2. Use fábrica quando você precisa instanciar um objeto, ou seja, para ```new Users()``` ou ```new Comment()```, etc.
+
+3. Use Provider quando você precisa configurá-lo. Ex: URL (homolog, production, test) ou PORT (dev, production)
+
+
 ### O AngularJS tem muitos outros Patters como:
 
 1. Directives
@@ -97,5 +111,3 @@ function CrtlApp($scope, helloWorld_Factory, helloWorld_Service) {
 8. ....
 9. ...
 
-
-> Obs: Caso tenha explicado alguma coisa errada, ou escrito algo errado gostaria do seu comentário e sua correção.
