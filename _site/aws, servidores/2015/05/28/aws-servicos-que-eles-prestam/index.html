@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>
+    
+    AWS o que significa cada sigla, e para que serve cada uma delas.
+    
+  </title>
+  <meta name="description" content="Bem, antes de tudo tenho que dizer, não estou aqui para fazer propaganda da Amazon :)">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+
+  <script src="/js/highlight.js"></script>
+  <script src="/js/jquery.min.js"></script>
+
+  <link rel="canonical" href="http://cristianounix.github.io//aws,%20servidores/2015/05/28/aws-servicos-que-eles-prestam/">
+
+</head>
+
+<body class="home-template grey lighten-5">
+
+    
+<nav id="toolbar" class="navbar navbar-inverse navbar-fixed-top" style="position:fixed; z-index: 10;">
+   <div class="nav-wrapper blue">
+     <ul id="nav-mobile" class="left hide-on-med-and-down">
+       <li><a href="http://twitter.com/cristianounix" target="_blank"><i class="fa fa-twitter-square"></i></a></li>
+       <li><a href="http://github.com/cristianounix" target="_blank"><i class="fa fa-github-square"></i></a></li>
+       <li><a href="http://instagram.com/cristianounix" target="_blank"><i class="fa fa-instagram"></i></a></li>
+       <li><a href="http://br.linkedin.com/in/cristianounix/" target="_blank"><i class="fa fa-linkedin-square"></i></a></li>
+       <li><a href="/about"><i class="fa fa-user"></i></a></li>
+     </ul>
+
+     <a href="/" class="brand-logo center">
+       <img src="/img/cristianounix-mustache.png" alt="" />
+     </a>
+
+     <a href="#" data-activates="mobile-menu-top" class="button-collapse"><i class="material-icons">menu</i></a>
+
+     <ul class="left side-nav" id="mobile-menu-top">
+       <li><a href="http://twitter.com/cristianounix" target="_blank">Twitter</a></li>
+       <li><a href="http://github.com/cristianounix" target="_blank">Github</a></li>
+       <li><a href="http://instagram.com/cristianounix" target="_blank">Instagram</a></li>
+       <li><a href="http://br.linkedin.com/in/cristianounix/" target="_blank">Linkedin</a></li>
+       <li><a href="/about">Sobre mim</a></li>
+     </ul>
+   </div>
+ </nav>
+
+
+    <main class="content" role="main">
+
+  <section id="blog-intro" class="cyan section z-depth-1 article-intro" style="background-image:url('https://d262ilb51hltx0.cloudfront.net/max/2000/1*278tqw9zNPe2WCAz29Wzdw.jpeg');"></section>
+
+  <section id="main-inner-container" class="container">
+    <article class="post tag-webdev tag-gruntjs tag-javascript tag-nodejs card-panel z-depth-1 article-container">
+      <header>
+        <time class="post-date grey-text" datetime="2015-05-28 00:00:00 -0300"><i class="fa fa-clock-o"></i> 28 May 2015</time>
+        <h1>AWS o que significa cada sigla, e para que serve cada uma delas.</h1>
+          <div class="tag-cloud">
+            <span>
+                <i class="mdi-maps-local-offer"></i>
+                
+            </span>
+          </div>
+      </header>
+      <section class="post-content">
+        <p>Bem, antes de tudo tenho que dizer, não estou aqui para fazer propaganda da Amazon :)</p>
+
+<p style="text-align: center;">
+<img src="/img/posts/aws-az.jpg" alt="Zonas da AWS" />
+</p>
+
+<p>O motivo pelo qual estou fazendo esse post é que a AWS Summit de 2015 em São Paulo foi muitooo legal, bem melhor que nas versões anteriores, simplesmente pq quem estava palestrando eram os engenheiros que estavam por dentro do projeto, e não um cara que tinha uma visão comercial do produto, a organização com fones de ouvido foi uma coisa excelente pena que não dá para você pegar todas as paletras que você deseja pois elas ocorrem em paralelo.</p>
+
+<h5 id="mas-chega-de-conversa-e-vamos-falar-um-pouco-da-sopa-de-letrinhas-da-amazon">Mas chega de conversa e vamos falar um pouco da sopa de letrinhas da Amazon.</h5>
+
+<h3 id="banco-de-dados">Banco de Dados:</h3>
+
+<ol>
+  <li>
+    <p>RDS - Relational Database Services é basicamente um serviço que oferece banco
+de dados relacional (como o nome mesmo disse). usando o RDS você não precisa ter uma
+instância de um banco rodando na sua máquina, pois ele vai está disponivel como um
+serviço na aws, os backups são feitos automaticamente e disponibilizados no S3,
+a recuperação desses backups podem ser feitas point-in-time, além de outros muito
+recursos como replicação em zonas diferentes.
+Os bancos que o RDS suporta hoje são
+<strong>MySQL</strong>, <strong>Oracle</strong>, <strong>PostgreSQL</strong> e o <strong>SQLServer</strong> ou seja os principais do mercado.</p>
+  </li>
+  <li>
+    <p>DynamoDB - É um serviço de banco de dados <strong>NoSQL</strong> ele é muito rápido altamente
+flexivel e tem uma latência abaixo de 10 milisegundos em qualquer escala.</p>
+  </li>
+  <li>
+    <p>ElastiCache - Não tenho muito o que falar, quem já usou <strong>redis</strong>,
+<strong>memcache</strong> Serviço de cache basicamente, que tem suporte a replicação
+dos nós integração <strong>CloudWatch</strong> entre muitos outros.</p>
+  </li>
+</ol>
+
+<h3 id="infraestrutura">Infraestrutura</h3>
+
+<ol>
+  <li>
+    <p>EC2 - Elastic Compute (não sei pq o “2” :)) acho que é uma das partes mais importantes da
+AWS, o ec2 é um máquina virtual onde você pode aumentar ou diminuir seus recursos, além de você
+poder colocar sua instância numa melhor posição geografica afim de otimizar a latência e ainda
+pode criar redundâncias nas suas zonas como mostramos na imagem acima.</p>
+  </li>
+  <li>
+    <p>VPC - (Virtual Private Cloud) é basicamente uma rede virtual que se parece muito com uma rede
+tradicional que montamos, na VPC você pode criar várias outras sub-nets.</p>
+  </li>
+  <li>
+    <p>Direct Connect - É um serviço de rede que basicamente permite você
+conectar seu datacenter ou suas máquinas na infraestrutura da Amazon.</p>
+  </li>
+  <li>
+    <p>Route53 - O Amazon Route 53 é um serviço web de DNS altamente disponível e escalável.
+Nesse serviço a AWS também oferece serviço de registro de domínios. Você também pode
+usar o Route53 para seus serviços fora da infra da Amazon.</p>
+  </li>
+</ol>
+
+<h3 id="aplicaes">Aplicações</h3>
+
+<ol>
+  <li>
+    <p>SES - Simple Email Service em poucas palavras é um serviço de envio (apenas) de emails,
+oferece acesso fácil e em tempo real às suas estatísticas de envio e notificações internas de
+devoluções.</p>
+  </li>
+  <li>
+    <p>SQS -  Simple Queue Service é um sistema de filas distribuida,
+em já usou Sidekiq, Celery, Nats, ou qualquer outro serviço de fila vai se dá bem com o SQS.
+Uma coisa interessante a se notar é que como o SQS é distribuido ele não farante o first in, first out
+das mensagens colocadas na fila, caso você queira manter a fila na ordem então você deve colocar a informação
+da ordem junto com a mensagem enviada, e no final quando o serviço te devolver a mensagem vc deve
+ordenar da forma adequada.</p>
+  </li>
+  <li>
+    <p>SNS - Simple Notification Service - serviço de notificações via push,
+permite enviar mensagens individuais ou para um grande número de usuários.
+Push para dispositivos móveis (Apple, Google, Fire OS e Windows), caixas de e-mail ou
+até mesmo para outros serviços como SQS ou Aws Lambda ou para qualquer endpoint HTTP.
+O SNS pode tabém enviar SMS para usuários de dispositivos móveis nos EUA.</p>
+  </li>
+  <li>
+    <p>Lambda - Esse cara aqui é muito lega, bem, ele exeuta um código assim que algum evento
+acontece, por exemplo, se você quiser um serviço que ao fazer o upload de uma imagem no S3
+você pegue essa imagem processe ela em tons de cinza o AWS Lamda é o caminho, basicamente o
+evento para acionar o lambda foi o upload da imagem no S3, temos outros eventos como leitura
+do <strong>DynamoDB</strong>.
+Se quisermos chamar as funções temos <a href="http://docs.aws.amazon.com/lambda/latest/dg/API_InvokeAsync.html">LambdaAPI</a>
+<a href="http://aws.amazon.com/pt/lambda/pricing/">Lambda Preços</a></p>
+  </li>
+</ol>
+
+<h3 id="automoo">Automoção</h3>
+
+<ol>
+  <li>
+    <p>Beanstalk - Esse cara é bem legal também, ele basicamente cria todo uma infraestrutura como
+provisionamento de recursos, balanceamento de carga, Auto Scaling e monitoramento.
+Depois você faz o deploy de sua aplicação e vai configurando do seu gosto.</p>
+  </li>
+  <li>
+    <p>Cloud Formation - Esse serviço te permite fazer provisionamento de uma infraestrutura através de um modelo
+em Json, exemplo <a href="https://s3-us-west-2.amazonaws.com/cloudformation-templates-us-west-2/Rails_Single_Instance.template">veja esse modelo</a>,
+logo no início fica fácil de entender as configurações da infraestrutura. Ele parece fazer a mesma
+coisa que o <em>Beanstalk</em> faz né ? sim parece, mas o beanstalk está mais voltado a entregar ao desenvolvedor
+uma infraestrutura rápida, segura e fácil de escalar, já o cloud formation foca em provisionar a infraestrutura, preocupando-se
+mais con os serviços necessários para a sua aplicação.</p>
+  </li>
+  <li>
+    <p>CodeDeploy - Automatiza todo processo de deploy de forma confiável e rápida.
+Esse serviço elete tem uma série de recusos interessante, e ainda te dá uma certa confiança
+de você poder fazer o deploy e se algo der errado o rollback de todo processo vai ser bem indolor.
+É possivél fazer deploy em todas as suas instâncias definindo as estratégia de deploy, tipo:
+queiro que faça deploy em todas as máquinas ou uma por uma e etc,
+quando vc usa o ELB ele aplica a estratégia que você escolheu e impede que as requisições
+que estão sendo processadas se perca.</p>
+  </li>
+</ol>
+
+<h3 id="administrao-e-segurana">Administração e Segurança</h3>
+
+<ol>
+  <li>
+    <p>IAM - (Identity and Access Management ) Basicamente é um recurso que permite gerenciar os serviços e permissões que cada usuário
+tem acesso no console da Amazon.</p>
+  </li>
+  <li>
+    <p>CloudWatch - É um serviço de monitoramento para recursos da AWS,
+você pode coletar e rastrear métricas, coletar e monitorar arquivos de log,
+além de definir aletas dos serviços, ele pode monitorar Instancias EC2 tabelas
+do DynamoDB, instancias do RDS além de você poder personalizar/criar sua propria
+métrica.</p>
+  </li>
+</ol>
+
+<h3 id="armazenamento-e-distribuio-de-contedo">Armazenamento e Distribuição de conteúdo</h3>
+
+<ol>
+  <li>
+    <p>S3 - Simple Storage Service é um serviço para armazenamento de objetos,
+seguro, durável e altamente escalonável, oferece transferencia de dados
+usando SSL e os dados são todos criptografados logo após o upload.
+OBS: $0.03 por GB e $0.050 1.000 solicitações</p>
+  </li>
+  <li>
+    <p>Glacier - É um serviço muito parecido com o S3 só que ele é muito mais
+barato que o S3 e mais voltado para armazenamentos de backups, ativos empresariais,
+substituição de outras mídias como fitas magnéticas e etc.
+OBS: $0.01 por GB e $0.050 1.000 solicitações</p>
+  </li>
+</ol>
+
+
+        <p>
+          
+        </p>
+      </section>
+
+
+      <footer>
+        <section id="social-share">
+          <p>
+            Compartilhar: <br>
+            <a href="http://twitter.com/share?text=&amp;url=" target="_new" class="btn-floating white cyan-text darken-2" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;"><i class="fa fa-twitter cyan-text darken-2"></i></a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" class="btn-floating white cyan-text"><i class="fa fa-facebook cyan-text darken-2"></i></a>
+            <a href="https://plus.google.com/share?url=" class="btn-floating white cyan-text darken-2" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;"><i class="fa fa-google-plus cyan-text darken-2 "></i></a>
+          </p>
+        </section>
+        <!-- Disqus Comments -->
+        <section class="comments">
+          <div id="disqus_thread"></div>
+              <script type="text/javascript">
+                  var disqus_shortname = 'cristianounix';
+                  (function() {
+                      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                  })();
+              </script>
+              <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        </section>
+      </footer>
+    </article>
+  </section>
+</main>
+
+
+  <footer class="site-footer clearfix">
+
+  </footer>
+
+  
+<script src="/js/EasePack.min.js"></script>
+<script src="/js/TweenLite.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+</body>
+
+</html>

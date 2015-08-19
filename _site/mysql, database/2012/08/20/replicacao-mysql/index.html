@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>
+    
+    MMMs - Criando réplicas Multi-Master MySQL
+    
+  </title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+
+  <script src="/js/highlight.js"></script>
+  <script src="/js/jquery.min.js"></script>
+
+  <link rel="canonical" href="http://cristianounix.github.io//mysql,%20database/2012/08/20/replicacao-mysql/">
+
+</head>
+
+<body class="home-template grey lighten-5">
+
+    
+<nav id="toolbar" class="navbar navbar-inverse navbar-fixed-top" style="position:fixed; z-index: 10;">
+   <div class="nav-wrapper blue">
+     <ul id="nav-mobile" class="left hide-on-med-and-down">
+       <li><a href="http://twitter.com/cristianounix" target="_blank"><i class="fa fa-twitter-square"></i></a></li>
+       <li><a href="http://github.com/cristianounix" target="_blank"><i class="fa fa-github-square"></i></a></li>
+       <li><a href="http://instagram.com/cristianounix" target="_blank"><i class="fa fa-instagram"></i></a></li>
+       <li><a href="http://br.linkedin.com/in/cristianounix/" target="_blank"><i class="fa fa-linkedin-square"></i></a></li>
+       <li><a href="/about"><i class="fa fa-user"></i></a></li>
+     </ul>
+
+     <a href="/" class="brand-logo center">
+       <img src="/img/cristianounix-mustache.png" alt="" />
+     </a>
+
+     <a href="#" data-activates="mobile-menu-top" class="button-collapse"><i class="material-icons">menu</i></a>
+
+     <ul class="left side-nav" id="mobile-menu-top">
+       <li><a href="http://twitter.com/cristianounix" target="_blank">Twitter</a></li>
+       <li><a href="http://github.com/cristianounix" target="_blank">Github</a></li>
+       <li><a href="http://instagram.com/cristianounix" target="_blank">Instagram</a></li>
+       <li><a href="http://br.linkedin.com/in/cristianounix/" target="_blank">Linkedin</a></li>
+       <li><a href="/about">Sobre mim</a></li>
+     </ul>
+   </div>
+ </nav>
+
+
+    <main class="content" role="main">
+
+  <section id="blog-intro" class="cyan section z-depth-1 article-intro" style="background-image:url('https://d262ilb51hltx0.cloudfront.net/max/2000/1*278tqw9zNPe2WCAz29Wzdw.jpeg');"></section>
+
+  <section id="main-inner-container" class="container">
+    <article class="post tag-webdev tag-gruntjs tag-javascript tag-nodejs card-panel z-depth-1 article-container">
+      <header>
+        <time class="post-date grey-text" datetime="2012-08-20 00:00:00 -0300"><i class="fa fa-clock-o"></i> 20 August 2012</time>
+        <h1>MMMs - Criando réplicas Multi-Master MySQL</h1>
+          <div class="tag-cloud">
+            <span>
+                <i class="mdi-maps-local-offer"></i>
+                
+            </span>
+          </div>
+      </header>
+      <section class="post-content">
+        <p style="text-align: center;">
+<img src="/img/posts/mysql-replication.png" alt="Réplicas do MySQL" style="height:350px;" />
+</p>
+
+<h4 id="antes-disso-vamos-definir-quem-so-nossos-servidores">Antes disso vamos definir quem são nossos servidores:</h4>
+
+<p style="text-align: center;">
+SRV-01 (10.0.0.100)
+<br />
+<img src="/img/posts/db1.png" alt="Servidor Db1" style="height:100px;border:1px solid blue;" />
+</p>
+
+<p style="text-align: center;">
+SRV-02 (10.0.0.200)
+<br />
+<img src="/img/posts/db1.png" alt="Servidor Db2" style="height:100px;border:1px solid red;" />
+</p>
+
+<p>Vou considerar que seu banco de dados já está instalado e rodando perfeitamente.</p>
+
+<p>Beleza, então vamos por a mão na massa….</p>
+
+<p>A primeira coisa a se fazer, é no servidor <strong>SRV-01</strong>
+fazer backup da base ou das bases que deseja replicar.</p>
+
+<p>SRV-01</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>mysqldump -u root -p --databases db1 &gt; db1.sql</code></pre></div>
+
+<p>e em seguida restaurar essa base no servidor replica <strong>SRV-02</strong></p>
+
+<p>SRV-02</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>mysql -u root -p &lt; db1.sql</code></pre></div>
+
+<blockquote>
+  <p>Eu costumo sempre manter o mesmo usuário e mesma senha nos 2 servidores</p>
+</blockquote>
+
+<h4 id="vamos-agora-a-parte-legal-da-coisa">Vamos agora a parte legal da coisa.</h4>
+
+<p>Abra o arquivo de configuração do MySQL <strong>(my.cnf)</strong> no servidor <strong>SRV-01</strong></p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">server-id <span class="o">=</span> 100
+auto-increment-increment <span class="o">=</span> 2
+auto-increment-offset <span class="o">=</span> 1
+
+log-bin
+binlog-do-db <span class="o">=</span> db1
+<span class="p">;</span> caso queira mais bases só replicar a linha acima
+
+master-host <span class="o">=</span> 10.0.0.200
+master-user <span class="o">=</span> user_db
+master-password <span class="o">=</span> *******
+master-port <span class="o">=</span> 3306
+master-connect-retry <span class="o">=</span> 60</code></pre></div>
+
+<p>Em seguida vamos configurar nosso servidor <strong>SRV-02</strong>, as configurações vão ser
+bem parecidas com o servidor <strong>SRV-01</strong> só que agora apontamos para o servidor <strong>1</strong>,
+fica assim então:</p>
+
+<p><strong>SRV-01</strong> ==&gt; <strong>SRV-02</strong></p>
+
+<p><strong>SRV-01</strong> &lt;== <strong>SRV-02</strong></p>
+
+<blockquote>
+  <p>Resumindo, tudo que acontecer de alteração no 1 vai ser replicada para o 2 e vice-versa.</p>
+</blockquote>
+
+<p><strong>SRV-02</strong></p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">server-id <span class="o">=</span> 200
+auto-increment-increment <span class="o">=</span> 2
+auto-increment-offset <span class="o">=</span> 2
+
+log-bin
+binlog-do-db <span class="o">=</span> database
+<span class="p">;</span> caso queira mais bases só replicar a linha acima
+
+master-host <span class="o">=</span> 10.0.0.100
+master-user <span class="o">=</span> user_db
+master-password <span class="o">=</span> *******
+master-port <span class="o">=</span> 3306
+master-connect-retry <span class="o">=</span> 60</code></pre></div>
+
+<p>Pronto!</p>
+
+<p>Depois disso vamos reinicar o MySQL e testar nossa replicação</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>service mysql restart</code></pre></div>
+
+<p>Nesse ponto tudo deve está funcionando perfeitamente.</p>
+
+<p>Para garantir que está funcionando, você pode fazer alguma alteração no servidor <strong>1</strong>
+e ver se foi replicado no servidor <strong>2</strong>.</p>
+
+<p>Para certificar mais ainda que todo processo está ok vamos ver nos dois servidores
+os parâmetros:</p>
+
+<ol>
+  <li>Slave_IO_Running</li>
+  <li>Slave_SQL_Running</li>
+</ol>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">mysql&gt; start slave
+mysql&gt; show slave status</code></pre></div>
+
+<p>Agora é só correr para o abraço.</p>
+
+<p>Você pode está com dúvida sobre as configurações né ?
+deve tá se perguntando, para que server aquelas configurações:</p>
+
+<ol>
+  <li>auto-increment-increment = 2</li>
+  <li>auto-increment-offset = 2</li>
+</ol>
+
+<p>Beleza, vamos tentar responder de forma simles e fácil.</p>
+
+<p>O <strong>auto-increment-increment</strong> é nosso velho conhecido
+“id int AUTO_INCREMENT”, sim essa configuração é o nosso fator
+de crescimento, geralmente ela é de 1, por exemplo logo após criarmos uma tabela assim:</p>
+
+<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">tabela</span> <span class="p">(</span>
+  <span class="n">id</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+  <span class="n">name</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span>
+<span class="p">)</span></code></pre></div>
+
+<p>e em seguida fizermos um insert nela</p>
+
+<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">insert</span> <span class="k">into</span> <span class="n">tabela</span> <span class="k">values</span> <span class="p">(</span><span class="s1">&#39;aaa&#39;</span><span class="p">);</span></code></pre></div>
+
+<p>Qual seria nosso <strong>id</strong> ?</p>
+
+<p>1 certo ?</p>
+
+<p>Sim, pq noso fato de crescimento é de 1 ou seja 1,2,3,4,5,….</p>
+
+<p>Se alteramos esse fato para 6 nossos IDs seriam assim 6,12,18,24,….</p>
+
+<blockquote>
+  <p>Obs: esse fator pode ser um número entre 1 e 65365</p>
+</blockquote>
+
+<p>Fechado, e o que seria o nosso <strong>auto-increment-offset</strong> ?</p>
+
+<p>Esse cara é muito importante pois ele evita conflitos de IDs caso ocorra
+uma inserção simultânea na mesma tablea nas 2 bases em questão.</p>
+
+<p>Vamos ver na prática como fica isso:</p>
+
+<p>Servidor 1:
+increment = 2
+offset = 1</p>
+
+<p>Servidor 2:
+increment = 2
+offset = 2</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: right">Servidor 1  (ids)</th>
+      <th style="text-align: left">Servidor 2 (ids)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: right">(primeiro insert)<strong>1</strong></td>
+      <td style="text-align: left"><strong>2</strong> (primeiro insert)</td>
+    </tr>
+    <tr>
+      <td style="text-align: right"><strong>3</strong></td>
+      <td style="text-align: left"><strong>4</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: right"><strong>5</strong></td>
+      <td style="text-align: left"><strong>6</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: right"><strong>7</strong></td>
+      <td style="text-align: left"><strong>8</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: right"><strong>9</strong></td>
+      <td style="text-align: left"><strong>10</strong></td>
+    </tr>
+    <tr>
+      <td style="text-align: right">…</td>
+      <td style="text-align: left">…</td>
+    </tr>
+  </tbody>
+</table>
+
+
+        <p>
+          
+        </p>
+      </section>
+
+
+      <footer>
+        <section id="social-share">
+          <p>
+            Compartilhar: <br>
+            <a href="http://twitter.com/share?text=&amp;url=" target="_new" class="btn-floating white cyan-text darken-2" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;"><i class="fa fa-twitter cyan-text darken-2"></i></a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" class="btn-floating white cyan-text"><i class="fa fa-facebook cyan-text darken-2"></i></a>
+            <a href="https://plus.google.com/share?url=" class="btn-floating white cyan-text darken-2" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;"><i class="fa fa-google-plus cyan-text darken-2 "></i></a>
+          </p>
+        </section>
+        <!-- Disqus Comments -->
+        <section class="comments">
+          <div id="disqus_thread"></div>
+              <script type="text/javascript">
+                  var disqus_shortname = 'cristianounix';
+                  (function() {
+                      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                  })();
+              </script>
+              <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        </section>
+      </footer>
+    </article>
+  </section>
+</main>
+
+
+  <footer class="site-footer clearfix">
+
+  </footer>
+
+  
+<script src="/js/EasePack.min.js"></script>
+<script src="/js/TweenLite.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+</body>
+
+</html>

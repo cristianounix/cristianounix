@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>
+    
+    Programação Paralela com c#, dividindo e conquistando mais território. ( se vou mexer com csharp é bom entender né) ?!
+    
+  </title>
+  <meta name="description" content="Esses tempos no trabalho estávamos lidando com um problema de performance de algunsprocessos do nosso projeto, já devo ter comentado antes que o projeto está...">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+
+  <script src="/js/highlight.js"></script>
+  <script src="/js/jquery.min.js"></script>
+
+  <link rel="canonical" href="http://cristianounix.github.io//.net,%20c%23/2015/02/20/csharp-parallel/">
+
+</head>
+
+<body class="home-template grey lighten-5">
+
+    
+<nav id="toolbar" class="navbar navbar-inverse navbar-fixed-top" style="position:fixed; z-index: 10;">
+   <div class="nav-wrapper blue">
+     <ul id="nav-mobile" class="left hide-on-med-and-down">
+       <li><a href="http://twitter.com/cristianounix" target="_blank"><i class="fa fa-twitter-square"></i></a></li>
+       <li><a href="http://github.com/cristianounix" target="_blank"><i class="fa fa-github-square"></i></a></li>
+       <li><a href="http://instagram.com/cristianounix" target="_blank"><i class="fa fa-instagram"></i></a></li>
+       <li><a href="http://br.linkedin.com/in/cristianounix/" target="_blank"><i class="fa fa-linkedin-square"></i></a></li>
+       <li><a href="/about"><i class="fa fa-user"></i></a></li>
+     </ul>
+
+     <a href="/" class="brand-logo center">
+       <img src="/img/cristianounix-mustache.png" alt="" />
+     </a>
+
+     <a href="#" data-activates="mobile-menu-top" class="button-collapse"><i class="material-icons">menu</i></a>
+
+     <ul class="left side-nav" id="mobile-menu-top">
+       <li><a href="http://twitter.com/cristianounix" target="_blank">Twitter</a></li>
+       <li><a href="http://github.com/cristianounix" target="_blank">Github</a></li>
+       <li><a href="http://instagram.com/cristianounix" target="_blank">Instagram</a></li>
+       <li><a href="http://br.linkedin.com/in/cristianounix/" target="_blank">Linkedin</a></li>
+       <li><a href="/about">Sobre mim</a></li>
+     </ul>
+   </div>
+ </nav>
+
+
+    <main class="content" role="main">
+
+  <section id="blog-intro" class="cyan section z-depth-1 article-intro" style="background-image:url('https://d262ilb51hltx0.cloudfront.net/max/2000/1*278tqw9zNPe2WCAz29Wzdw.jpeg');"></section>
+
+  <section id="main-inner-container" class="container">
+    <article class="post tag-webdev tag-gruntjs tag-javascript tag-nodejs card-panel z-depth-1 article-container">
+      <header>
+        <time class="post-date grey-text" datetime="2015-02-20 00:00:00 -0200"><i class="fa fa-clock-o"></i> 20 February 2015</time>
+        <h1>Programação Paralela com c#, dividindo e conquistando mais território. ( se vou mexer com csharp é bom entender né) ?!</h1>
+          <div class="tag-cloud">
+            <span>
+                <i class="mdi-maps-local-offer"></i>
+                
+            </span>
+          </div>
+      </header>
+      <section class="post-content">
+        <p>Esses tempos no trabalho estávamos lidando com um problema de performance de alguns
+processos do nosso projeto, já devo ter comentado antes que o projeto está escrito em
+c# (sim é verdade, fazer o que né ?!?!)… foi então que o amigo @Aubry, mais fera que eu no mundo Microsoft me falou que o .NET tinha algumas coisas legais que facilitavam nossa vida na criação de processos em paralelo, e então ele disse:</p>
+
+<p>“…podemos usar o Parallel pra fazer isso…”</p>
+
+<p>
+
+<img src="/img/posts/parallel-diagram.png" alt="Parallel diagrama" />
+
+</p>
+
+<p>O Parallel é bem simples de se usar, veja um exemplo usando um simples <strong>for</strong>:</p>
+
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="n">Parallel</span><span class="p">.</span><span class="n">For</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">10</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span> <span class="n">i</span> <span class="p">=&gt;</span>
+<span class="p">{</span>
+    <span class="c1">//faz alguma coisa aqui dentro</span>
+<span class="p">});</span></code></pre></div>
+
+<p>Então fui pesquisar por “Parallel c#” pra entender mais afundo e não ficar limitado
+ao jeito que ele nos mostrou.</p>
+
+<p>====================================================</p>
+
+<p>Programação assíncrona no .NET foi introduzida em 2001 no lançamento de sua primeira versão, a partir dessa eles evoluiram para o Asynchronous Programming Model (APM) esse modelo pelo fato de ter sido o primeiro, foi considerado pela comunidade muito difícil de ser implementado, foi então que teve uma nova evolução e lançaram o novo modelo, que dessa vez, foi o Event-Based Asynchronous Pattern (EAP). Segundo a comunidade esse modelo, simplificou bastante muita coisa, entretanto não estava bom ainda.</p>
+
+<p>Foi então que no .NET 4 nosso tio Bill implementou a Task Parallel Library (TPL)
+que é a biblioteca usada atualmente (me corrijam se eu estiver errado por favor :) ).</p>
+
+<p>Pra resumir isso tudo, se eu quiser um processamento paralelo usando for ou foreach ou, quem sabe, invocar tarefas em paralelo, onde vou encontrar ?</p>
+
+<p>Sim na <a href="https://msdn.microsoft.com/en-us//library/dd460717">TPL</a></p>
+
+<p>
+
+<img src="/img/posts/tpl-diagram.png" alt="TPL Diagrama" />
+
+</p>
+
+<p>Vamos fazer uns exemplos para entender:</p>
+
+<p>Antes vamos supor que temos 2 métodos implementados e testados que funcionam perfeitamente, são eles:</p>
+
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="m">1.</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">GetPrimeNumbs</span><span class="p">(</span><span class="kt">int</span> <span class="n">min</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max</span><span class="p">)</span>
+<span class="m">2.</span> <span class="n">boll</span> <span class="n">CheckIsPrimeNumb</span><span class="p">(</span><span class="kt">int</span> <span class="n">min</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max</span><span class="p">)</span></code></pre></div>
+
+<p>No item 1. o método retorna uma lista de números primos, essa lista obedeçe o intervalo do min e máx.
+Já O item 2. é um método usado internamete pelo item 1. ele verifica se cada ítem do intervalo é um primo ou não.</p>
+
+<p>Pronto sabendo disso let’s code:</p>
+
+<h3 id="processo-sncrono">Processo Síncrono</h3>
+
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="kt">var</span> <span class="n">time</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Stopwatch</span><span class="p">();</span>
+<span class="n">time</span><span class="p">.</span><span class="n">Start</span><span class="p">();</span>
+<span class="kt">var</span> <span class="n">primes</span> <span class="p">=</span> <span class="n">GetPrimeNumbs</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">10000000</span><span class="p">);</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Qtd. Numeros primos: {0}\n Tempo: {1}&quot;</span><span class="p">,</span> <span class="n">primes</span><span class="p">.</span><span class="n">Count</span><span class="p">,</span><span class="n">time</span><span class="p">.</span><span class="n">ElapsedMilliseconds</span><span class="p">);</span></code></pre></div>
+
+<h3 id="processo-asncrono-utilizando-o-parallel">Processo Asíncrono Utilizando o <strong>Parallel</strong></h3>
+
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="kt">var</span> <span class="n">time</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Stopwatch</span><span class="p">();</span>
+<span class="n">time</span><span class="p">.</span><span class="n">Start</span><span class="p">();</span>
+<span class="kt">int</span> <span class="n">numThreads</span> <span class="p">=</span> <span class="m">10</span><span class="p">;</span>
+<span class="kt">var</span> <span class="n">primes</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;[</span><span class="n">numThreads</span><span class="p">];</span>
+<span class="n">Parallel</span><span class="p">.</span><span class="n">For</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="n">numThreads</span><span class="p">,</span><span class="n">i</span> <span class="p">=&gt;</span> <span class="n">primes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">=</span> <span class="n">GetPrimeNumbs</span><span class="p">(</span><span class="n">i</span><span class="p">==</span> <span class="m">0</span> <span class="p">?</span> <span class="m">2</span> <span class="p">:</span> <span class="n">i</span> <span class="p">*</span> <span class="m">1000000</span> <span class="p">+</span> <span class="m">1</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span><span class="p">+</span><span class="m">1</span><span class="p">)*</span><span class="m">1000000</span><span class="p">));</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Qtd. Números primos: {0}\n Tempo: {1}&quot;</span><span class="p">,</span>
+                      <span class="n">primes</span><span class="p">.</span><span class="n">Sum</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">Count</span><span class="p">),</span>
+                      <span class="n">time</span><span class="p">.</span><span class="n">ElapsedMilliseconds</span><span class="p">);</span></code></pre></div>
+
+<p>No código assíncrono perceba que estou usando o Parallel e estou quebrando a tarefa em 10 tarefas (threads) e no final eu faço a contagem e mostro como foi o resultado.</p>
+
+<p>Vamos fazer o mesmo só que agora utilizando a classe <strong>Task</strong>.</p>
+
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="kt">var</span> <span class="n">time</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Stopwatch</span><span class="p">();</span>
+<span class="n">time</span><span class="p">.</span><span class="n">Start</span><span class="p">();</span>
+<span class="kt">int</span> <span class="n">numThreads</span> <span class="p">=</span> <span class="m">10</span><span class="p">;</span>
+<span class="kt">var</span> <span class="n">primes</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Task</span><span class="p">&lt;</span><span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;&gt;[</span><span class="n">numThreads</span><span class="p">];</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">numThreads</span><span class="p">;</span> <span class="n">i</span><span class="p">++){</span>
+    <span class="kt">int</span> <span class="n">cnt</span> <span class="p">=</span> <span class="n">i</span><span class="p">;</span>
+    <span class="n">primes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">=</span> <span class="n">Task</span><span class="p">.</span><span class="n">Factory</span><span class="p">.</span><span class="n">StartNew</span><span class="p">(</span>
+                  <span class="p">()</span> <span class="p">=&gt;</span> <span class="n">GetPrimeNumbs</span><span class="p">(</span><span class="n">cnt</span> <span class="p">==</span> <span class="m">0</span> <span class="p">?</span> <span class="m">2</span> <span class="p">:</span> <span class="n">cnt</span> <span class="p">*</span> <span class="m">1000000</span> <span class="p">+</span> <span class="m">1</span><span class="p">,</span> <span class="p">(</span><span class="n">cnt</span> <span class="p">+</span> <span class="m">1</span><span class="p">)</span> <span class="p">*</span> <span class="m">1000000</span><span class="p">)</span>
+                <span class="p">);</span>
+<span class="p">}</span>
+<span class="n">Task</span><span class="p">.</span><span class="n">WaitAll</span><span class="p">(</span><span class="n">primes</span><span class="p">);</span>
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Qtd. Números primos: {0}\n Tempo: {1}&quot;</span><span class="p">,</span> <span class="n">primes</span><span class="p">.</span><span class="n">Sum</span><span class="p">(</span><span class="n">p</span> <span class="p">=&gt;</span> <span class="n">p</span><span class="p">.</span><span class="n">Result</span><span class="p">.</span><span class="n">Count</span><span class="p">),</span> <span class="n">time</span><span class="p">.</span><span class="n">ElapsedMilliseconds</span><span class="p">);</span></code></pre></div>
+
+<p>Bem, o interessante aqui é observar que quando fazemos um Task.WaitAll([vetor_de_tarefas])
+estamos pedindo para aguardar todas as tarefas lançadas no vetor para serem finalizadas e depois passar para próxima instrução.</p>
+
+<p>Um exemplo diferente para <strong>Parallel Linq</strong></p>
+
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="kt">var</span> <span class="n">count</span> <span class="p">=</span> <span class="n">max</span> <span class="p">-</span> <span class="n">min</span> <span class="p">+</span> <span class="m">1</span><span class="p">;</span>
+<span class="k">return</span> <span class="n">Enumerable</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="n">minimum</span><span class="p">,</span> <span class="n">count</span><span class="p">).</span><span class="n">AsParallel</span><span class="p">().</span><span class="n">Where</span><span class="p">(</span><span class="n">CheckIsPrimeNumb</span><span class="p">).</span><span class="n">ToList</span><span class="p">();</span></code></pre></div>
+
+<p>Você deve tá se perguntando, mas porque ele usou um exemplo diferente para o LINQ?
+Porque da forma como eu estava pensando nos outros exemplo o método <strong>GetPrimeNumbs</strong> teria que ser escrito de formas diferente, pois internamente ele usa um outro método o <strong>CheckIsPrimeNumb</strong> e esse é o mais usado pela CPU visto que ele verifica todos os números
+dentro do intervalo do min e máx para identificar e gerar assim a lista de números primos,
+logo esse método teria que ser escrito pensando nessa abordagem asíncrona.</p>
+
+<p>====</p>
+
+<p>Parallel ForEach e segurança nos dados:</p>
+
+<p>Cuidado com as variáveis compartilhadas!
+exemplo:</p>
+
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="n">List</span><span class="p">&lt;</span><span class="kt">decimal</span><span class="p">&gt;</span> <span class="n">prices</span><span class="p">;</span>
+<span class="n">Parallel</span><span class="p">.</span><span class="n">ForEach</span><span class="p">(</span><span class="n">products</span><span class="p">,</span> <span class="n">product</span> <span class="p">=&gt;</span>
+<span class="p">{</span>
+  <span class="kt">decimal</span> <span class="n">price</span> <span class="p">=</span> <span class="n">ConvertPriceToReal</span><span class="p">(</span><span class="n">product</span><span class="p">);</span>
+  <span class="n">prices</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">price</span><span class="p">);</span>
+<span class="p">)};</span></code></pre></div>
+
+<p>Isso não é threadsafe, pois como vão haver threads separadas adicionando preços à lista,
+caso ocorra de preços sendo adicionado na mesmo tempo, um deles não vai ser adicionado (ou muito provavelmente vai ser lançado um erro) e sua lista vai ficar incompleta.
+Para contornar isso usamos os <strong>Locks</strong>, veja:</p>
+
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="n">List</span><span class="p">&lt;</span><span class="kt">decimal</span><span class="p">&gt;</span> <span class="n">prices</span><span class="p">;</span>
+<span class="kt">object</span> <span class="n">price_lock</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">object</span><span class="p">();</span>
+<span class="n">Parallel</span><span class="p">.</span><span class="n">ForEach</span><span class="p">(</span><span class="n">products</span><span class="p">,</span> <span class="n">product</span> <span class="p">=&gt;</span>
+<span class="p">{</span>
+  <span class="kt">decimal</span> <span class="n">price</span> <span class="p">=</span> <span class="n">ConvertPriceToReal</span><span class="p">(</span><span class="n">product</span><span class="p">);</span>
+  <span class="k">lock</span><span class="p">(</span><span class="n">price_lock</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">prices</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">price</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">)};</span></code></pre></div>
+
+<p>O que vai acontecer aqui é que, quando duas ou mais threads tentar inserir o preço na lista, a thread vai idenficar o bloqueio e aguardar a liberação permitindo assim, a inserção na lista.</p>
+
+<p>Seguindo o mesmo exemplo, vamos supor que queremos um contador dentro desse processo todo,
+então o que fazer? só inserir o contador e sempre ir incrementando-o no loop né? Errado!
+Se fizer isso, vai cair no primeiro problema que falamos, variáveis não atômicas ou variáveis compartilhadas. Hummmm! Então colocamos o contador num <strong>lock</strong> certo? Mais ou menos… tem um outro mecanismo feito especialmente para esses casos é o <strong>Interlocked</strong>. Vejamos:</p>
+
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="kt">int</span> <span class="n">cnt</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+<span class="n">List</span><span class="p">&lt;</span><span class="kt">decimal</span><span class="p">&gt;</span> <span class="n">prices</span><span class="p">;</span>
+<span class="kt">object</span> <span class="n">price_lock</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">object</span><span class="p">();</span>
+<span class="n">Parallel</span><span class="p">.</span><span class="n">ForEach</span><span class="p">(</span><span class="n">products</span><span class="p">,</span> <span class="n">product</span> <span class="p">=&gt;</span>
+<span class="p">{</span>
+  <span class="kt">decimal</span> <span class="n">price</span> <span class="p">=</span> <span class="n">ConvertPriceToReal</span><span class="p">(</span><span class="n">product</span><span class="p">);</span>
+  <span class="k">lock</span><span class="p">(</span><span class="n">price_lock</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">prices</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">price</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">Interlocked</span><span class="p">.</span><span class="n">Increment</span><span class="p">(</span><span class="k">ref</span> <span class="n">cnt</span><span class="p">);</span>
+<span class="p">)};</span></code></pre></div>
+
+<p><strong>Parallel.Invoke</strong></p>
+
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="n">Parallel</span><span class="p">.</span><span class="n">Invoke</span><span class="p">(</span>
+  <span class="p">()</span> <span class="p">=&gt;</span>
+  <span class="p">{</span>
+     <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Iniciando tarefa 1&quot;</span><span class="p">);</span>
+     <span class="n">GetSizeWord</span><span class="p">(</span><span class="s">&quot;Qual o tamanho dessa frase?&quot;</span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="p">()</span> <span class="p">=&gt;</span>
+  <span class="p">{</span>
+     <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;Iniciando tarefa 2&quot;</span><span class="p">);</span>
+     <span class="n">GetTotalWords</span><span class="p">(</span><span class="s">&quot;Quantas palavras tem nessa frase?&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">);</span></code></pre></div>
+
+<p>Perceba que usei o <strong>Invoke</strong> para chamar tarefas distintas que serão distribuidas nos meus núcleos de processamento.</p>
+
+<p>====</p>
+
+<p>Agora, como vou conseguir debugar isso?
+Bem uma forma que vi algumas pessoas nas comunidades .NET fazendo é:</p>
+
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="kt">var</span> <span class="n">opt</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ParallelOptions</span> <span class="p">{</span> <span class="n">MaxDegreeOfParallelism</span> <span class="p">=</span> <span class="m">1</span> <span class="p">};</span>
+<span class="n">Parallel</span><span class="p">.</span><span class="n">ForEach</span><span class="p">(</span><span class="n">products</span><span class="p">,</span> <span class="n">opt</span><span class="p">,</span> <span class="n">product</span> <span class="p">=&gt;</span>
+<span class="p">{</span>
+  <span class="kt">decimal</span> <span class="n">price</span> <span class="p">=</span> <span class="n">ConvertPriceToReal</span><span class="p">(</span><span class="n">product</span><span class="p">);</span>
+<span class="p">)};</span></code></pre></div>
+
+<p>Se o <strong>MaxDegreeOfParallelism</strong> estiver definido como -1, que é o padrão dele,
+etão ele vai usar quantos processos ele conseguir, entretanto, se for definido para 1,
+então ele vai se comportar de forma síncrona permitindo você fazer o debug.</p>
+
+<p>Obs: isso não quer dizer que você não consiga fazer debug de outra forma, só que se usar outra forma
+vai ter um bom trabalho :)</p>
+
+<blockquote>
+  <p>Obs: todos os códigos aqui foram inspirados e modificados baseando-se na documentação da <a href="msdn.microsoft.com">Microsoft</a>.</p>
+</blockquote>
+
+<blockquote>
+  <p>Obs: Caso tenha explicado alguma coisa errada, ou escrito algo errado gostaria do seu comentário e sua correção.</p>
+</blockquote>
+
+        <p>
+          
+        </p>
+      </section>
+
+
+      <footer>
+        <section id="social-share">
+          <p>
+            Compartilhar: <br>
+            <a href="http://twitter.com/share?text=&amp;url=" target="_new" class="btn-floating white cyan-text darken-2" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;"><i class="fa fa-twitter cyan-text darken-2"></i></a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" class="btn-floating white cyan-text"><i class="fa fa-facebook cyan-text darken-2"></i></a>
+            <a href="https://plus.google.com/share?url=" class="btn-floating white cyan-text darken-2" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;"><i class="fa fa-google-plus cyan-text darken-2 "></i></a>
+          </p>
+        </section>
+        <!-- Disqus Comments -->
+        <section class="comments">
+          <div id="disqus_thread"></div>
+              <script type="text/javascript">
+                  var disqus_shortname = 'cristianounix';
+                  (function() {
+                      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                  })();
+              </script>
+              <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        </section>
+      </footer>
+    </article>
+  </section>
+</main>
+
+
+  <footer class="site-footer clearfix">
+
+  </footer>
+
+  
+<script src="/js/EasePack.min.js"></script>
+<script src="/js/TweenLite.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+</body>
+
+</html>

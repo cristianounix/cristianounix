@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>
+    
+    VIM comigo ! (parte 1)
+    
+  </title>
+  <meta name="description" content="  ">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+
+  <script src="/js/highlight.js"></script>
+  <script src="/js/jquery.min.js"></script>
+
+  <link rel="canonical" href="http://cristianounix.github.io//vim,%20shell/2012/05/15/vim-parte1/">
+
+</head>
+
+<body class="home-template grey lighten-5">
+
+    
+<nav id="toolbar" class="navbar navbar-inverse navbar-fixed-top" style="position:fixed; z-index: 10;">
+   <div class="nav-wrapper blue">
+     <ul id="nav-mobile" class="left hide-on-med-and-down">
+       <li><a href="http://twitter.com/cristianounix" target="_blank"><i class="fa fa-twitter-square"></i></a></li>
+       <li><a href="http://github.com/cristianounix" target="_blank"><i class="fa fa-github-square"></i></a></li>
+       <li><a href="http://instagram.com/cristianounix" target="_blank"><i class="fa fa-instagram"></i></a></li>
+       <li><a href="http://br.linkedin.com/in/cristianounix/" target="_blank"><i class="fa fa-linkedin-square"></i></a></li>
+       <li><a href="/about"><i class="fa fa-user"></i></a></li>
+     </ul>
+
+     <a href="/" class="brand-logo center">
+       <img src="/img/cristianounix-mustache.png" alt="" />
+     </a>
+
+     <a href="#" data-activates="mobile-menu-top" class="button-collapse"><i class="material-icons">menu</i></a>
+
+     <ul class="left side-nav" id="mobile-menu-top">
+       <li><a href="http://twitter.com/cristianounix" target="_blank">Twitter</a></li>
+       <li><a href="http://github.com/cristianounix" target="_blank">Github</a></li>
+       <li><a href="http://instagram.com/cristianounix" target="_blank">Instagram</a></li>
+       <li><a href="http://br.linkedin.com/in/cristianounix/" target="_blank">Linkedin</a></li>
+       <li><a href="/about">Sobre mim</a></li>
+     </ul>
+   </div>
+ </nav>
+
+
+    <main class="content" role="main">
+
+  <section id="blog-intro" class="cyan section z-depth-1 article-intro" style="background-image:url('https://d262ilb51hltx0.cloudfront.net/max/2000/1*278tqw9zNPe2WCAz29Wzdw.jpeg');"></section>
+
+  <section id="main-inner-container" class="container">
+    <article class="post tag-webdev tag-gruntjs tag-javascript tag-nodejs card-panel z-depth-1 article-container">
+      <header>
+        <time class="post-date grey-text" datetime="2012-05-15 00:00:00 -0300"><i class="fa fa-clock-o"></i> 15 May 2012</time>
+        <h1>VIM comigo ! (parte 1)</h1>
+          <div class="tag-cloud">
+            <span>
+                <i class="mdi-maps-local-offer"></i>
+                
+            </span>
+          </div>
+      </header>
+      <section class="post-content">
+        <p style="text-align: center;">
+  <img src="/img/posts/vim3.gif" alt="VIM" />
+</p>
+
+<p>Antes de falar como fazer isso ou aquilo com o vim, acho importante saber um pouco sobre os modos de operação funcionamento do mesmo.</p>
+
+<p style="text-align: center;">
+  <img src="/img/posts/modes_vim_gif.gif" alt="Modos VIM" />
+</p>
+
+<p>Bem, quando você abre o terminal e digita:</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>vim</code></pre></div>
+
+<p>Ele está no modo <strong>NORMAL</strong>, e você não vai conseguir digitar nada, só vai escutar apitos e mais apitos,
+a não ser que você pressione a letra que te faça entrar no modo <strong>INSERT</strong> (as letras mais usadas para isso são “a”, “i” ou “o”),
+que é o modo para você editar seu texto, para voltar para o modo <strong>NORMAL</strong> basta pressionar [ESC].</p>
+
+<p>Esses 2 modos são os modos básicos do vim.</p>
+
+<p>Legal… o modo <strong>INSERT</strong> serve para colocar meu textinho mas e o modo <strong>NORMAL</strong> serve pra que moço ?</p>
+
+<p>Nesse modo nós podemos “comandar” o vim, por exemplo vamos ver o help do editor:</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>vim</code></pre></div>
+
+<p>Dentro do vim no modo NORMAL basta digitar</p>
+
+<p><strong>:help</strong></p>
+
+<p>Muito provavelmente quando fizer isso não vai saber bem o que deve ser feito pra sair do help.</p>
+
+<p>Então faz assim:</p>
+
+<p><strong>:q</strong></p>
+
+<p>e pronto você acabou de fechar a janela do help :)</p>
+
+<p>============</p>
+
+<p>Vou te mostrar uns comandos básicos do vim.</p>
+
+<h3 id="modos-do-vim">Modos do Vim</h3>
+
+<h4 id="navegao-bsica">Navegação básica</h4>
+
+<p><code>
+- h - Esquerda  
+- j - Desce
+- k - Sobre
+- l - Direita
+</code></p>
+
+<p>2) Scroll</p>
+
+<p><code>
+- [CRTL] + f - PageDown
+- [CRTL] + b - PageUp
+</code></p>
+
+<p>3) Navegação por palavras</p>
+
+<p><code>w</code></p>
+
+<p>4) Modo de inserção</p>
+
+<p><code>i</code></p>
+
+<p>5) Saindo do modo de inserção</p>
+
+<p><code>[ESC]</code></p>
+
+<p>6) Undo</p>
+
+<p><code>u</code></p>
+
+<p>7) Redo</p>
+
+<p><code>[CRTL] + r</code></p>
+
+<p>8) Entrando no modo visual</p>
+
+<p><code>v</code></p>
+
+<p>9) Modo visual em bloco</p>
+
+<p><code>[CRTL] + v</code></p>
+
+<p>10) Cópia de linha</p>
+
+<p><code>yy</code></p>
+
+<p>11) Remoção de linha</p>
+
+<p><code>dd</code></p>
+
+<p>13) Salvando as altereções do arquivo</p>
+
+<p><code>:w</code></p>
+
+<p>12) Salvando em um novo arquivo</p>
+
+<p><code> :w caminho_do_novo_arquivo</code></p>
+
+<p>14) Fechando um arquivo sem salvar nada</p>
+
+<p><code>:q!</code></p>
+
+<p>15) Fechando um arquivo e salvado as alterações</p>
+
+<p><code>:x</code></p>
+
+<p>16) Ir para linha</p>
+
+<p><code>:[numero_da_linha]</code></p>
+
+<p>17) Sair e ignorar todas as alterações</p>
+
+<p><code>:q!</code></p>
+
+<p>18) Ir para o final da linha</p>
+
+<p><code>$</code></p>
+
+<p>19) Ir para o inicio da linha</p>
+
+<p><code>0</code></p>
+
+<p>20) Ir para o final do arquivo</p>
+
+<p><code>[SHIFT] + g</code></p>
+
+<p>21) Ir para o topo do arquivo aberto sem fazer scroll da tela</p>
+
+<p><code>[SHIFT] + g</code></p>
+
+<p>Uma dica de link para aprender vim é esse cara é o <a href="http://aurelio.net/vim/">Aurelio</a>
+ele manda muito bem em muitos assuntos e o site dele me ajudou e ajuda muito a aprender
+mais sobre esse editor tosco feio mas que é muito foda !!</p>
+
+<blockquote>
+  <p>Obs: Caso tenha explicado alguma coisa errada, ou escrito algo errado gostaria do seu comentário e sua correção.</p>
+</blockquote>
+
+        <p>
+          
+        </p>
+      </section>
+
+
+      <footer>
+        <section id="social-share">
+          <p>
+            Compartilhar: <br>
+            <a href="http://twitter.com/share?text=&amp;url=" target="_new" class="btn-floating white cyan-text darken-2" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;"><i class="fa fa-twitter cyan-text darken-2"></i></a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" class="btn-floating white cyan-text"><i class="fa fa-facebook cyan-text darken-2"></i></a>
+            <a href="https://plus.google.com/share?url=" class="btn-floating white cyan-text darken-2" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;"><i class="fa fa-google-plus cyan-text darken-2 "></i></a>
+          </p>
+        </section>
+        <!-- Disqus Comments -->
+        <section class="comments">
+          <div id="disqus_thread"></div>
+              <script type="text/javascript">
+                  var disqus_shortname = 'cristianounix';
+                  (function() {
+                      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                  })();
+              </script>
+              <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        </section>
+      </footer>
+    </article>
+  </section>
+</main>
+
+
+  <footer class="site-footer clearfix">
+
+  </footer>
+
+  
+<script src="/js/EasePack.min.js"></script>
+<script src="/js/TweenLite.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+</body>
+
+</html>

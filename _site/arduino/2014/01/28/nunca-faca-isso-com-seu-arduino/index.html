@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>
+    
+    Nunca faça isso com seu Arduino
+    
+  </title>
+  <meta name="description" content="  ">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+
+  <script src="/js/highlight.js"></script>
+  <script src="/js/jquery.min.js"></script>
+
+  <link rel="canonical" href="http://cristianounix.github.io//arduino/2014/01/28/nunca-faca-isso-com-seu-arduino/">
+
+</head>
+
+<body class="home-template grey lighten-5">
+
+    
+<nav id="toolbar" class="navbar navbar-inverse navbar-fixed-top" style="position:fixed; z-index: 10;">
+   <div class="nav-wrapper blue">
+     <ul id="nav-mobile" class="left hide-on-med-and-down">
+       <li><a href="http://twitter.com/cristianounix" target="_blank"><i class="fa fa-twitter-square"></i></a></li>
+       <li><a href="http://github.com/cristianounix" target="_blank"><i class="fa fa-github-square"></i></a></li>
+       <li><a href="http://instagram.com/cristianounix" target="_blank"><i class="fa fa-instagram"></i></a></li>
+       <li><a href="http://br.linkedin.com/in/cristianounix/" target="_blank"><i class="fa fa-linkedin-square"></i></a></li>
+       <li><a href="/about"><i class="fa fa-user"></i></a></li>
+     </ul>
+
+     <a href="/" class="brand-logo center">
+       <img src="/img/cristianounix-mustache.png" alt="" />
+     </a>
+
+     <a href="#" data-activates="mobile-menu-top" class="button-collapse"><i class="material-icons">menu</i></a>
+
+     <ul class="left side-nav" id="mobile-menu-top">
+       <li><a href="http://twitter.com/cristianounix" target="_blank">Twitter</a></li>
+       <li><a href="http://github.com/cristianounix" target="_blank">Github</a></li>
+       <li><a href="http://instagram.com/cristianounix" target="_blank">Instagram</a></li>
+       <li><a href="http://br.linkedin.com/in/cristianounix/" target="_blank">Linkedin</a></li>
+       <li><a href="/about">Sobre mim</a></li>
+     </ul>
+   </div>
+ </nav>
+
+
+    <main class="content" role="main">
+
+  <section id="blog-intro" class="cyan section z-depth-1 article-intro" style="background-image:url('https://d262ilb51hltx0.cloudfront.net/max/2000/1*278tqw9zNPe2WCAz29Wzdw.jpeg');"></section>
+
+  <section id="main-inner-container" class="container">
+    <article class="post tag-webdev tag-gruntjs tag-javascript tag-nodejs card-panel z-depth-1 article-container">
+      <header>
+        <time class="post-date grey-text" datetime="2014-01-28 00:00:00 -0200"><i class="fa fa-clock-o"></i> 28 January 2014</time>
+        <h1>Nunca faça isso com seu Arduino</h1>
+          <div class="tag-cloud">
+            <span>
+                <i class="mdi-maps-local-offer"></i>
+                
+            </span>
+          </div>
+      </header>
+      <section class="post-content">
+        <p style="text-align: center;">
+  <img src="/img/posts/arduino_design_project.jpg" style="width:750px;" alt="Design Arduino" />
+</p>
+
+<p>Nunca ligue seus Leds ou qualquer outro tipo de componente diretamente nas portas do Arduino sem usar um resistor.
+As saídas do Arduino suportam no máximo 40mA de corrente.</p>
+
+<p>Usando a lei Ohm é facil perceber que terá dores de cabeça se fizer essa ligação direta nas portas digitais.</p>
+
+<p>Observer a forma correta:</p>
+
+<p>Queda de tensão de Led comum = 2V</p>
+
+<p>Corrente desejada para o Led = 10mA (menor que 40mA suportados pelo Arduino)</p>
+
+<p>Tensão fornecida pelas saídas digitais do Arduino = 5V</p>
+
+<p>Pela Lei de Ohm temos:</p>
+
+<p><code>
+R = V/I -&gt; R = (5 – 2) / 0,010 -&gt; R = 300 Ohms
+</code></p>
+
+<p>Portando, se for ligar Leds às saídas do seu Arduino use um resistor de 300 Ohms
+em série para não danificar seu projeto.</p>
+
+<p>O mesmo para qualquer tipo de componente.</p>
+
+<p>Cuidado quando estiver ligando os fios do seu circuito pois, sem querer,
+você poderá ligar um dos pinos do Arduino diretamente ao terra.</p>
+
+<p>Se o pino ligado for programado como saída digital você irá “torrar” sua plataforma.</p>
+
+<p>O raciocínio é o mesmo do 1º Erro explicado anteriormente, ou seja,
+ao ligar um pino de saída ao terra você não limitará a corrente fornecida pelo
+microcontrolador e rapidamente ela ultrapassará o limite de 40mA já mencionado acabando com sua alegria.</p>
+
+<p style="text-align: center;">
+  <img src="/img/posts/arduino_leds.png" style="width:400px;" alt="Leds arduino" />
+</p>
+
+<p>Ae vc logo pensa, vou ligar 10 Leds, um em cada porta,
+cada um com 25mA pra igual árvore de natal, e farei uma sequencial de Leds.</p>
+
+<p>Se em algum momento vc ligar um conjunto de leds fazendo com que a somatória
+das correntes consumidas ultrapasse um certo valor, você terá problemas.</p>
+
+<p>A corrente máxima total que o microcontrolador é capaz de suportar são 200mA.</p>
+
+<p>Se a soma de todas as correntes fornecidas pelo Arduino ultrapassar esse limite, você o danificará.</p>
+
+        <p>
+          
+        </p>
+      </section>
+
+
+      <footer>
+        <section id="social-share">
+          <p>
+            Compartilhar: <br>
+            <a href="http://twitter.com/share?text=&amp;url=" target="_new" class="btn-floating white cyan-text darken-2" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;"><i class="fa fa-twitter cyan-text darken-2"></i></a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" class="btn-floating white cyan-text"><i class="fa fa-facebook cyan-text darken-2"></i></a>
+            <a href="https://plus.google.com/share?url=" class="btn-floating white cyan-text darken-2" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;"><i class="fa fa-google-plus cyan-text darken-2 "></i></a>
+          </p>
+        </section>
+        <!-- Disqus Comments -->
+        <section class="comments">
+          <div id="disqus_thread"></div>
+              <script type="text/javascript">
+                  var disqus_shortname = 'cristianounix';
+                  (function() {
+                      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                  })();
+              </script>
+              <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        </section>
+      </footer>
+    </article>
+  </section>
+</main>
+
+
+  <footer class="site-footer clearfix">
+
+  </footer>
+
+  
+<script src="/js/EasePack.min.js"></script>
+<script src="/js/TweenLite.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+</body>
+
+</html>

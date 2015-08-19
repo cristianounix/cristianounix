@@ -1,0 +1,1398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Your awesome title</title>
+    <description>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</description>
+    <link>http://cristianounix.github.io//</link>
+    <atom:link href="http://cristianounix.github.io//feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Fri, 14 Aug 2015 02:19:01 -0300</pubDate>
+    <lastBuildDate>Fri, 14 Aug 2015 02:19:01 -0300</lastBuildDate>
+    <generator>Jekyll v2.5.3</generator>
+    
+      <item>
+        <title>Jaime o garoto quer Make !</title>
+        <description>&lt;p style=&quot;text-align: center;&quot;&gt;
+  &lt;img src=&quot;/img/posts/make-makefile.png&quot; alt=&quot;Make - Makefile&quot; style=&quot;height:350px;&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Hoje em dia só se fala em automatização de tarefas e etc etc, e com isso surgiram ferramentas fantásticas como Grunt, Gulp e outras que devem existir por esse mundão a fora.&lt;/p&gt;
+
+&lt;p&gt;Show !&lt;/p&gt;
+
+&lt;p&gt;Mas se voltarmos um pouco no tempo vamos encontrar um cara chamado &lt;code&gt;MAKE&lt;/code&gt;, sim o velho e querido make, quem já instalou algum programa em alguma distribuição unix-like usando os fontes sabe bem do quem estou falando.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;./configure
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;make
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;make install&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Esse era o processo básico pra instalar o programa.&lt;/p&gt;
+
+&lt;p&gt;Mas junto com isso você tinha que resolver problemas de dependências, caminhos de arquivos, permissões, versão e em último caso ligava ou chamava quele amigo que manjava muito de linux e pedia aquela ajuda quase chorando porque foi vencido pelo maldito pacote….&lt;/p&gt;
+
+&lt;p&gt;Muitos podem ver com algo ruim e etc, mas observe melhor, isso faz com que você entenda para onde os arquivos estão indo, que para um programa funcionar ele depende de outros ou de outras bibliotecas, que você tem que ter uma permissão especial em determinados arquivos em em outros não e etc…&lt;/p&gt;
+
+&lt;p&gt;Bem, voltando ao assunto principal….&lt;/p&gt;
+
+&lt;p&gt;Tá mas que diabos é o Make e qual a relação dele com o Grunt ou Glup ?&lt;/p&gt;
+
+&lt;h4 id=&quot;make&quot;&gt;Make&lt;/h4&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Basicamente o MAKE é um atomatizador de tarefas em ambientes unix que foi e é muito usado para compilar programas.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Agora vocês entenderam a relação com o Gulp/Grunt ??&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;No processo básico de instalação que falei acima o que acontecia era o seguinte:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code&gt;$ ./configure&lt;/code&gt; era um script que depois de executado com sucesso criava o arquivo &lt;code&gt;Makefile&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code&gt;Makefile&lt;/code&gt; é o arquivo que dizia ao &lt;strong&gt;make&lt;/strong&gt; quais eram as tarefas a serem realizadas para compilar o programa, essas tarefas eram feitas numa ordem topologica respeitando as dependências dos arquivos&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code&gt;$ make install&lt;/code&gt; esse comando chamava uma tarefa que estava definida no makefile e que tinha como objetivo fazer a instalação do programa compilado anteriormente&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p style=&quot;text-align: center;&quot;&gt;
+  &lt;img src=&quot;/img/posts/graph.png&quot; alt=&quot;Make - Topological&quot; style=&quot;height:350px;&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Veja mais sobre ordenação topologica &lt;a href=&quot;https://en.wikipedia.org/wiki/Topological_sorting&quot;&gt;aqui&lt;/a&gt;, mas acho que futuramente faço um post sobre algum algoritimos de ordenação.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;O Make é nativo das plataformas linux, mas caso não tenha basta instalar o pacote &lt;code&gt;build-essential&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;apt-get install build-essential&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Antes de brincarmos com o make seria bom criar uma pasta em qualquer lugar de sua preferência, e dentro dela vamos criar nosso arquivo &lt;code&gt;Makefile&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;No arquivo (makefile) que criamos vamos colocar esse conteúdo (respeitando as tabulações):&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Finalizando...&amp;quot;&lt;/span&gt;
+
+all: task_all
+
+task_all: dep1 dep2 dep3
+	@echo &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;string&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+	@echo &lt;span class=&quot;s2&quot;&gt;&amp;quot;Pronto !!&amp;quot;&lt;/span&gt;
+
+dep1:
+	@echo &lt;span class=&quot;s2&quot;&gt;&amp;quot;Dependencia 1 &amp;quot;&lt;/span&gt;
+
+dep2:
+	@echo &lt;span class=&quot;s2&quot;&gt;&amp;quot;Dependencia 2 &amp;quot;&lt;/span&gt;
+
+dep3:
+	@echo &lt;span class=&quot;s2&quot;&gt;&amp;quot;Dependencia 3 &amp;quot;&lt;/span&gt;
+	@echo&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Agora via terminal e dentro dessa pasta execute o make.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;make
+----------------
+Dependencia 1
+Dependencia 2
+Dependencia 3
+
+Finalizando...
+Pronto !!&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Legal né ?&lt;/p&gt;
+
+&lt;p&gt;Se quiser mudar a ordem de execução só alterar a linha abaixo:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;task_all: dep1 dep2 dep3&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Para:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;task_all: dep3 dep2 dep1&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Execute o make e observe a saida novamente, (percebeu que a ordem mudou ?!).&lt;/p&gt;
+
+&lt;p&gt;Você também pode chamar uma tarefa especifica, assim:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;make dep2&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;vamos-fazer-algo-til&quot;&gt;Vamos fazer algo útil&lt;/h4&gt;
+
+&lt;p&gt;Agora que sabemos o básico do make, vamos pensar em como poderiamos substituir uma tarefa simples do grunt, nosso problema será esse:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Compilar nossos arquivos stylus&lt;/li&gt;
+  &lt;li&gt;Concatenar todos os arquivos&lt;/li&gt;
+  &lt;li&gt;Minificar&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# Compila, concatena e minifica todos os arquivos de estilo&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Obs: verifica se você tem disponivel os executaveis globalmente,&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#     senão terá que colocar o path deles&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;PATH_STYL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;styl/*.styl
+&lt;span class=&quot;nv&quot;&gt;PATH_CSS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;css
+&lt;span class=&quot;nv&quot;&gt;STYLUS_CMD&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;stylus
+&lt;span class=&quot;nv&quot;&gt;CONCAT_CMD&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;cat 
+&lt;span class=&quot;nv&quot;&gt;CONCAT_PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;styl/header.css styl/body.css styl/footer.css &amp;gt; css/style.css
+&lt;span class=&quot;nv&quot;&gt;UGLIFY_CMD&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;uglify
+&lt;span class=&quot;nv&quot;&gt;UGLIFY_PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;-s ./css/style.css -o ./css/style.min.css -c
+
+all: task_all
+
+task_all: compile concat minify clean
+	@echo &lt;span class=&quot;s2&quot;&gt;&amp;quot;Pronto !!&amp;quot;&lt;/span&gt;
+
+compile:
+	&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;STYLUS_CMD&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;PATH_STYL&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+	@echo &lt;span class=&quot;s2&quot;&gt;&amp;quot;Stylus compilado...&amp;quot;&lt;/span&gt;
+
+concat:
+	&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;CONCAT_CMD&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;CONCAT_PATH&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+	@echo &lt;span class=&quot;s2&quot;&gt;&amp;quot;Concatenando...&amp;quot;&lt;/span&gt;
+
+minify:
+	&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;UGLIFY_CMD&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;UGLIFY_PATH&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+	@echo &lt;span class=&quot;s2&quot;&gt;&amp;quot;Minificando...&amp;quot;&lt;/span&gt;
+ 
+clean:
+	rm styl/*.css
+	@echo &lt;span class=&quot;s2&quot;&gt;&amp;quot;Limpando a bagunça...&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p style=&quot;text-align: center;&quot;&gt;
+A saída desse cara que nós acabamos de fazer vai ser algo assim:	
+&lt;/p&gt;
+
+&lt;p style=&quot;text-align: center;&quot;&gt;
+  &lt;img src=&quot;/img/posts/gif-make-makefile-front.gif&quot; alt=&quot;Make Makefile FrontEnd&quot; /&gt;
+&lt;/p&gt;
+
+&lt;h5 id=&quot;vamos-tentar-deixar-um-pouco-mais-legal&quot;&gt;Vamos tentar deixar um pouco mais legal.&lt;/h5&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;# Compila, concatena e minifica todos os arquivos de estilo&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Obs: verifica se você tem disponivel os executaveis globalmente,&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#     senão terá que colocar o path deles&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;CSS_FINAL&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; css/style.min.css
+&lt;span class=&quot;nv&quot;&gt;STYLUS_FILES&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; styl/header.styl &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+                 styl/body.styl &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+                 styl/footer.styl
+
+&lt;span class=&quot;nv&quot;&gt;CSS_MIN&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;STYLUS_FILES:.styl&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;.min.css&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt; 
+
+all: &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;CSS_FINAL&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+ 
+&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;CSS_FINAL&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;: &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;CSS_MIN&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+	cat &lt;span class=&quot;nv&quot;&gt;$^&lt;/span&gt; &amp;gt;&lt;span class=&quot;nv&quot;&gt;$@&lt;/span&gt;
+	rm -f &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;CSS_MIN&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+
+%.min.css: %.styl
+	stylus --compress &amp;lt;&lt;span class=&quot;nv&quot;&gt;$&amp;lt;&lt;/span&gt; &amp;gt;&lt;span class=&quot;nv&quot;&gt;$@&lt;/span&gt;
+
+clean:
+	rm -f &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;CSS_FINAL&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;existem-alguns-variavis-do-make-que-devemos-saber&quot;&gt;Existem alguns variavéis do Make que devemos saber:&lt;/h5&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;$@&lt;/em&gt;&lt;/strong&gt; - isso mostra o nome target atual:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;all: blabla
+	@echo &lt;span class=&quot;s2&quot;&gt;&amp;quot;Ei&amp;quot;&lt;/span&gt;
+blabla:
+	@echo &lt;span class=&quot;nv&quot;&gt;$@&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# Saída será:&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# 	blabla&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#	Ei&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;$&amp;lt;&lt;/em&gt;&lt;/strong&gt; - isso mostra o nome da primeira dependência:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;all: blabla vixi
+	@echo &lt;span class=&quot;s2&quot;&gt;&amp;quot;A dependencia desse target é&amp;quot;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$&amp;lt;&lt;/span&gt;
+
+blabla:
+
+vixi:
+
+&lt;span class=&quot;c&quot;&gt;# Saída será:&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# 	A dependência desse target é blabla&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;[$^]&lt;/em&gt;&lt;/strong&gt; - isso mostra a lsita das dependências do target:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;all: blabla vixi
+	@echo &lt;span class=&quot;s2&quot;&gt;&amp;quot;As dependências desse target são&amp;quot;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$^&lt;/span&gt;
+
+blabla:
+
+vixi:
+
+&lt;span class=&quot;c&quot;&gt;# Saída será:&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# 	As dependências desse target são blabla vixi&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;[$?]&lt;/em&gt;&lt;/strong&gt; - Lista de todos arquivos de dependências mais recentes que a regra, a lista de arquivos é separada por espaço:&lt;/p&gt;
+
+&lt;p&gt;Crie 2 ou mais arquivos *.txt na pasta que irá ficar esse teste do makefile e coloquei qualquer texto dentro deles.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;HEAD_CMD&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;head
+&lt;span class=&quot;nv&quot;&gt;FILES&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;shell find . -name &lt;span class=&quot;s1&quot;&gt;&amp;#39;*.o&amp;#39;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+
+show: &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;FILES&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;HEAD_CMD&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$?&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# Saída será:&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#	head file1.txt file2.txt file3.txt [...]&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#	==&amp;gt; file1.txt &amp;lt;==&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#	[CABECALHO_1]&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#	==&amp;gt; file2.txt &amp;lt;==&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#	[CABECALHO_2]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;[$*]&lt;/em&gt;&lt;/strong&gt; - Nome do arquivo sem a extensão:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;CSS_FINAL&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; css/style.min.css
+&lt;span class=&quot;nv&quot;&gt;STYLUS_FILES&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; styl/header.styl  &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+                 styl/body.styl &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+                 styl/footer.styl
+
+&lt;span class=&quot;nv&quot;&gt;CSS_MIN&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;STYLUS_FILES:.styl&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;.min.css&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt; 
+
+all: &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;CSS_FINAL&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+ 
+&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;CSS_FINAL&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;: &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;CSS_MIN&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+
+%.min.css: %.styl
+	@echo &lt;span class=&quot;s2&quot;&gt;&amp;quot;Arquivo -&amp;gt;&amp;quot;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$*&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# Saída será:&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#	Arquivo -&amp;gt; styl/header&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#	Arquivo -&amp;gt; styl/body&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#	Arquivo -&amp;gt; styl/footer&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Muita coisa legal dá pra fazer com o Make.&lt;/p&gt;
+
+&lt;p&gt;Dá para por exemplo você se conectar via ssh ou ftp e fazer o upload ou download de arquivos, rodar um shell script  com diversas rotinas, você pode criar todo o setup da sua máquina colocando o make para instalar tudo que vc usa precisa: vim, mongodb, git, nodejs, sublime, brew, ou até mesmo configurar o deploy de sua aplicação, etc etc….&lt;/p&gt;
+
+&lt;p&gt;Isso só foi o ponto de partida, foi o básico do básico do básico e mais um pouco básico do que o make faz….&lt;/p&gt;
+
+&lt;h5 id=&quot;vocs-trocariam-seu-gruntfile-ou-semelhantes-por-um-makefile-&quot;&gt;Vocês trocariam seu Gruntfile (ou semelhantes) por um Makefile ?&lt;/h5&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Haa não tô dizendo que as outras ferramentas são ruins, ou que não se deve usar elas, quero chamar atenção para as ferramentas que já estão aqui a muito muito tempo e não conhecemos tão bem quanto pensamos.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Ps: Lembre-se que tudo isso só é possivél estando fora da win-matrix, então faça sua escolha e tome a pilula vermelha, pq só assim conseguirá ver fora da janela :)&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Referência suprema &amp;gt; &lt;a href=&quot;http://www.gnu.org/software/make/manual/make.html&quot; target=&quot;_blank&quot;&gt;Manual Make&lt;/a&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 25 Jul 2015 00:00:00 -0300</pubDate>
+        <link>http://cristianounix.github.io//2015/07/25/jaime-o-menino-quer-make/</link>
+        <guid isPermaLink="true">http://cristianounix.github.io//2015/07/25/jaime-o-menino-quer-make/</guid>
+        
+        <category>tasks</category>
+        
+        <category>grunt</category>
+        
+        <category>make</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Novidades do PHP7 (Alpha Version)</title>
+        <description>&lt;p style=&quot;text-align: center;&quot;&gt;
+  &lt;img src=&quot;/img/posts/php7-is-coming.png&quot; alt=&quot;PHP7&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Bem se você achava o PHP rápido eu tenho algo pra te dizer, ele está 2 vezes mais rápido !!&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;A versão 7 é até duas vezes mais rápido que o PHP 5.6&lt;/li&gt;
+  &lt;li&gt;Suporte de 64 bits consistente&lt;/li&gt;
+  &lt;li&gt;Muitos erros fatais são agora Exceções&lt;/li&gt;
+  &lt;li&gt;Remoção de SAPIs e extensões antigas e sem suporte&lt;/li&gt;
+  &lt;li&gt;O operador nulo coalescente (??)&lt;/li&gt;
+  &lt;li&gt;Operador de comparação combinada (&amp;lt;=&amp;gt;)&lt;/li&gt;
+  &lt;li&gt;Declarações do tipo de retorno&lt;/li&gt;
+  &lt;li&gt;Declarações tipo escalar&lt;/li&gt;
+  &lt;li&gt;Classes anônimos&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Vamos a alguns exemplos desses caras acima:&lt;/p&gt;
+
+&lt;h4 id=&quot;coalesce-operator&quot;&gt;Coalesce Operator&lt;/h4&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;false&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;??&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;B&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// B&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;null&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;??&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;B&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// B&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;var_dump&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;??&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;      &lt;span class=&quot;c1&quot;&gt;// (2 ?? 3) ? 4 : 5        =&amp;gt; int(4)&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;$x1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$x2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$x3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;var_dump&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$x1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;??&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$x2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;??&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$x3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// int(3)&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;var_dump&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;??&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// int(4)&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;bla&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Testando&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;var_dump&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;true&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;??&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;bla&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// bool(true)&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;operador-de-comparao-combinada&quot;&gt;Operador de comparação combinada&lt;/h4&gt;
+
+&lt;p&gt;Retornos:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;0 se são iguais&lt;/li&gt;
+  &lt;li&gt;1 se o da esquerda é o maior&lt;/li&gt;
+  &lt;li&gt;-1 se o da direita é o maior&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Ou seja: [ &amp;lt;, &amp;lt;=, ==, &amp;gt;=, &amp;gt; ]&lt;/p&gt;
+
+&lt;p&gt;Exemplos:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Integers&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 0&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// -1&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 1&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Floats&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.5&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 0&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.5&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;2.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// -1&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;2.5&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 1&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Strings&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;a&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;a&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 0&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;a&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;b&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// -1&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;b&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;a&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 1&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;a&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;aa&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// -1&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;zz&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;aa&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 1&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Arrays&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[];&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 0&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 0&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[];&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 1&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 1&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// -1&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Objects&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;a&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;b&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt; 
+&lt;span class=&quot;nv&quot;&gt;$b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;a&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;b&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt; 
+&lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 0&lt;/span&gt;
+ 
+&lt;span class=&quot;nv&quot;&gt;$a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;a&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;b&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt; 
+&lt;span class=&quot;nv&quot;&gt;$b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;a&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;c&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt; 
+&lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// -1&lt;/span&gt;
+ 
+&lt;span class=&quot;nv&quot;&gt;$a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;a&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;c&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt; 
+&lt;span class=&quot;nv&quot;&gt;$b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;a&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;b&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt; 
+&lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 1&lt;/span&gt;
+ 
+&lt;span class=&quot;c1&quot;&gt;// only values are compared&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;a&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;b&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt; 
+&lt;span class=&quot;nv&quot;&gt;$b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;b&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;b&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt; 
+&lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 0&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;declaraes-do-tipo-de-retorno&quot;&gt;Declarações do tipo de retorno&lt;/h4&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;get_config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;array&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;42&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;get_config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+ 
+&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;answer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;42&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;answer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;declaraes-tipo-escalar&quot;&gt;Declarações tipo escalar&lt;/h4&gt;
+
+&lt;p&gt;Para que tenha uma rigorosa checkagem de tipos é necessário ativar, basta fazer:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;declare&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;strict_types&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Logo no inicio do arquivo, depois disso todas as funções e metodos que estão nesse arquivo serão rigorosamente verificadas.&lt;/p&gt;
+
+&lt;p&gt;Exemplos:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;soma&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+&lt;span class=&quot;nx&quot;&gt;soma&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// float(3)&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;soma&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;2.2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// float(3.3)&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;soma&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;2&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Erro - a non well formed numeric value encountered &lt;/span&gt;
+ 
+&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;soma&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+&lt;span class=&quot;nx&quot;&gt;soma&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// float(30)&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;soma&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;2&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Erro - Argument 1 passed to soma() must be of the type integer, string given&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;anonymous-class&quot;&gt;Anonymous Class&lt;/h4&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;var_dump&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+		    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;__construct&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+		        &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+		    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+		&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+
+&lt;span class=&quot;nv&quot;&gt;$bla&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setMsg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;				  public function log() {&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;				    echo &amp;quot;Oi galerinha !&amp;quot;;&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;				  }&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;				});&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://wiki.php.net/rfc#php_70&quot;&gt;PHP7 Doc&lt;/a&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 29 Jun 2015 00:00:00 -0300</pubDate>
+        <link>http://cristianounix.github.io//php/2015/06/29/php7-alpha-novidades/</link>
+        <guid isPermaLink="true">http://cristianounix.github.io//php/2015/06/29/php7-alpha-novidades/</guid>
+        
+        <category>php</category>
+        
+        
+        <category>php</category>
+        
+      </item>
+    
+      <item>
+        <title>Enviando emails de localhost com SSMTP</title>
+        <description>&lt;p&gt;Chega o momento em que você precisa testar sua rotina de enviar emails ? e ae, o que você faz ?&lt;/p&gt;
+
+&lt;p&gt;Coloca no server de homologação e testa ?!&lt;/p&gt;
+
+&lt;p&gt;Coloca em produção e testa ?!&lt;/p&gt;
+
+&lt;p&gt;Não testa nada disso, #tacalepau e depois vemos !&lt;/p&gt;
+
+&lt;p style=&quot;text-align: center;&quot;&gt;
+  &lt;img src=&quot;/img/posts/ssmtp.png&quot; alt=&quot;SSMTP enviado emails localmente&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Bem, esses dias vi uma dica muito boa do
+&lt;a href=&quot;https://plus.google.com/111110922991471311551&quot;&gt;Elcio Ferreira&lt;/a&gt;
+onde ele demonstrava como enviar emails da sua máquina local utilizando o SSMTP.&lt;/p&gt;
+
+&lt;p&gt;Para instalar não tem nem conversa:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;apt-get install ssmtp&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;em seguinda configure o arquivo /etc/ssmtp/smtp.conf&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vim /etc/ssmtp/smtp.conf&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;root=eu@site.com.br # Seu e-mail
+mailhub= smtp.site.com.br # Seu servidor smtp, pode ser gmail, você pode por a porta aqui :xx
+RewriteDomain=sitenovo.com.br # dominio mostrado na mensagem
+hostname=gmail.com # seu dominio
+AuthUser=eu@gmail.com # usuário
+AuthPass=******* # senha
+UseSTARTTLS=YES&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Pronto !&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 01 Jun 2015 00:00:00 -0300</pubDate>
+        <link>http://cristianounix.github.io//shell/2015/06/01/enviando-emails-de-localhost-com-ssmtp/</link>
+        <guid isPermaLink="true">http://cristianounix.github.io//shell/2015/06/01/enviando-emails-de-localhost-com-ssmtp/</guid>
+        
+        <category>shell</category>
+        
+        
+        <category>shell</category>
+        
+      </item>
+    
+      <item>
+        <title>AWS o que significa cada sigla, e para que serve cada uma delas.</title>
+        <description>&lt;p&gt;Bem, antes de tudo tenho que dizer, não estou aqui para fazer propaganda da Amazon :)&lt;/p&gt;
+
+&lt;p style=&quot;text-align: center;&quot;&gt;
+&lt;img src=&quot;/img/posts/aws-az.jpg&quot; alt=&quot;Zonas da AWS&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;O motivo pelo qual estou fazendo esse post é que a AWS Summit de 2015 em São Paulo foi muitooo legal, bem melhor que nas versões anteriores, simplesmente pq quem estava palestrando eram os engenheiros que estavam por dentro do projeto, e não um cara que tinha uma visão comercial do produto, a organização com fones de ouvido foi uma coisa excelente pena que não dá para você pegar todas as paletras que você deseja pois elas ocorrem em paralelo.&lt;/p&gt;
+
+&lt;h5 id=&quot;mas-chega-de-conversa-e-vamos-falar-um-pouco-da-sopa-de-letrinhas-da-amazon&quot;&gt;Mas chega de conversa e vamos falar um pouco da sopa de letrinhas da Amazon.&lt;/h5&gt;
+
+&lt;h3 id=&quot;banco-de-dados&quot;&gt;Banco de Dados:&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;RDS - Relational Database Services é basicamente um serviço que oferece banco
+de dados relacional (como o nome mesmo disse). usando o RDS você não precisa ter uma
+instância de um banco rodando na sua máquina, pois ele vai está disponivel como um
+serviço na aws, os backups são feitos automaticamente e disponibilizados no S3,
+a recuperação desses backups podem ser feitas point-in-time, além de outros muito
+recursos como replicação em zonas diferentes.
+Os bancos que o RDS suporta hoje são
+&lt;strong&gt;MySQL&lt;/strong&gt;, &lt;strong&gt;Oracle&lt;/strong&gt;, &lt;strong&gt;PostgreSQL&lt;/strong&gt; e o &lt;strong&gt;SQLServer&lt;/strong&gt; ou seja os principais do mercado.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;DynamoDB - É um serviço de banco de dados &lt;strong&gt;NoSQL&lt;/strong&gt; ele é muito rápido altamente
+flexivel e tem uma latência abaixo de 10 milisegundos em qualquer escala.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;ElastiCache - Não tenho muito o que falar, quem já usou &lt;strong&gt;redis&lt;/strong&gt;,
+&lt;strong&gt;memcache&lt;/strong&gt; Serviço de cache basicamente, que tem suporte a replicação
+dos nós integração &lt;strong&gt;CloudWatch&lt;/strong&gt; entre muitos outros.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;infraestrutura&quot;&gt;Infraestrutura&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;EC2 - Elastic Compute (não sei pq o “2” :)) acho que é uma das partes mais importantes da
+AWS, o ec2 é um máquina virtual onde você pode aumentar ou diminuir seus recursos, além de você
+poder colocar sua instância numa melhor posição geografica afim de otimizar a latência e ainda
+pode criar redundâncias nas suas zonas como mostramos na imagem acima.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;VPC - (Virtual Private Cloud) é basicamente uma rede virtual que se parece muito com uma rede
+tradicional que montamos, na VPC você pode criar várias outras sub-nets.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Direct Connect - É um serviço de rede que basicamente permite você
+conectar seu datacenter ou suas máquinas na infraestrutura da Amazon.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Route53 - O Amazon Route 53 é um serviço web de DNS altamente disponível e escalável.
+Nesse serviço a AWS também oferece serviço de registro de domínios. Você também pode
+usar o Route53 para seus serviços fora da infra da Amazon.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;aplicaes&quot;&gt;Aplicações&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;SES - Simple Email Service em poucas palavras é um serviço de envio (apenas) de emails,
+oferece acesso fácil e em tempo real às suas estatísticas de envio e notificações internas de
+devoluções.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;SQS -  Simple Queue Service é um sistema de filas distribuida,
+em já usou Sidekiq, Celery, Nats, ou qualquer outro serviço de fila vai se dá bem com o SQS.
+Uma coisa interessante a se notar é que como o SQS é distribuido ele não farante o first in, first out
+das mensagens colocadas na fila, caso você queira manter a fila na ordem então você deve colocar a informação
+da ordem junto com a mensagem enviada, e no final quando o serviço te devolver a mensagem vc deve
+ordenar da forma adequada.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;SNS - Simple Notification Service - serviço de notificações via push,
+permite enviar mensagens individuais ou para um grande número de usuários.
+Push para dispositivos móveis (Apple, Google, Fire OS e Windows), caixas de e-mail ou
+até mesmo para outros serviços como SQS ou Aws Lambda ou para qualquer endpoint HTTP.
+O SNS pode tabém enviar SMS para usuários de dispositivos móveis nos EUA.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Lambda - Esse cara aqui é muito lega, bem, ele exeuta um código assim que algum evento
+acontece, por exemplo, se você quiser um serviço que ao fazer o upload de uma imagem no S3
+você pegue essa imagem processe ela em tons de cinza o AWS Lamda é o caminho, basicamente o
+evento para acionar o lambda foi o upload da imagem no S3, temos outros eventos como leitura
+do &lt;strong&gt;DynamoDB&lt;/strong&gt;.
+Se quisermos chamar as funções temos &lt;a href=&quot;http://docs.aws.amazon.com/lambda/latest/dg/API_InvokeAsync.html&quot;&gt;LambdaAPI&lt;/a&gt;
+&lt;a href=&quot;http://aws.amazon.com/pt/lambda/pricing/&quot;&gt;Lambda Preços&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;automoo&quot;&gt;Automoção&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Beanstalk - Esse cara é bem legal também, ele basicamente cria todo uma infraestrutura como
+provisionamento de recursos, balanceamento de carga, Auto Scaling e monitoramento.
+Depois você faz o deploy de sua aplicação e vai configurando do seu gosto.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Cloud Formation - Esse serviço te permite fazer provisionamento de uma infraestrutura através de um modelo
+em Json, exemplo &lt;a href=&quot;https://s3-us-west-2.amazonaws.com/cloudformation-templates-us-west-2/Rails_Single_Instance.template&quot;&gt;veja esse modelo&lt;/a&gt;,
+logo no início fica fácil de entender as configurações da infraestrutura. Ele parece fazer a mesma
+coisa que o &lt;em&gt;Beanstalk&lt;/em&gt; faz né ? sim parece, mas o beanstalk está mais voltado a entregar ao desenvolvedor
+uma infraestrutura rápida, segura e fácil de escalar, já o cloud formation foca em provisionar a infraestrutura, preocupando-se
+mais con os serviços necessários para a sua aplicação.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;CodeDeploy - Automatiza todo processo de deploy de forma confiável e rápida.
+Esse serviço elete tem uma série de recusos interessante, e ainda te dá uma certa confiança
+de você poder fazer o deploy e se algo der errado o rollback de todo processo vai ser bem indolor.
+É possivél fazer deploy em todas as suas instâncias definindo as estratégia de deploy, tipo:
+queiro que faça deploy em todas as máquinas ou uma por uma e etc,
+quando vc usa o ELB ele aplica a estratégia que você escolheu e impede que as requisições
+que estão sendo processadas se perca.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;administrao-e-segurana&quot;&gt;Administração e Segurança&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;IAM - (Identity and Access Management ) Basicamente é um recurso que permite gerenciar os serviços e permissões que cada usuário
+tem acesso no console da Amazon.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;CloudWatch - É um serviço de monitoramento para recursos da AWS,
+você pode coletar e rastrear métricas, coletar e monitorar arquivos de log,
+além de definir aletas dos serviços, ele pode monitorar Instancias EC2 tabelas
+do DynamoDB, instancias do RDS além de você poder personalizar/criar sua propria
+métrica.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;armazenamento-e-distribuio-de-contedo&quot;&gt;Armazenamento e Distribuição de conteúdo&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;S3 - Simple Storage Service é um serviço para armazenamento de objetos,
+seguro, durável e altamente escalonável, oferece transferencia de dados
+usando SSL e os dados são todos criptografados logo após o upload.
+OBS: $0.03 por GB e $0.050 1.000 solicitações&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Glacier - É um serviço muito parecido com o S3 só que ele é muito mais
+barato que o S3 e mais voltado para armazenamentos de backups, ativos empresariais,
+substituição de outras mídias como fitas magnéticas e etc.
+OBS: $0.01 por GB e $0.050 1.000 solicitações&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+</description>
+        <pubDate>Thu, 28 May 2015 00:00:00 -0300</pubDate>
+        <link>http://cristianounix.github.io//aws,%20servidores/2015/05/28/aws-servicos-que-eles-prestam/</link>
+        <guid isPermaLink="true">http://cristianounix.github.io//aws,%20servidores/2015/05/28/aws-servicos-que-eles-prestam/</guid>
+        
+        <category>vaws</category>
+        
+        <category>servidores</category>
+        
+        
+        <category>aws, servidores</category>
+        
+      </item>
+    
+      <item>
+        <title>Programação Paralela com c#, dividindo e conquistando mais território. ( se vou mexer com csharp é bom entender né) ?!</title>
+        <description>&lt;p&gt;Esses tempos no trabalho estávamos lidando com um problema de performance de alguns
+processos do nosso projeto, já devo ter comentado antes que o projeto está escrito em
+c# (sim é verdade, fazer o que né ?!?!)… foi então que o amigo @Aubry, mais fera que eu no mundo Microsoft me falou que o .NET tinha algumas coisas legais que facilitavam nossa vida na criação de processos em paralelo, e então ele disse:&lt;/p&gt;
+
+&lt;p&gt;“…podemos usar o Parallel pra fazer isso…”&lt;/p&gt;
+
+&lt;p&gt;
+
+&lt;img src=&quot;/img/posts/parallel-diagram.png&quot; alt=&quot;Parallel diagrama&quot; /&gt;
+
+&lt;/p&gt;
+
+&lt;p&gt;O Parallel é bem simples de se usar, veja um exemplo usando um simples &lt;strong&gt;for&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;n&quot;&gt;Parallel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;For&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//faz alguma coisa aqui dentro&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Então fui pesquisar por “Parallel c#” pra entender mais afundo e não ficar limitado
+ao jeito que ele nos mostrou.&lt;/p&gt;
+
+&lt;p&gt;====================================================&lt;/p&gt;
+
+&lt;p&gt;Programação assíncrona no .NET foi introduzida em 2001 no lançamento de sua primeira versão, a partir dessa eles evoluiram para o Asynchronous Programming Model (APM) esse modelo pelo fato de ter sido o primeiro, foi considerado pela comunidade muito difícil de ser implementado, foi então que teve uma nova evolução e lançaram o novo modelo, que dessa vez, foi o Event-Based Asynchronous Pattern (EAP). Segundo a comunidade esse modelo, simplificou bastante muita coisa, entretanto não estava bom ainda.&lt;/p&gt;
+
+&lt;p&gt;Foi então que no .NET 4 nosso tio Bill implementou a Task Parallel Library (TPL)
+que é a biblioteca usada atualmente (me corrijam se eu estiver errado por favor :) ).&lt;/p&gt;
+
+&lt;p&gt;Pra resumir isso tudo, se eu quiser um processamento paralelo usando for ou foreach ou, quem sabe, invocar tarefas em paralelo, onde vou encontrar ?&lt;/p&gt;
+
+&lt;p&gt;Sim na &lt;a href=&quot;https://msdn.microsoft.com/en-us//library/dd460717&quot;&gt;TPL&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;
+
+&lt;img src=&quot;/img/posts/tpl-diagram.png&quot; alt=&quot;TPL Diagrama&quot; /&gt;
+
+&lt;/p&gt;
+
+&lt;p&gt;Vamos fazer uns exemplos para entender:&lt;/p&gt;
+
+&lt;p&gt;Antes vamos supor que temos 2 métodos implementados e testados que funcionam perfeitamente, são eles:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;m&quot;&gt;1.&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GetPrimeNumbs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;m&quot;&gt;2.&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;boll&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CheckIsPrimeNumb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;No item 1. o método retorna uma lista de números primos, essa lista obedeçe o intervalo do min e máx.
+Já O item 2. é um método usado internamete pelo item 1. ele verifica se cada ítem do intervalo é um primo ou não.&lt;/p&gt;
+
+&lt;p&gt;Pronto sabendo disso let’s code:&lt;/p&gt;
+
+&lt;h3 id=&quot;processo-sncrono&quot;&gt;Processo Síncrono&lt;/h3&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;time&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Stopwatch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;primes&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GetPrimeNumbs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;10000000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;WriteLine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Qtd. Numeros primos: {0}\n Tempo: {1}&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;primes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ElapsedMilliseconds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;processo-asncrono-utilizando-o-parallel&quot;&gt;Processo Asíncrono Utilizando o &lt;strong&gt;Parallel&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;time&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Stopwatch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numThreads&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;primes&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numThreads&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Parallel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;For&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numThreads&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;primes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GetPrimeNumbs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1000000&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)*&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1000000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;Console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;WriteLine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Qtd. Números primos: {0}\n Tempo: {1}&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                      &lt;span class=&quot;n&quot;&gt;primes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Sum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+                      &lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ElapsedMilliseconds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;No código assíncrono perceba que estou usando o Parallel e estou quebrando a tarefa em 10 tarefas (threads) e no final eu faço a contagem e mostro como foi o resultado.&lt;/p&gt;
+
+&lt;p&gt;Vamos fazer o mesmo só que agora utilizando a classe &lt;strong&gt;Task&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;time&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Stopwatch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numThreads&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;primes&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&amp;gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numThreads&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numThreads&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;++){&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cnt&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;primes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Factory&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;StartNew&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+                  &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GetPrimeNumbs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cnt&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cnt&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1000000&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cnt&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1000000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;WaitAll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;primes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;WriteLine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Qtd. Números primos: {0}\n Tempo: {1}&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;primes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Sum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ElapsedMilliseconds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Bem, o interessante aqui é observar que quando fazemos um Task.WaitAll([vetor_de_tarefas])
+estamos pedindo para aguardar todas as tarefas lançadas no vetor para serem finalizadas e depois passar para próxima instrução.&lt;/p&gt;
+
+&lt;p&gt;Um exemplo diferente para &lt;strong&gt;Parallel Linq&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;max&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;min&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Enumerable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;minimum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AsParallel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Where&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CheckIsPrimeNumb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ToList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Você deve tá se perguntando, mas porque ele usou um exemplo diferente para o LINQ?
+Porque da forma como eu estava pensando nos outros exemplo o método &lt;strong&gt;GetPrimeNumbs&lt;/strong&gt; teria que ser escrito de formas diferente, pois internamente ele usa um outro método o &lt;strong&gt;CheckIsPrimeNumb&lt;/strong&gt; e esse é o mais usado pela CPU visto que ele verifica todos os números
+dentro do intervalo do min e máx para identificar e gerar assim a lista de números primos,
+logo esse método teria que ser escrito pensando nessa abordagem asíncrona.&lt;/p&gt;
+
+&lt;p&gt;====&lt;/p&gt;
+
+&lt;p&gt;Parallel ForEach e segurança nos dados:&lt;/p&gt;
+
+&lt;p&gt;Cuidado com as variáveis compartilhadas!
+exemplo:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;decimal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;prices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Parallel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ForEach&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;products&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;product&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;decimal&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;price&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ConvertPriceToReal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;product&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;prices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;price&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)};&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Isso não é threadsafe, pois como vão haver threads separadas adicionando preços à lista,
+caso ocorra de preços sendo adicionado na mesmo tempo, um deles não vai ser adicionado (ou muito provavelmente vai ser lançado um erro) e sua lista vai ficar incompleta.
+Para contornar isso usamos os &lt;strong&gt;Locks&lt;/strong&gt;, veja:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;decimal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;prices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;price_lock&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Parallel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ForEach&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;products&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;product&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;decimal&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;price&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ConvertPriceToReal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;product&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;lock&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;price_lock&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;prices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;price&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)};&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;O que vai acontecer aqui é que, quando duas ou mais threads tentar inserir o preço na lista, a thread vai idenficar o bloqueio e aguardar a liberação permitindo assim, a inserção na lista.&lt;/p&gt;
+
+&lt;p&gt;Seguindo o mesmo exemplo, vamos supor que queremos um contador dentro desse processo todo,
+então o que fazer? só inserir o contador e sempre ir incrementando-o no loop né? Errado!
+Se fizer isso, vai cair no primeiro problema que falamos, variáveis não atômicas ou variáveis compartilhadas. Hummmm! Então colocamos o contador num &lt;strong&gt;lock&lt;/strong&gt; certo? Mais ou menos… tem um outro mecanismo feito especialmente para esses casos é o &lt;strong&gt;Interlocked&lt;/strong&gt;. Vejamos:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cnt&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;decimal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;prices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;price_lock&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Parallel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ForEach&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;products&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;product&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;decimal&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;price&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ConvertPriceToReal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;product&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;lock&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;price_lock&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;prices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;price&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;Interlocked&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Increment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;ref&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cnt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)};&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Parallel.Invoke&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;n&quot;&gt;Parallel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Invoke&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+     &lt;span class=&quot;n&quot;&gt;Console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;WriteLine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Iniciando tarefa 1&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+     &lt;span class=&quot;n&quot;&gt;GetSizeWord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Qual o tamanho dessa frase?&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+     &lt;span class=&quot;n&quot;&gt;Console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;WriteLine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Iniciando tarefa 2&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+     &lt;span class=&quot;n&quot;&gt;GetTotalWords&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Quantas palavras tem nessa frase?&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Perceba que usei o &lt;strong&gt;Invoke&lt;/strong&gt; para chamar tarefas distintas que serão distribuidas nos meus núcleos de processamento.&lt;/p&gt;
+
+&lt;p&gt;====&lt;/p&gt;
+
+&lt;p&gt;Agora, como vou conseguir debugar isso?
+Bem uma forma que vi algumas pessoas nas comunidades .NET fazendo é:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;opt&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ParallelOptions&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MaxDegreeOfParallelism&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Parallel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ForEach&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;products&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;opt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;product&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;decimal&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;price&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ConvertPriceToReal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;product&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)};&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Se o &lt;strong&gt;MaxDegreeOfParallelism&lt;/strong&gt; estiver definido como -1, que é o padrão dele,
+etão ele vai usar quantos processos ele conseguir, entretanto, se for definido para 1,
+então ele vai se comportar de forma síncrona permitindo você fazer o debug.&lt;/p&gt;
+
+&lt;p&gt;Obs: isso não quer dizer que você não consiga fazer debug de outra forma, só que se usar outra forma
+vai ter um bom trabalho :)&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Obs: todos os códigos aqui foram inspirados e modificados baseando-se na documentação da &lt;a href=&quot;msdn.microsoft.com&quot;&gt;Microsoft&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Obs: Caso tenha explicado alguma coisa errada, ou escrito algo errado gostaria do seu comentário e sua correção.&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        <pubDate>Fri, 20 Feb 2015 00:00:00 -0200</pubDate>
+        <link>http://cristianounix.github.io//.net,%20c%23/2015/02/20/csharp-parallel/</link>
+        <guid isPermaLink="true">http://cristianounix.github.io//.net,%20c%23/2015/02/20/csharp-parallel/</guid>
+        
+        <category>.net</category>
+        
+        <category>c#</category>
+        
+        <category>visualstudio</category>
+        
+        
+        <category>.net, c#</category>
+        
+      </item>
+    
+      <item>
+        <title>Calculando o desvio padrão e o coeficiente de variação</title>
+        <description>&lt;h2 id=&quot;de-forma-bem-simples-e-rpida-vou-mostrar-o-clculo-do-desvio-padro&quot;&gt;De forma bem simples e rápida vou mostrar o cálculo do desvio padrão.&lt;/h2&gt;
+
+&lt;p&gt;O que seria o Desvio Padrão ?&lt;/p&gt;
+
+&lt;p&gt;
+
+&lt;img src=&quot;/img/posts/desvio-padrao.png&quot; alt=&quot;Desvio padão&quot; /&gt;
+
+&lt;/p&gt;
+
+&lt;p&gt;A Wikipédia define muito bem isso assim:&lt;/p&gt;
+
+&lt;p&gt;“Em Probabilidade e Estatística, o desvio padrão é a medida mais comum da dispersão estatística (representado pelo símbolo sigma, σ).
+  Ele mostra o quanto de variação ou “dispersão” existe em relação à média (ou valor esperado).
+  Um baixo desvio padrão indica que os dados tendem a estar próximos da média;
+  um desvio padrão alto indica que os dados estão espalhados por uma gama de valores.”&lt;/p&gt;
+
+&lt;p&gt;Ou seja:&lt;/p&gt;
+
+&lt;p&gt;Desvio padrão é uma medida que indica a dispersão dos dados dentro da amostra, em poucas palavras, o quanto os resultados diferem da média.&lt;/p&gt;
+
+&lt;h3 id=&quot;calculando&quot;&gt;Calculando:&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;
+Amostra = 2,3,4,7,12,3
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Primeiro vamos encontrar a variância:&lt;/p&gt;
+
+&lt;p&gt;Quantidade de itens : n = 6&lt;/p&gt;
+
+&lt;p&gt;Média da amotra.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+  2 + 3 + 4 + 7 + 12 + 3 =&amp;gt;
+  31/n =&amp;gt;
+  31/6 =&amp;gt;
+  5,16
+ &lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Agora vamos calcular o desvio dos itens da amostra com base na média.&lt;/p&gt;
+
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th width=&quot;2%&quot;&gt;Item&lt;/th&gt;
+        &lt;th width=&quot;2%&quot;&gt;Média&lt;/th&gt;
+        &lt;th width=&quot;5%&quot;&gt;Desvio (item - média)&lt;/th&gt;
+        &lt;th width=&quot;5%&quot;&gt;Quadrado do Desvio&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;5,16&lt;/td&gt;
+      &lt;td&gt;-3,16&lt;/td&gt;
+      &lt;td&gt;9.9856&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3&lt;/td&gt;
+      &lt;td&gt;5,16&lt;/td&gt;
+      &lt;td&gt;-2,16&lt;/td&gt;
+      &lt;td&gt;4.6656&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;4&lt;/td&gt;
+      &lt;td&gt;5,16&lt;/td&gt;
+      &lt;td&gt;-1,16&lt;/td&gt;
+      &lt;td&gt;1.3456&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;7&lt;/td&gt;
+      &lt;td&gt;5,16&lt;/td&gt;
+      &lt;td&gt;1,84&lt;/td&gt;
+      &lt;td&gt;3.3856&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;12&lt;/td&gt;
+      &lt;td&gt;5,16&lt;/td&gt;
+      &lt;td&gt;6,84&lt;/td&gt;
+      &lt;td&gt;46.7856&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3&lt;/td&gt;
+      &lt;td&gt;5,16&lt;/td&gt;
+      &lt;td&gt;-2,16&lt;/td&gt;
+      &lt;td&gt;4.6656&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;/td&gt;
+      &lt;td&gt;Total (soma)&lt;/td&gt;
+      &lt;td&gt;70.8336&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Com o desvio em mãos agora vamos calcular a variância.&lt;/p&gt;
+
+&lt;p&gt;A variância nada mais é que:
+a média da soma dos quadrados dos desvios, ou seja&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+  9.9856 + 4.6656 + 1.3456 + 3.3856 + 46.7856 + 4.6656 = 11.8056
+ &lt;/code&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Obs: Um dos motivos de elevarmos o desvio ao quadrado é
+para evitar a tendência do resultado para zero.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;agora-vamos-ao-desvio-padro&quot;&gt;Agora Vamos ao desvio padrão:&lt;/h3&gt;
+
+&lt;p&gt;Desvio padrão é: √[variância]&lt;/p&gt;
+
+&lt;p&gt;√ 11.8056 =&amp;gt; &lt;code&gt;3.44 (aproximadamente)&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;para-finalizar-vamos-ao-coeficiente-de-variao&quot;&gt;Para finalizar vamos ao Coeficiente de variação:&lt;/h3&gt;
+
+&lt;p&gt;Coeficiente de variação: ([desvio_padrao]/[media])*100&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;(3.44/5.16)*100&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;66.66%&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Pronto !
+:)&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 15 Feb 2015 00:00:00 -0200</pubDate>
+        <link>http://cristianounix.github.io//mat/2015/02/15/calculando-o-desvio-padrao/</link>
+        <guid isPermaLink="true">http://cristianounix.github.io//mat/2015/02/15/calculando-o-desvio-padrao/</guid>
+        
+        <category>mat, calc</category>
+        
+        
+        <category>mat</category>
+        
+      </item>
+    
+      <item>
+        <title>Sql Server - Uma dica rápida e simples</title>
+        <description>&lt;h2 id=&quot;dica-bem-rpida-e-simples-sobre-como-melhorar-a-performance-em-suas-procedures-no-sql-server&quot;&gt;Dica bem rápida e simples sobre como melhorar a performance em suas procedures no sql server.&lt;/h2&gt;
+
+&lt;p&gt;Quando executar sua procedure o sql server retorna o total de linhas afetadas por a mesma.&lt;/p&gt;
+
+&lt;p&gt;Tipo isso:
+&lt;code&gt;
+  (100 row(s) affected)
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Para remover esse tipo de informação que envolve um processamento de contagem e
+trafego de dados, basta colocar uma simples cláusula no inicio de suas procedures.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;
+  SET NOCOUNT ON
+&lt;/code&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 10 Feb 2015 00:00:00 -0200</pubDate>
+        <link>http://cristianounix.github.io//.net,%20c%23/2015/02/10/dica-sqlserver-procedure/</link>
+        <guid isPermaLink="true">http://cristianounix.github.io//.net,%20c%23/2015/02/10/dica-sqlserver-procedure/</guid>
+        
+        <category>.net</category>
+        
+        <category>c#</category>
+        
+        <category>visualstudio</category>
+        
+        
+        <category>.net, c#</category>
+        
+      </item>
+    
+      <item>
+        <title>Não vá dizer que Exception é o mesmo que Erro !</title>
+        <description>&lt;p&gt;O que é Exception e o que é Erro ?&lt;/p&gt;
+
+&lt;p&gt;Sabemos que uma Exception é bem diferente de um Error não só sintaticamente falando, mas semanticamente também, vejamos.&lt;/p&gt;
+
+&lt;p&gt;Segundo o Dicionário:&lt;/p&gt;
+
+&lt;h4 id=&quot;exceo&quot;&gt;Exceção&lt;/h4&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Ruptura de uma regra ou norma; desvio de um padrão estabelecido; rompimento do que se considera normal: não há regra sem exceção.
+Que não pertence ao todo: todos chegaram com exceção do filho.
+Estado ou circunstância fora do comum: vantajosas eram as exceções.
+Figurado. Pessoa cujo modo de pensar ou de proceder não é comum.
+Jurídico. Mecanismo de proteção, ou de defesa, utilizado pelo réu com o propósito de anular os poderes do autor da ação ou de atrasar o seu prosseguimento.
+Indivíduo que não respeita, ou rejeita, normas, padrões e regras.
+Ação ou efeito de excetuar, de excluir.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;erro&quot;&gt;Erro&lt;/h4&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;É uma consequência de uma ação inesperada, sem planejamento, conhecimento. Pode ser uma falha humano ou por equipamento.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;No nosso mundo um bloco &lt;strong&gt;try catch&lt;/strong&gt; é como um bloco “protegido” de falhas.&lt;/p&gt;
+
+&lt;p&gt;Sendo mais direto quero dizer que quando ocorrer um problema no &lt;strong&gt;TRY&lt;/strong&gt; a execução do código irá desviar para a instrução &lt;strong&gt;CATCH&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Sintax básica&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;//Meus comandos&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+ &lt;span class=&quot;c1&quot;&gt;//Meu tratamento de exceção&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Legal agora que sabemos a diferença, vamos a alguns exemplos, vou começar primeiro pelo &lt;strong&gt;Erro&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;dividir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$num1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$num2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$num1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$num2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;dividir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//Saída - Fatal Error (pois  falta o &amp;quot;;&amp;quot;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//Saída - Fatal Error (pois não definimos a função &amp;quot;div&amp;quot;)&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Pronto, bem simples demonstrar um erro.&lt;/p&gt;
+
+&lt;h4 id=&quot;agora-vamos-as-excees-exceptions&quot;&gt;Agora vamos as Exceções (Exceptions)&lt;/h4&gt;
+
+&lt;p&gt;Vamos pensar numa função de dividir dois números, essa função recebe 2 parametros que são os números a serem divididos.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;dividir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$num1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$num2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$num2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Exception&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Não é possvél realizar a divisão por zero&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$num1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$num2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+
+&lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;dividir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Saída 1.6666666666667&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;dividir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Saída - Não é possvél realizar a divisão por zero&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Exceção: &amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;  &lt;span class=&quot;nv&quot;&gt;$e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getMessage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Legal né :)&lt;/p&gt;
+
+&lt;p&gt;Agora vamos a um exemplo sem &lt;strong&gt;Try Catch&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;dividir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$num1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$num2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$num1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$num2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;dividir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Saída 1.6666666666667&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;dividir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Saída - Warning:  Division by zero&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Perceba que agora a mensagem foi diferente da que adotamos no primeiro exemplo, vamos entender o motivo.&lt;/p&gt;
+
+&lt;p&gt;Quando dividimos dois números inteiros uma função chamada intdiv é chamada.&lt;/p&gt;
+
+&lt;p&gt;Olhando mais a fundo &lt;a href=&quot;https://github.com/php/php-src/blob/94722e12cf4ba9a16f8a9f009d60b2e3f0f80e12/ext/standard/math.c&quot;&gt;AQUI&lt;/a&gt; logo nas últimas linhas vamos
+encontrar algo assim:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;&lt;span class=&quot;n&quot;&gt;PHP_FUNCTION&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;intdiv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;zend_long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numerator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;divisor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zend_parse_parameters&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ZEND_NUM_ARGS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;ll&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numerator&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;divisor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FAILURE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;divisor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;zend_throw_exception_ex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zend_ce_division_by_zero_error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;Division by zero&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;divisor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numerator&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ZEND_LONG_MIN&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;cm&quot;&gt;/* Prevent overflow error/crash ... really should not happen:&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;       We don&amp;#39;t return a float here as that violates function contract */&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;zend_throw_exception_ex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zend_ce_arithmetic_error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;Division of PHP_INT_MIN by -1 is not an integer&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;RETURN_LONG&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numerator&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;divisor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;A função &lt;strong&gt;&lt;em&gt;intdiv&lt;/em&gt;&lt;/strong&gt; que está em (ext/standard/math.c) é responsavél por dividir 2 numeros interiros e caso o divisor seja igual a zero ele lança sua &lt;strong&gt;&lt;em&gt;Exception&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;&lt;span class=&quot;n&quot;&gt;zend_throw_exception_ex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zend_ce_division_by_zero_error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;Division by zero&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;tray-catch-em-outras-linguagens&quot;&gt;Tray Catch em outras linguagens:&lt;/h4&gt;
+
+&lt;h4 id=&quot;javascript&quot;&gt;JavaScript&lt;/h4&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;dividir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;n1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;n2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;n2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Divisão por zero não é possivel&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;n1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;n2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;dividir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;ruby&quot;&gt;Ruby&lt;/h4&gt;
+
+&lt;p&gt;[Colocar Exemplo]&lt;/p&gt;
+
+&lt;h4 id=&quot;python&quot;&gt;Python&lt;/h4&gt;
+
+&lt;p&gt;[Colocar Exemplo]&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 10 Feb 2015 00:00:00 -0200</pubDate>
+        <link>http://cristianounix.github.io//dev/2015/02/10/Exception-Erro-Mensagem-Regra/</link>
+        <guid isPermaLink="true">http://cristianounix.github.io//dev/2015/02/10/Exception-Erro-Mensagem-Regra/</guid>
+        
+        <category>dev</category>
+        
+        
+        <category>dev</category>
+        
+      </item>
+    
+      <item>
+        <title>Instalando vagrant no Windows (eca ... )</title>
+        <description>&lt;p&gt;Sempre fui usuário Linux/Mac só que nesse inicio de 2015 com algumas mudanças no trabalho precisei começar
+e usar Windows, logo de cara senti a necessidade de uma maquina linux pq tinha problemas que conseguia resolver
+de forma bem limpa e facil usando um bom terminal (aquilo que vem no windows não deve ser chamado de terminal :) ).&lt;/p&gt;
+
+&lt;p&gt;Eu já sabia da existência do Vagrant então não perdi tempo,
+instalei &lt;a href=&quot;https://www.virtualbox.org/&quot;&gt;Virtual Box&lt;/a&gt; depois &lt;a href=&quot;https://www.vagrantup.com/&quot;&gt;Vagrant&lt;/a&gt;,
+antes de continuar falando sobre como foi o resto processo vou deixar claro para quem não sabe o que são esses caras acima.&lt;/p&gt;
+
+&lt;p&gt;Vagrant - Ferramenta construir e gerenciar ambientes virtualizados de desenvolvimentos, desenvolvida por Mitchell Hashimoto e John Bender.
+Ou seja, Vagrant simula uma stack completa de um sistema operacional.&lt;/p&gt;
+
+&lt;p&gt;Virtual Box - Software de virtualização desenvolvido pela empresa Innotek depois comprado pela Sun Microsystems que posteriormente foi comprada pela Oracle que,
+como o VMware Workstation, visa criar ambientes para instalação de um sistema operacional.&lt;/p&gt;
+
+&lt;p&gt;Mas como assim, as 2 ferramentas são faz a mesma coisa ?&lt;/p&gt;
+
+&lt;p&gt;Não, na verdade o Vagrant usa por debaixo dos panos a API do Virtual Box para criar suas máquinas.&lt;/p&gt;
+
+&lt;p&gt;Mas e qual o sentido de usar o Vagrant se posso usar o Virtual Box diretamente ?&lt;/p&gt;
+
+&lt;p&gt;Meus 2 principais motivos são:
+1.Pq com Vagrant não preciso carregar toda aquele interface ou tudo que o virtual box utiliza para dosponibilizar uma maquina.
+2.Pq com Vagrant consigo configurar minha maquina com um único arquivo (Vagrantfile)&lt;/p&gt;
+
+&lt;h3 id=&quot;agora-voltemos-ao-processo-de-instalao&quot;&gt;Agora voltemos ao processo de instalação.&lt;/h3&gt;
+
+&lt;p&gt;Depois do VirtualBox e Vagrant instalados, abra o CMD (Terminal Windows) e vamos aos passos:&lt;/p&gt;
+
+&lt;p&gt;Dentro da pasta do seu projeto execute.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vagrant box and add hashicorp/precise64&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;(Isso vai adicionar uma vagrant-box com sistema operacional Ubuntu 12.04 LTS 64-bit.)
+Para outras boxs dá uma olhada aqui &lt;a href=&quot;https://vagrantcloud.com/&quot;&gt;vagrantcloud&lt;/a&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vagrant up&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Irá iniciar a maquina.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vagrant ssh&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Com isso você vai acessar a máquina
+Obs: por padrão a porta SSH é 22, caso tenha problemas com suas chaves de acesso dá uma olhada no
+&lt;a href=&quot;http://the.earth.li/~sgtatham/putty/latest/x86/puttygen.exe&quot;&gt;puttygen&lt;/a&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;Vagrant &lt;span class=&quot;nb&quot;&gt;suspend&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Salvar o estado atual da máquina e para.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vagrant halt&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Irá desligar completamente a maquina.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vagrant destroy&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Vai remover tudo relacionado a essa maquina.&lt;/p&gt;
+
+&lt;p&gt;Tem um projeto bem legal chamado &lt;a href=&quot;https://github.com/fideloper/Vaprobash&quot;&gt;Vaprobash&lt;/a&gt;,
+depois dá uma olhada, se você gostou do vagrant vai curtir muito o projeto.&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 10 Jan 2015 00:00:00 -0200</pubDate>
+        <link>http://cristianounix.github.io//vagrant,%20linux/2015/01/10/vagrant-no-windows/</link>
+        <guid isPermaLink="true">http://cristianounix.github.io//vagrant,%20linux/2015/01/10/vagrant-no-windows/</guid>
+        
+        <category>vagrant</category>
+        
+        <category>linux</category>
+        
+        
+        <category>vagrant, linux</category>
+        
+      </item>
+    
+      <item>
+        <title>Como criar sua gem, empacotar, instalar e abusar dela.</title>
+        <description>&lt;h2 id=&quot;vai-logo-abrindo-o-terminal-para-criar-sua-gem-&quot;&gt;Vai logo abrindo o terminal para criar sua gem !&lt;/h2&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;bundle gem my_gem
+
+create my_gem/Gemfile
+create my_gem/Rakefile
+create my_gem /.gitignore
+create my_gem/hello_world.gemspec
+create my_gem/lib/my_gem.rb
+create my_gem/lib/my_gem/version.rb
+
+Initializating git repo in /Users/cristianounix/git/my_gem&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Todos esses arquivos tem sua importância, mas os que mais se destacam são:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;hello_world.gemspec&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Terá informações, como nome da gem, autor, email, descrição e etc é sempre bom
+colocar esses dados pois facilita que outros deves encontrem sua gem.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;version.rb&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Como o nome já diz, ele terá a versão de sua gem,
+para entender um pocuo do versionamento dá uma olhada aqui
+&lt;a href=&quot;http://semver.org/lang/pt-BR/&quot;&gt;Versionamento&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;my_gem.rb&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Nesse aqui basicamente terá nossa gem propriamente dito, ou seja toda nossa lógica.
+Eu gosto de criar uma outra pasta dentro da lib, e nela criar minhas classes
+separadas por módulos, acho que ajuda bastante na hora da manutenção.&lt;/p&gt;
+
+&lt;h3 id=&quot;empacotando-a-danada&quot;&gt;Empacotando a danada&lt;/h3&gt;
+
+&lt;p&gt;Esse é um dos processos mais complexos de criação da gem, vejam:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gem build hello_world.gemspec
+
+Successfully built RubyGem
+Name: my_gem
+Version: 0.0.1
+File: my_gem-0.0.1.gem&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;se-prepare-que-agora-vou-te-usar&quot;&gt;Se prepare que agora vou te usar.&lt;/h3&gt;
+
+&lt;p&gt;Vamos instalar ela primeiro.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;x&quot;&gt;$ gem install my_gem-0.0.1.gem&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Agora vamos fazer um teste.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;irb
+&amp;gt;require &lt;span class=&quot;s1&quot;&gt;&amp;#39;my_gem&amp;#39;&lt;/span&gt;
+&amp;gt;h &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Hello.new
+&amp;gt;h.say
+&lt;span class=&quot;s2&quot;&gt;&amp;quot;Olá sou uma gem danadinha :)&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Lindo né ?&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 02 Aug 2014 00:00:00 -0300</pubDate>
+        <link>http://cristianounix.github.io//ruby,%20gem,%20bundler/2014/08/02/criando-sua-propria-gem/</link>
+        <guid isPermaLink="true">http://cristianounix.github.io//ruby,%20gem,%20bundler/2014/08/02/criando-sua-propria-gem/</guid>
+        
+        <category>gem, ruby</category>
+        
+        
+        <category>ruby, gem, bundler</category>
+        
+      </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>
+    
+    MongoDB básico que precisa saber.
+    
+  </title>
+  <meta name="description" content="O Banco">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+
+  <script src="/js/highlight.js"></script>
+  <script src="/js/jquery.min.js"></script>
+
+  <link rel="canonical" href="http://cristianounix.github.io//database,%20mongodb/2012/10/20/mongodb-basico/">
+
+</head>
+
+<body class="home-template grey lighten-5">
+
+    
+<nav id="toolbar" class="navbar navbar-inverse navbar-fixed-top" style="position:fixed; z-index: 10;">
+   <div class="nav-wrapper blue">
+     <ul id="nav-mobile" class="left hide-on-med-and-down">
+       <li><a href="http://twitter.com/cristianounix" target="_blank"><i class="fa fa-twitter-square"></i></a></li>
+       <li><a href="http://github.com/cristianounix" target="_blank"><i class="fa fa-github-square"></i></a></li>
+       <li><a href="http://instagram.com/cristianounix" target="_blank"><i class="fa fa-instagram"></i></a></li>
+       <li><a href="http://br.linkedin.com/in/cristianounix/" target="_blank"><i class="fa fa-linkedin-square"></i></a></li>
+       <li><a href="/about"><i class="fa fa-user"></i></a></li>
+     </ul>
+
+     <a href="/" class="brand-logo center">
+       <img src="/img/cristianounix-mustache.png" alt="" />
+     </a>
+
+     <a href="#" data-activates="mobile-menu-top" class="button-collapse"><i class="material-icons">menu</i></a>
+
+     <ul class="left side-nav" id="mobile-menu-top">
+       <li><a href="http://twitter.com/cristianounix" target="_blank">Twitter</a></li>
+       <li><a href="http://github.com/cristianounix" target="_blank">Github</a></li>
+       <li><a href="http://instagram.com/cristianounix" target="_blank">Instagram</a></li>
+       <li><a href="http://br.linkedin.com/in/cristianounix/" target="_blank">Linkedin</a></li>
+       <li><a href="/about">Sobre mim</a></li>
+     </ul>
+   </div>
+ </nav>
+
+
+    <main class="content" role="main">
+
+  <section id="blog-intro" class="cyan section z-depth-1 article-intro" style="background-image:url('https://d262ilb51hltx0.cloudfront.net/max/2000/1*278tqw9zNPe2WCAz29Wzdw.jpeg');"></section>
+
+  <section id="main-inner-container" class="container">
+    <article class="post tag-webdev tag-gruntjs tag-javascript tag-nodejs card-panel z-depth-1 article-container">
+      <header>
+        <time class="post-date grey-text" datetime="2012-10-20 00:00:00 -0300"><i class="fa fa-clock-o"></i> 20 October 2012</time>
+        <h1>MongoDB básico que precisa saber.</h1>
+          <div class="tag-cloud">
+            <span>
+                <i class="mdi-maps-local-offer"></i>
+                
+            </span>
+          </div>
+      </header>
+      <section class="post-content">
+        <h3 id="o-banco">O Banco</h3>
+
+<p>MongoDb - Banco de dados NoSql orientado a documentos escrito em C++,
+seus dados são salvos em formas de documentos JSON (BSON - JSON “binarizado”)</p>
+
+<blockquote>
+  <p>Essa descrição é algo que você encontra fácil pela internet.</p>
+</blockquote>
+
+<p>Claro que você já sabe, mas não custa nada mostrar o exemplo de um documento JSON:</p>
+
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&quot;nome&quot;</span><span class="p">:</span><span class="s2">&quot;Testando um JSON&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="s2">&quot;json@gmail.com&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;tel&quot;</span><span class="p">:</span><span class="s2">&quot;5454-5454&quot;</span>
+<span class="p">}</span></code></pre></div>
+
+<h2 id="beleza-vamos-ao-que-interessa">Beleza vamos ao que interessa:</h2>
+
+<p>Listando todas as bases</p>
+
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="err">$</span> <span class="err">show</span> <span class="err">dbs</span></code></pre></div>
+
+<p>Listando todas as coleções</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>show collections</code></pre></div>
+
+<p>Criando Coleção</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>db.createCollection<span class="o">(</span><span class="s2">&quot;pessoas&quot;</span><span class="o">)</span></code></pre></div>
+
+<p>Inserindo na Coleção</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>db.agenda.insert<span class="o">({</span>nome:<span class="s2">&quot;Testando um JSON&quot;</span> , email: <span class="s2">&quot;json@gmail.com&quot;</span> , tel: <span class="s2">&quot;5454-5454&quot;</span> <span class="o">})</span><span class="p">;</span></code></pre></div>
+
+<p>Buscando registro na Coleção</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>db.agenda.find<span class="o">({</span>id:123<span class="o">})</span></code></pre></div>
+
+<p>Removendo registro da Coleção</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>db.agenda.remove<span class="o">({</span>id:1<span class="o">})</span><span class="p">;</span></code></pre></div>
+
+<p>Atualizando registro na Coleção.</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>var <span class="nv">pess</span> <span class="o">=</span> db.pessoas.find<span class="o">({</span>id:1<span class="o">})</span><span class="p">;</span>
+  <span class="nv">$ </span>pess.email <span class="o">=</span> <span class="s2">&quot;pessoa@gmail.com&quot;</span><span class="p">;</span>
+  <span class="nv">$ </span>db.pessoas.save<span class="o">(</span>pess<span class="o">)</span><span class="p">;</span></code></pre></div>
+
+<p>ou</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>db.pessoas.update<span class="o">({</span>email: <span class="s1">&#39;json@gmail.com&#39;</span><span class="o">}</span>, <span class="o">{</span><span class="nv">$set</span>: <span class="o">{</span>email: <span class="s2">&quot;pessoa@gmail.com&quot;</span><span class="o">}})</span></code></pre></div>
+
+<p>O <strong>$set</strong> faz com que todos os dados seja mantido, alterado apenas o email.</p>
+
+<p>Buscando eegistros e limitando as ocorrencias.</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>db.pessoas.find<span class="o">()</span>.limit<span class="o">(</span>2<span class="o">)</span></code></pre></div>
+
+<p>Buscando Registros e ordenando as ocorrencias.</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>db.pessoas.find<span class="o">()</span>.sort<span class="o">({</span><span class="s2">&quot;email&quot;</span>:-1<span class="o">})</span> // onde <span class="m">1</span> ASC e -1 DESC</code></pre></div>
+
+<p>Deletando uma base.</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>db.dropDatabase<span class="o">()</span> <span class="o">(</span>irá deletar a base que vc está conectado<span class="o">)</span></code></pre></div>
+
+<p>Deletando uma coleção.</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>db.pessoas.drop<span class="o">()</span></code></pre></div>
+
+<h2 id="esses-so-os-bsicos-depois-vou-colocando-mais-aqui">Esses são os básicos, depois vou colocando mais aqui</h2>
+
+        <p>
+          
+        </p>
+      </section>
+
+
+      <footer>
+        <section id="social-share">
+          <p>
+            Compartilhar: <br>
+            <a href="http://twitter.com/share?text=&amp;url=" target="_new" class="btn-floating white cyan-text darken-2" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;"><i class="fa fa-twitter cyan-text darken-2"></i></a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" class="btn-floating white cyan-text"><i class="fa fa-facebook cyan-text darken-2"></i></a>
+            <a href="https://plus.google.com/share?url=" class="btn-floating white cyan-text darken-2" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;"><i class="fa fa-google-plus cyan-text darken-2 "></i></a>
+          </p>
+        </section>
+        <!-- Disqus Comments -->
+        <section class="comments">
+          <div id="disqus_thread"></div>
+              <script type="text/javascript">
+                  var disqus_shortname = 'cristianounix';
+                  (function() {
+                      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                  })();
+              </script>
+              <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        </section>
+      </footer>
+    </article>
+  </section>
+</main>
+
+
+  <footer class="site-footer clearfix">
+
+  </footer>
+
+  
+<script src="/js/EasePack.min.js"></script>
+<script src="/js/TweenLite.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+</body>
+
+</html>

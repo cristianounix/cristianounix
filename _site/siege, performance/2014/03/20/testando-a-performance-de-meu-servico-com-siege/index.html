@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>
+    
+    Testando a performance de meu serviço com Siege
+    
+  </title>
+  <meta name="description" content="  ">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+
+  <script src="/js/highlight.js"></script>
+  <script src="/js/jquery.min.js"></script>
+
+  <link rel="canonical" href="http://cristianounix.github.io//siege,%20performance/2014/03/20/testando-a-performance-de-meu-servico-com-siege/">
+
+</head>
+
+<body class="home-template grey lighten-5">
+
+    
+<nav id="toolbar" class="navbar navbar-inverse navbar-fixed-top" style="position:fixed; z-index: 10;">
+   <div class="nav-wrapper blue">
+     <ul id="nav-mobile" class="left hide-on-med-and-down">
+       <li><a href="http://twitter.com/cristianounix" target="_blank"><i class="fa fa-twitter-square"></i></a></li>
+       <li><a href="http://github.com/cristianounix" target="_blank"><i class="fa fa-github-square"></i></a></li>
+       <li><a href="http://instagram.com/cristianounix" target="_blank"><i class="fa fa-instagram"></i></a></li>
+       <li><a href="http://br.linkedin.com/in/cristianounix/" target="_blank"><i class="fa fa-linkedin-square"></i></a></li>
+       <li><a href="/about"><i class="fa fa-user"></i></a></li>
+     </ul>
+
+     <a href="/" class="brand-logo center">
+       <img src="/img/cristianounix-mustache.png" alt="" />
+     </a>
+
+     <a href="#" data-activates="mobile-menu-top" class="button-collapse"><i class="material-icons">menu</i></a>
+
+     <ul class="left side-nav" id="mobile-menu-top">
+       <li><a href="http://twitter.com/cristianounix" target="_blank">Twitter</a></li>
+       <li><a href="http://github.com/cristianounix" target="_blank">Github</a></li>
+       <li><a href="http://instagram.com/cristianounix" target="_blank">Instagram</a></li>
+       <li><a href="http://br.linkedin.com/in/cristianounix/" target="_blank">Linkedin</a></li>
+       <li><a href="/about">Sobre mim</a></li>
+     </ul>
+   </div>
+ </nav>
+
+
+    <main class="content" role="main">
+
+  <section id="blog-intro" class="cyan section z-depth-1 article-intro" style="background-image:url('https://d262ilb51hltx0.cloudfront.net/max/2000/1*278tqw9zNPe2WCAz29Wzdw.jpeg');"></section>
+
+  <section id="main-inner-container" class="container">
+    <article class="post tag-webdev tag-gruntjs tag-javascript tag-nodejs card-panel z-depth-1 article-container">
+      <header>
+        <time class="post-date grey-text" datetime="2014-03-20 00:00:00 -0300"><i class="fa fa-clock-o"></i> 20 March 2014</time>
+        <h1>Testando a performance de meu serviço com Siege</h1>
+          <div class="tag-cloud">
+            <span>
+                <i class="mdi-maps-local-offer"></i>
+                
+            </span>
+          </div>
+      </header>
+      <section class="post-content">
+        <p style="text-align: center;">
+  <img src="/img/posts/atop-status.jpg" alt="ATOP Status" />
+</p>
+
+<p>O <a href="https://github.com/JoeDog/siege">Siege</a> é uma ferramenta stressar nosso serviço e vê até onde ele suporta esse stress.</p>
+
+<h4 id="macos">MacOS</h4>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>brew install siege</code></pre></div>
+
+<h4 id="linux">Linux</h4>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>apt-get install siege</code></pre></div>
+
+<h4 id="windows">Windows</h4>
+
+<p><a href="http://download.joedog.org/siege/siege-2.55.tar.gz">Download</a></p>
+
+<blockquote>
+  <p>Basta descompactar navegar até a pasta com o console do windows e executar o siege.exe</p>
+</blockquote>
+
+<h4 id="realizando-um-teste-bsico">Realizando um teste básico</h4>
+
+<p>Com esse comando abaixo o siege vai fazer um benchmark durante 60 segundos.</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>siege -b -t60S  http://site.com.br</code></pre></div>
+
+<p>Esse exemplo nós simulamos um acesso de 10 usuários simultâneos onde colocamos um intervalo de 3 segundos para cada usuário fazer interação.</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>siege -c10 -d3 -t2M http://site.com.br</code></pre></div>
+
+<p>Caso seja necessário abrir várias URLS para fazer o teste podemos usar o parametro <code>-f</code> e indicar o camiho do arquivo onde estão as URLS, assim:</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>siege -c5 -d6 -i -f urls-testar.txt</code></pre></div>
+
+<p>Obs: a opção <code>-i</code> faz com que o siege selecione aleatoriamente as URLs no arquivo.</p>
+
+<h4 id="help-do-siege">Help do Siege</h4>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>siege
+
+Usage: siege <span class="o">[</span>options<span class="o">]</span>
+       siege <span class="o">[</span>options<span class="o">]</span> URL
+       siege -g URL
+Options:
+  -V, --version             VERSION, prints the version number.
+  -h, --help                HELP, prints this section.
+  -C, --config              CONFIGURATION, show the current config.
+  -v, --verbose             VERBOSE, prints notification to screen.
+  -q, --quiet               QUIET turns verbose off and suppresses output.
+  -g, --get                 GET, pull down HTTP headers and display the
+                            transaction. Great <span class="k">for</span> application debugging.
+  -c, --concurrent<span class="o">=</span>NUM      CONCURRENT users, default is 10
+  -i, --internet            INTERNET user simulation, hits URLs randomly.
+  -b, --benchmark           BENCHMARK: no delays between requests.
+  -t, --time<span class="o">=</span>NUMm           TIMED testing where <span class="s2">&quot;m&quot;</span> is modifier S, M, or H
+                            ex: --time<span class="o">=</span>1H, one hour test.
+  -r, --reps<span class="o">=</span>NUM            REPS, number of <span class="nb">times </span>to run the test.
+  -f, --file<span class="o">=</span>FILE           FILE, <span class="k">select</span> a specific URLS FILE.
+  -R, --rc<span class="o">=</span>FILE             RC, specify an siegerc file
+  -l, --log<span class="o">[=</span>FILE<span class="o">]</span>          LOG to FILE. If FILE is not specified, the
+                            default is used: PREFIX/var/siege.log
+  -m, --mark<span class="o">=</span><span class="s2">&quot;text&quot;</span>         MARK, mark the log file with a string.
+  -d, --delay<span class="o">=</span>NUM           Time DELAY, random delay before each requst
+                            between <span class="m">1</span> and NUM. <span class="o">(</span>NOT COUNTED IN STATS<span class="o">)</span>
+  -H, --header<span class="o">=</span><span class="s2">&quot;text&quot;</span>       Add a header to request <span class="o">(</span>can be many<span class="o">)</span>
+  -A, --user-agent<span class="o">=</span><span class="s2">&quot;text&quot;</span>   Sets User-Agent in request
+  -T, --content-type<span class="o">=</span><span class="s2">&quot;text&quot;</span> Sets Content-Type in request</code></pre></div>
+
+
+        <p>
+          
+        </p>
+      </section>
+
+
+      <footer>
+        <section id="social-share">
+          <p>
+            Compartilhar: <br>
+            <a href="http://twitter.com/share?text=&amp;url=" target="_new" class="btn-floating white cyan-text darken-2" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;"><i class="fa fa-twitter cyan-text darken-2"></i></a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" class="btn-floating white cyan-text"><i class="fa fa-facebook cyan-text darken-2"></i></a>
+            <a href="https://plus.google.com/share?url=" class="btn-floating white cyan-text darken-2" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;"><i class="fa fa-google-plus cyan-text darken-2 "></i></a>
+          </p>
+        </section>
+        <!-- Disqus Comments -->
+        <section class="comments">
+          <div id="disqus_thread"></div>
+              <script type="text/javascript">
+                  var disqus_shortname = 'cristianounix';
+                  (function() {
+                      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                  })();
+              </script>
+              <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        </section>
+      </footer>
+    </article>
+  </section>
+</main>
+
+
+  <footer class="site-footer clearfix">
+
+  </footer>
+
+  
+<script src="/js/EasePack.min.js"></script>
+<script src="/js/TweenLite.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+</body>
+
+</html>

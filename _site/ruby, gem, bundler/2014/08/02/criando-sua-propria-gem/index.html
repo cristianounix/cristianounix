@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>
+    
+    Como criar sua gem, empacotar, instalar e abusar dela.
+    
+  </title>
+  <meta name="description" content="Vai logo abrindo o terminal para criar sua gem !">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+
+  <script src="/js/highlight.js"></script>
+  <script src="/js/jquery.min.js"></script>
+
+  <link rel="canonical" href="http://cristianounix.github.io//ruby,%20gem,%20bundler/2014/08/02/criando-sua-propria-gem/">
+
+</head>
+
+<body class="home-template grey lighten-5">
+
+    
+<nav id="toolbar" class="navbar navbar-inverse navbar-fixed-top" style="position:fixed; z-index: 10;">
+   <div class="nav-wrapper blue">
+     <ul id="nav-mobile" class="left hide-on-med-and-down">
+       <li><a href="http://twitter.com/cristianounix" target="_blank"><i class="fa fa-twitter-square"></i></a></li>
+       <li><a href="http://github.com/cristianounix" target="_blank"><i class="fa fa-github-square"></i></a></li>
+       <li><a href="http://instagram.com/cristianounix" target="_blank"><i class="fa fa-instagram"></i></a></li>
+       <li><a href="http://br.linkedin.com/in/cristianounix/" target="_blank"><i class="fa fa-linkedin-square"></i></a></li>
+       <li><a href="/about"><i class="fa fa-user"></i></a></li>
+     </ul>
+
+     <a href="/" class="brand-logo center">
+       <img src="/img/cristianounix-mustache.png" alt="" />
+     </a>
+
+     <a href="#" data-activates="mobile-menu-top" class="button-collapse"><i class="material-icons">menu</i></a>
+
+     <ul class="left side-nav" id="mobile-menu-top">
+       <li><a href="http://twitter.com/cristianounix" target="_blank">Twitter</a></li>
+       <li><a href="http://github.com/cristianounix" target="_blank">Github</a></li>
+       <li><a href="http://instagram.com/cristianounix" target="_blank">Instagram</a></li>
+       <li><a href="http://br.linkedin.com/in/cristianounix/" target="_blank">Linkedin</a></li>
+       <li><a href="/about">Sobre mim</a></li>
+     </ul>
+   </div>
+ </nav>
+
+
+    <main class="content" role="main">
+
+  <section id="blog-intro" class="cyan section z-depth-1 article-intro" style="background-image:url('https://d262ilb51hltx0.cloudfront.net/max/2000/1*278tqw9zNPe2WCAz29Wzdw.jpeg');"></section>
+
+  <section id="main-inner-container" class="container">
+    <article class="post tag-webdev tag-gruntjs tag-javascript tag-nodejs card-panel z-depth-1 article-container">
+      <header>
+        <time class="post-date grey-text" datetime="2014-08-02 00:00:00 -0300"><i class="fa fa-clock-o"></i> 02 August 2014</time>
+        <h1>Como criar sua gem, empacotar, instalar e abusar dela.</h1>
+          <div class="tag-cloud">
+            <span>
+                <i class="mdi-maps-local-offer"></i>
+                
+            </span>
+          </div>
+      </header>
+      <section class="post-content">
+        <h2 id="vai-logo-abrindo-o-terminal-para-criar-sua-gem-">Vai logo abrindo o terminal para criar sua gem !</h2>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>bundle gem my_gem
+
+create my_gem/Gemfile
+create my_gem/Rakefile
+create my_gem /.gitignore
+create my_gem/hello_world.gemspec
+create my_gem/lib/my_gem.rb
+create my_gem/lib/my_gem/version.rb
+
+Initializating git repo in /Users/cristianounix/git/my_gem</code></pre></div>
+
+<p>Todos esses arquivos tem sua importância, mas os que mais se destacam são:</p>
+
+<p><strong>hello_world.gemspec</strong></p>
+
+<p>Terá informações, como nome da gem, autor, email, descrição e etc é sempre bom
+colocar esses dados pois facilita que outros deves encontrem sua gem.</p>
+
+<p><strong>version.rb</strong></p>
+
+<p>Como o nome já diz, ele terá a versão de sua gem,
+para entender um pocuo do versionamento dá uma olhada aqui
+<a href="http://semver.org/lang/pt-BR/">Versionamento</a>.</p>
+
+<p><strong>my_gem.rb</strong></p>
+
+<p>Nesse aqui basicamente terá nossa gem propriamente dito, ou seja toda nossa lógica.
+Eu gosto de criar uma outra pasta dentro da lib, e nela criar minhas classes
+separadas por módulos, acho que ajuda bastante na hora da manutenção.</p>
+
+<h3 id="empacotando-a-danada">Empacotando a danada</h3>
+
+<p>Esse é um dos processos mais complexos de criação da gem, vejam:</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>gem build hello_world.gemspec
+
+Successfully built RubyGem
+Name: my_gem
+Version: 0.0.1
+File: my_gem-0.0.1.gem</code></pre></div>
+
+<h3 id="se-prepare-que-agora-vou-te-usar">Se prepare que agora vou te usar.</h3>
+
+<p>Vamos instalar ela primeiro.</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">$ gem install my_gem-0.0.1.gem</span></code></pre></div>
+
+<p>Agora vamos fazer um teste.</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>irb
+&gt;require <span class="s1">&#39;my_gem&#39;</span>
+&gt;h <span class="o">=</span> Hello.new
+&gt;h.say
+<span class="s2">&quot;Olá sou uma gem danadinha :)&quot;</span></code></pre></div>
+
+<p>Lindo né ?</p>
+
+
+        <p>
+          
+        </p>
+      </section>
+
+
+      <footer>
+        <section id="social-share">
+          <p>
+            Compartilhar: <br>
+            <a href="http://twitter.com/share?text=&amp;url=" target="_new" class="btn-floating white cyan-text darken-2" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;"><i class="fa fa-twitter cyan-text darken-2"></i></a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" class="btn-floating white cyan-text"><i class="fa fa-facebook cyan-text darken-2"></i></a>
+            <a href="https://plus.google.com/share?url=" class="btn-floating white cyan-text darken-2" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;"><i class="fa fa-google-plus cyan-text darken-2 "></i></a>
+          </p>
+        </section>
+        <!-- Disqus Comments -->
+        <section class="comments">
+          <div id="disqus_thread"></div>
+              <script type="text/javascript">
+                  var disqus_shortname = 'cristianounix';
+                  (function() {
+                      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                  })();
+              </script>
+              <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        </section>
+      </footer>
+    </article>
+  </section>
+</main>
+
+
+  <footer class="site-footer clearfix">
+
+  </footer>
+
+  
+<script src="/js/EasePack.min.js"></script>
+<script src="/js/TweenLite.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+</body>
+
+</html>

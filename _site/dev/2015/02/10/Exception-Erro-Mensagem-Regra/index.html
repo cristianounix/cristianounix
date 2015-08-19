@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>
+    
+    Não vá dizer que Exception é o mesmo que Erro !
+    
+  </title>
+  <meta name="description" content="O que é Exception e o que é Erro ?">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+
+  <script src="/js/highlight.js"></script>
+  <script src="/js/jquery.min.js"></script>
+
+  <link rel="canonical" href="http://cristianounix.github.io//dev/2015/02/10/Exception-Erro-Mensagem-Regra/">
+
+</head>
+
+<body class="home-template grey lighten-5">
+
+    
+<nav id="toolbar" class="navbar navbar-inverse navbar-fixed-top" style="position:fixed; z-index: 10;">
+   <div class="nav-wrapper blue">
+     <ul id="nav-mobile" class="left hide-on-med-and-down">
+       <li><a href="http://twitter.com/cristianounix" target="_blank"><i class="fa fa-twitter-square"></i></a></li>
+       <li><a href="http://github.com/cristianounix" target="_blank"><i class="fa fa-github-square"></i></a></li>
+       <li><a href="http://instagram.com/cristianounix" target="_blank"><i class="fa fa-instagram"></i></a></li>
+       <li><a href="http://br.linkedin.com/in/cristianounix/" target="_blank"><i class="fa fa-linkedin-square"></i></a></li>
+       <li><a href="/about"><i class="fa fa-user"></i></a></li>
+     </ul>
+
+     <a href="/" class="brand-logo center">
+       <img src="/img/cristianounix-mustache.png" alt="" />
+     </a>
+
+     <a href="#" data-activates="mobile-menu-top" class="button-collapse"><i class="material-icons">menu</i></a>
+
+     <ul class="left side-nav" id="mobile-menu-top">
+       <li><a href="http://twitter.com/cristianounix" target="_blank">Twitter</a></li>
+       <li><a href="http://github.com/cristianounix" target="_blank">Github</a></li>
+       <li><a href="http://instagram.com/cristianounix" target="_blank">Instagram</a></li>
+       <li><a href="http://br.linkedin.com/in/cristianounix/" target="_blank">Linkedin</a></li>
+       <li><a href="/about">Sobre mim</a></li>
+     </ul>
+   </div>
+ </nav>
+
+
+    <main class="content" role="main">
+
+  <section id="blog-intro" class="cyan section z-depth-1 article-intro" style="background-image:url('https://d262ilb51hltx0.cloudfront.net/max/2000/1*278tqw9zNPe2WCAz29Wzdw.jpeg');"></section>
+
+  <section id="main-inner-container" class="container">
+    <article class="post tag-webdev tag-gruntjs tag-javascript tag-nodejs card-panel z-depth-1 article-container">
+      <header>
+        <time class="post-date grey-text" datetime="2015-02-10 00:00:00 -0200"><i class="fa fa-clock-o"></i> 10 February 2015</time>
+        <h1>Não vá dizer que Exception é o mesmo que Erro !</h1>
+          <div class="tag-cloud">
+            <span>
+                <i class="mdi-maps-local-offer"></i>
+                
+            </span>
+          </div>
+      </header>
+      <section class="post-content">
+        <p>O que é Exception e o que é Erro ?</p>
+
+<p>Sabemos que uma Exception é bem diferente de um Error não só sintaticamente falando, mas semanticamente também, vejamos.</p>
+
+<p>Segundo o Dicionário:</p>
+
+<h4 id="exceo">Exceção</h4>
+<blockquote>
+  <p>Ruptura de uma regra ou norma; desvio de um padrão estabelecido; rompimento do que se considera normal: não há regra sem exceção.
+Que não pertence ao todo: todos chegaram com exceção do filho.
+Estado ou circunstância fora do comum: vantajosas eram as exceções.
+Figurado. Pessoa cujo modo de pensar ou de proceder não é comum.
+Jurídico. Mecanismo de proteção, ou de defesa, utilizado pelo réu com o propósito de anular os poderes do autor da ação ou de atrasar o seu prosseguimento.
+Indivíduo que não respeita, ou rejeita, normas, padrões e regras.
+Ação ou efeito de excetuar, de excluir.</p>
+</blockquote>
+
+<h4 id="erro">Erro</h4>
+<blockquote>
+  <p>É uma consequência de uma ação inesperada, sem planejamento, conhecimento. Pode ser uma falha humano ou por equipamento.</p>
+</blockquote>
+
+<hr />
+
+<p>No nosso mundo um bloco <strong>try catch</strong> é como um bloco “protegido” de falhas.</p>
+
+<p>Sendo mais direto quero dizer que quando ocorrer um problema no <strong>TRY</strong> a execução do código irá desviar para a instrução <strong>CATCH</strong></p>
+
+<p>Sintax básica</p>
+
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="k">try</span> <span class="o">{</span>
+  <span class="c1">//Meus comandos</span>
+<span class="o">}</span>
+<span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+ <span class="c1">//Meu tratamento de exceção</span>
+<span class="o">}</span></code></pre></div>
+
+<p>Legal agora que sabemos a diferença, vamos a alguns exemplos, vou começar primeiro pelo <strong>Erro</strong>:</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="k">function</span> <span class="nf">dividir</span><span class="p">(</span><span class="nv">$num1</span><span class="p">,</span> <span class="nv">$num2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$num1</span><span class="o">/</span><span class="nv">$num2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">echo</span> <span class="nx">dividir</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="c1">//Saída - Fatal Error (pois  falta o &quot;;&quot;)</span>
+<span class="k">echo</span> <span class="nx">div</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="c1">//Saída - Fatal Error (pois não definimos a função &quot;div&quot;)</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<p>Pronto, bem simples demonstrar um erro.</p>
+
+<h4 id="agora-vamos-as-excees-exceptions">Agora vamos as Exceções (Exceptions)</h4>
+
+<p>Vamos pensar numa função de dividir dois números, essa função recebe 2 parametros que são os números a serem divididos.</p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="k">function</span> <span class="nf">dividir</span><span class="p">(</span><span class="nv">$num1</span><span class="p">,</span> <span class="nv">$num2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$num2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nx">Exception</span><span class="p">(</span><span class="s1">&#39;Não é possvél realizar a divisão por zero&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nv">$num1</span><span class="o">/</span><span class="nv">$num2</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="k">try</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nx">dividir</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="c1">// Saída 1.6666666666667</span>
+    <span class="k">echo</span> <span class="nx">dividir</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span> <span class="c1">// Saída - Não é possvél realizar a divisão por zero</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">&#39;Exceção: &#39;</span><span class="o">.</span>  <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<p>Legal né :)</p>
+
+<p>Agora vamos a um exemplo sem <strong>Try Catch</strong></p>
+
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="k">function</span> <span class="nf">dividir</span><span class="p">(</span><span class="nv">$num1</span><span class="p">,</span> <span class="nv">$num2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$num1</span><span class="o">/</span><span class="nv">$num2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">echo</span> <span class="nx">dividir</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="c1">// Saída 1.6666666666667</span>
+<span class="k">echo</span> <span class="nx">dividir</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span> <span class="c1">// Saída - Warning:  Division by zero</span>
+<span class="cp">?&gt;</span><span class="x"></span></code></pre></div>
+
+<p>Perceba que agora a mensagem foi diferente da que adotamos no primeiro exemplo, vamos entender o motivo.</p>
+
+<p>Quando dividimos dois números inteiros uma função chamada intdiv é chamada.</p>
+
+<p>Olhando mais a fundo <a href="https://github.com/php/php-src/blob/94722e12cf4ba9a16f8a9f009d60b2e3f0f80e12/ext/standard/math.c">AQUI</a> logo nas últimas linhas vamos
+encontrar algo assim:</p>
+
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">PHP_FUNCTION</span><span class="p">(</span><span class="n">intdiv</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">zend_long</span> <span class="n">numerator</span><span class="p">,</span> <span class="n">divisor</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">zend_parse_parameters</span><span class="p">(</span><span class="n">ZEND_NUM_ARGS</span><span class="p">(),</span> <span class="s">&quot;ll&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">numerator</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">divisor</span><span class="p">)</span> <span class="o">==</span> <span class="n">FAILURE</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">divisor</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">zend_throw_exception_ex</span><span class="p">(</span><span class="n">zend_ce_division_by_zero_error</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&quot;Division by zero&quot;</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">divisor</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">numerator</span> <span class="o">==</span> <span class="n">ZEND_LONG_MIN</span><span class="p">)</span> <span class="p">{</span>
+    <span class="cm">/* Prevent overflow error/crash ... really should not happen:</span>
+<span class="cm">       We don&#39;t return a float here as that violates function contract */</span>
+    <span class="n">zend_throw_exception_ex</span><span class="p">(</span><span class="n">zend_ce_arithmetic_error</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&quot;Division of PHP_INT_MIN by -1 is not an integer&quot;</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">RETURN_LONG</span><span class="p">(</span><span class="n">numerator</span> <span class="o">/</span> <span class="n">divisor</span><span class="p">);</span>
+<span class="p">}</span></code></pre></div>
+
+<p>A função <strong><em>intdiv</em></strong> que está em (ext/standard/math.c) é responsavél por dividir 2 numeros interiros e caso o divisor seja igual a zero ele lança sua <strong><em>Exception</em></strong></p>
+
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">zend_throw_exception_ex</span><span class="p">(</span><span class="n">zend_ce_division_by_zero_error</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&quot;Division by zero&quot;</span><span class="p">);</span></code></pre></div>
+
+<hr />
+
+<h4 id="tray-catch-em-outras-linguagens">Tray Catch em outras linguagens:</h4>
+
+<h4 id="javascript">JavaScript</h4>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">dividir</span><span class="p">(</span><span class="nx">n1</span><span class="p">,</span> <span class="nx">n2</span><span class="p">){</span>
+  <span class="k">if</span><span class="p">(</span><span class="nx">n2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">throw</span> <span class="s2">&quot;Divisão por zero não é possivel&quot;</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">n1</span><span class="o">/</span><span class="nx">n2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">try</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">dividir</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">catch</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div>
+
+<h4 id="ruby">Ruby</h4>
+
+<p>[Colocar Exemplo]</p>
+
+<h4 id="python">Python</h4>
+
+<p>[Colocar Exemplo]</p>
+
+
+        <p>
+          
+        </p>
+      </section>
+
+
+      <footer>
+        <section id="social-share">
+          <p>
+            Compartilhar: <br>
+            <a href="http://twitter.com/share?text=&amp;url=" target="_new" class="btn-floating white cyan-text darken-2" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;"><i class="fa fa-twitter cyan-text darken-2"></i></a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" class="btn-floating white cyan-text"><i class="fa fa-facebook cyan-text darken-2"></i></a>
+            <a href="https://plus.google.com/share?url=" class="btn-floating white cyan-text darken-2" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;"><i class="fa fa-google-plus cyan-text darken-2 "></i></a>
+          </p>
+        </section>
+        <!-- Disqus Comments -->
+        <section class="comments">
+          <div id="disqus_thread"></div>
+              <script type="text/javascript">
+                  var disqus_shortname = 'cristianounix';
+                  (function() {
+                      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                  })();
+              </script>
+              <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        </section>
+      </footer>
+    </article>
+  </section>
+</main>
+
+
+  <footer class="site-footer clearfix">
+
+  </footer>
+
+  
+<script src="/js/EasePack.min.js"></script>
+<script src="/js/TweenLite.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+</body>
+
+</html>

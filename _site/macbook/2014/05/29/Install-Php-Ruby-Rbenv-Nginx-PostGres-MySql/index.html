@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>
+    
+    Install php, ruby, rbenv, mysql, nginx, postgres all this on mac
+    
+  </title>
+  <meta name="description" content="Install Homebrew, Php, Ruby, Rbenv, Ngix, MySql, PostGres">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/default.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+
+  <script src="/js/highlight.js"></script>
+  <script src="/js/jquery.min.js"></script>
+
+  <link rel="canonical" href="http://cristianounix.github.io//macbook/2014/05/29/Install-Php-Ruby-Rbenv-Nginx-PostGres-MySql/">
+
+</head>
+
+<body class="home-template grey lighten-5">
+
+    
+<nav id="toolbar" class="navbar navbar-inverse navbar-fixed-top" style="position:fixed; z-index: 10;">
+   <div class="nav-wrapper blue">
+     <ul id="nav-mobile" class="left hide-on-med-and-down">
+       <li><a href="http://twitter.com/cristianounix" target="_blank"><i class="fa fa-twitter-square"></i></a></li>
+       <li><a href="http://github.com/cristianounix" target="_blank"><i class="fa fa-github-square"></i></a></li>
+       <li><a href="http://instagram.com/cristianounix" target="_blank"><i class="fa fa-instagram"></i></a></li>
+       <li><a href="http://br.linkedin.com/in/cristianounix/" target="_blank"><i class="fa fa-linkedin-square"></i></a></li>
+       <li><a href="/about"><i class="fa fa-user"></i></a></li>
+     </ul>
+
+     <a href="/" class="brand-logo center">
+       <img src="/img/cristianounix-mustache.png" alt="" />
+     </a>
+
+     <a href="#" data-activates="mobile-menu-top" class="button-collapse"><i class="material-icons">menu</i></a>
+
+     <ul class="left side-nav" id="mobile-menu-top">
+       <li><a href="http://twitter.com/cristianounix" target="_blank">Twitter</a></li>
+       <li><a href="http://github.com/cristianounix" target="_blank">Github</a></li>
+       <li><a href="http://instagram.com/cristianounix" target="_blank">Instagram</a></li>
+       <li><a href="http://br.linkedin.com/in/cristianounix/" target="_blank">Linkedin</a></li>
+       <li><a href="/about">Sobre mim</a></li>
+     </ul>
+   </div>
+ </nav>
+
+
+    <main class="content" role="main">
+
+  <section id="blog-intro" class="cyan section z-depth-1 article-intro" style="background-image:url('https://d262ilb51hltx0.cloudfront.net/max/2000/1*278tqw9zNPe2WCAz29Wzdw.jpeg');"></section>
+
+  <section id="main-inner-container" class="container">
+    <article class="post tag-webdev tag-gruntjs tag-javascript tag-nodejs card-panel z-depth-1 article-container">
+      <header>
+        <time class="post-date grey-text" datetime="2014-05-29 00:00:00 -0300"><i class="fa fa-clock-o"></i> 29 May 2014</time>
+        <h1>Install php, ruby, rbenv, mysql, nginx, postgres all this on mac</h1>
+          <div class="tag-cloud">
+            <span>
+                <i class="mdi-maps-local-offer"></i>
+                
+            </span>
+          </div>
+      </header>
+      <section class="post-content">
+        <h1 id="install-homebrew-php-ruby-rbenv-ngix-mysql-postgres">Install Homebrew, Php, Ruby, Rbenv, Ngix, MySql, PostGres</h1>
+
+<h3 id="rbenv">Rbenv:</h3>
+<pre><code>$ brew install readline
+$ git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+$ git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+$ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' &gt;&gt; ~/.bash_profile
+$ echo 'eval "$(rbenv init -)"' &gt;&gt; ~/.bash_profile
+</code></pre>
+
+<p>Dont forget run ‘$ rbenv rehash’ if you install any gem not using Gemfile Ex. ‘$ gem install foo’</p>
+
+<h3 id="ruby">Ruby:</h3>
+
+<pre><code>$ rbenv install [ruby-version]
+</code></pre>
+
+<p>After you install ruby set your global version</p>
+
+<pre><code>$ rbenv global [ruby-version]
+$ gem install bundler
+$ rbenv rehash
+</code></pre>
+
+<p>For more options use: ‘$ rbenv’</p>
+
+<h3 id="homebrew">HomeBrew:</h3>
+
+<pre><code>$ brew ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+$ brew doctor
+</code></pre>
+
+<h3 id="php-with-fpm-without-apache-mod-and-with-pgsql">PHP (with fpm, without apache mod and with pgsql):</h3>
+
+<pre><code>$ brew tap josegonzalez/php
+$ brew tap homebrew/dupes
+$ brew options php54
+$ brew install --without-apache --with-fpm --with-mysql --with-pgsql --with-debug php55
+$ brew install php55-mcrypt
+$ cp /usr/local/Cellar/php55/5.5.12/homebrew.mxcl.php55.plist ~/Library/LaunchAgents/
+$ launchctl load -w ~/Library/LaunchAgents/homebrew-php.josegonzalez.php54.plist (Start)
+$ launchctl unload -w ~/Library/LaunchAgents/homebrew-php.josegonzalez.php54.plist (Stop)
+</code></pre>
+
+<h3 id="postgres">PostGres</h3>
+
+<pre><code>$ brew install postgresql
+</code></pre>
+
+<h3 id="mysql">Mysql:</h3>
+
+<pre><code>$ brew install mysql --enable-debug
+$ mysql_secure_installation
+$ mysql.server {start|stop|restart|reload|force-reload|status}
+</code></pre>
+
+<h4 id="workbench">WorkBench:</h4>
+
+<pre><code>$ ln -s /usr/local/Cellar/mysql/5.6.10 /usr/local/mysql
+$ sudo ln -s /usr/local/Cellar/mysql/5.6.10/my.cnf /etc/my.cnf
+</code></pre>
+
+<h3 id="ngix">NgiX:</h3>
+
+<pre><code>$ brew install nginx
+$ cp /usr/local/Cellar/nginx/1.4.1/homebrew.mxcl.nginx.plist ~/Library/LaunchAgents/
+$ launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist (Start)
+$ launchctl unload -w ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist (Stop)
+$ vim /usr/local/etc/nginx/nginx.conf
+</code></pre>
+
+<p>Put line “include sites-enabled/*.conf;” on block http{}</p>
+
+<h2 id="other">Other:</h2>
+
+<pre><code>$ brew install tmux
+$ brew install tig
+$ brew isntall htop
+$ brew install wget
+$ brew install node
+$ brew install vim
+$ brew install openssl
+$ brew install git
+$ brew install autoconf
+$ gem install tmuxinator &amp;&amp; rbenv rehash
+</code></pre>
+
+
+        <p>
+          
+        </p>
+      </section>
+
+
+      <footer>
+        <section id="social-share">
+          <p>
+            Compartilhar: <br>
+            <a href="http://twitter.com/share?text=&amp;url=" target="_new" class="btn-floating white cyan-text darken-2" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;"><i class="fa fa-twitter cyan-text darken-2"></i></a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" class="btn-floating white cyan-text"><i class="fa fa-facebook cyan-text darken-2"></i></a>
+            <a href="https://plus.google.com/share?url=" class="btn-floating white cyan-text darken-2" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;"><i class="fa fa-google-plus cyan-text darken-2 "></i></a>
+          </p>
+        </section>
+        <!-- Disqus Comments -->
+        <section class="comments">
+          <div id="disqus_thread"></div>
+              <script type="text/javascript">
+                  var disqus_shortname = 'cristianounix';
+                  (function() {
+                      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                  })();
+              </script>
+              <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        </section>
+      </footer>
+    </article>
+  </section>
+</main>
+
+
+  <footer class="site-footer clearfix">
+
+  </footer>
+
+  
+<script src="/js/EasePack.min.js"></script>
+<script src="/js/TweenLite.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+</body>
+
+</html>
