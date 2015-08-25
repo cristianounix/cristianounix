@@ -180,6 +180,21 @@ Marcus;10.5;13
 Bruno;7;11 
 {% endhighlight %}
 
+Beleza criamos o arquivo, salvamos agora voltamos no nosso terminal R:
+
+{% highlight r %}
+atl <- read.csv("atletas.csv",sep="|")
+plot(atl)
+{% endhighlight %}
+
+<p style="text-align: center;">
+  <img src="{{site.baseurl}}/img/posts/atletas-r-lang-plot.png" alt="Plotado grafico R" style="height:580px;" >
+</p>
+
+No meu próximo post sobre R vou tentar abordar mais alguns gráficos e fazer uma análise de cada um deles.
+
+
+Agora vou dormir pq já está bem tarde :)
 
 
 > Obs: Caso tenha explicado alguma coisa errada, ou escrito algo errado gostaria do seu comentário e sua correção.
