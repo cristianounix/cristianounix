@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Vamos ao [R]
-description: "Vamos ao falar um pouco da linguagem R"
+description:"Vamos ao falar um pouco da linguagem R"
 modified: 2015-06-10
 category: r
 tags: [r]
@@ -13,6 +13,9 @@ share: true
   <img src="{{site.baseurl}}/img/posts/R_logo.png" alt="linguagem R" style="height:350px;" >
 </p>
 
+R é uma linguagem cujo objetivo pincipal é analise estatística, você também pode criar redes neurais, fazer previsão, criar gráficos rapidamente baseado nesses dados e uma infinidade de coisas relacionadas a arte de analisar dados :)
+
+Vamos colocar um pouco a mão na massa.
 
 Instalando no MacOS:
 
