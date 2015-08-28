@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Vamos ao [R]
-description:"Vamos ao falar um pouco da linguagem R"
+description: "Vamos ao falar um pouco da linguagem R"
 modified: 2015-06-10
 category: r
 tags: [r]
