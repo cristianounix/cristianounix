@@ -9,10 +9,7 @@ comments: true
 share: true
 ---
 
-
-Bem não vou falar o que é [SQL](https://pt.wikipedia.org/wiki/SQL){:target="_blank"} e nem para que serve e nem quando e como surgiu.
-
-Como vocês sabem o SQL é uma linguagem de pesquisa declarativa que se tornou padrão nos bancos de dados relacionais.
+Como vocês sabem o [SQL](https://pt.wikipedia.org/wiki/SQL){:target="_blank"}  é uma linguagem de pesquisa declarativa que se tornou padrão nos bancos de dados relacionais.
 
 O que quero mostrar aqui é como relacionar os dados usando sql, a principal motivação para isso foi ver muita gente  fazendo consultas de forma totalmente errada, ou então em muitos casos pegando uma parte alí outra aqui e juntando na camada de aplicação.
 
