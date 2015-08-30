@@ -38,7 +38,9 @@ where name like 'Leonardo da Vinci%'
 {% endhighlight %}
 
 
+
 Eu tiver pesquisando afim de saber se aguém já havia explicado isso e como foi a abordagem dele, para eu tomar uma linha diferente de explicação, e então me deparei com algumas imagens no nosso querido StackOverflow, para explica o assunto basta somente expor essas imagens.
+
 
 
 <p style="text-align: center;">
