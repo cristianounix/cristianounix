@@ -2,7 +2,7 @@
 layout: post
 title: AWS o que significa cada sigla, e para que serve cada uma delas.
 description: "Serviços que a Amazon (AWS) tem disponiveis."
-modified: 2015-05-28
+modified: 2015-05-10
 category: aws, servidores
 tags: [vaws, servidores]
 comments: true

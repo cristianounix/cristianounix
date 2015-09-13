@@ -2,7 +2,7 @@
 layout: post
 title: AngularJS Factory, Service e agora josé ?
 description: "AngularJS Factory, Service qual devo usar ?"
-modified: 2015-05-10
+modified: 2015-05-28
 category: angularjs, javascript
 tags: [angularjs, javascript]
 comments: true
