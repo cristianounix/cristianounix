@@ -1,7 +1,7 @@
 ---
 layout: post
-title: AngularJS Factory, Service ou Provider e agora josé ?
-description: "AngularJS Factory, Service ou Provider qual devo usar ?"
+title: AngularJS Factory, Service e agora josé ?
+description: "AngularJS Factory, Service qual devo usar ?"
 modified: 2015-05-10
 category: angularjs, javascript
 tags: [angularjs, javascript]
@@ -16,7 +16,7 @@ share: true
 </p>
 
 
-Quando começamos a usar o [AngularJS](https://angularjs.org/) mais afundo logo nos deparamos com os conceitos de Factory, Service ou Provider.
+Quando começamos a usar o [AngularJS](https://angularjs.org/) mais afundo logo nos deparamos com os conceitos de Factory ou Service .
 
 E depois de testar cada um desses caras vem aquela dúvida.
 
