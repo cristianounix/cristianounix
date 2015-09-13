@@ -16,9 +16,9 @@ share: true
 </p>
 
 
-Quando começamos a usar o [AngularJS](https://angularjs.org/) logo nos deparamos com os conceitos de Factory, Service ou Provider.
+Quando começamos a usar o [AngularJS](https://angularjs.org/) mais afundo logo nos deparamos com os conceitos de Factory, Service ou Provider.
 
-E depois que nos abituamos com esses caras vem aquela dúvida.
+E depois de testar cada um desses caras vem aquela dúvida.
 
 Qual deles devo usar ?
 
@@ -29,7 +29,7 @@ Legal né ?
 
 Percebeu ?
 
-Sim, é isso mesmo que viu o Service retorna um factory.
+Sim, é isso mesmo que viu o service retorna um factory.
 
 Se olhar com mais atenção vai perceber que a "grande" diferença entre eles está aqui:
 
@@ -37,9 +37,9 @@ Se olhar com mais atenção vai perceber que a "grande" diferença entre eles es
 return $injector.instantiate(constructor);
 {% endhighlight %}
 
-......................................
+----------------------
 
-> Obs: Todos os Services e Factory em Angular são singletons
+>   Todos os Services e Factory em Angular são singletons
 
 
 Vamos fazer um exemplo para ilustrar melhor esses caras:
@@ -81,15 +81,33 @@ function CrtlApp($scope, helloWorld_Factory, helloWorld_Service) {
 
 
 
-----------------------------------------
-|         | Instantiable | Configurable|
-----------------------------------------
-| Service | No           | No          |
-----------------------------------------
-| Factory | Yes          | No          |
-----------------------------------------
-| Provider| Yes          | Yes         |       
-----------------------------------------
+
+
+<table style="width: 330px;">
+    <tr>
+        <td></td>
+        <td>Novas Instancias</td>
+        <td>Configuravél </td>
+    </tr>
+    <tr>
+        <td>Service</td>
+        <td bgcolor="red">NO</td>
+        <td bgcolor="red">NO</td>
+    </tr>
+    <tr>
+        <td>Factory</td>
+        <td bgcolor="green">YES</td>
+        <td bgcolor="red">NO</td>
+    </tr>
+    <tr>
+        <td>Provider</td>
+        <td bgcolor="green">YES</td>
+        <td bgcolor="green">YES</td>
+    </tr>
+</table>
+
+
+##### Eu costumo a usar essa regras:
 
 
 1. Use Serviço quando você precisa apenas de um objeto simples, como um Hash, por exemplo {bla; "oi", name: "eu"} mas você não pode instanciar-lo.
