@@ -1,10 +1,10 @@
 ---
 layout: post
-title: Docker na prática
-description: "Docker na prática"
-modified: 2015-06-05
-category: docker
-tags: [docker]
+title: Herança baseada em protótipos
+description: "Herança baseada em protótipos"
+modified: 2015-07-18
+category: javascript,js
+tags: [javascript,js]
 comments: true
 share: true
 ---
@@ -30,28 +30,5 @@ Docker é como uma pequena e muito leve VM, onde você não precisa ter um SO co
 
 
 
-
-
-
-
-Instalando Docker no Mac
-
-$ brew cask install virtualbox
-
-$ brew install docker
-
-$ brew install boot2docker
-
-$ boot2docker init
-
-$ boot2docker up
-
-$ docker run mongo  (Executar ou baixar a imagem do mongo)
-
-$ docker run -it mongo bash  (Executar comandos dentro da docker)
-
-obs: para sair da docker =  CRTL + D
-
-$ docker ps  (Mostra dockers em execução)
 
 
