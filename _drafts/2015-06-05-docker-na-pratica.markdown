@@ -20,21 +20,20 @@ Docker é como uma pequena e muito leve VM, onde você não precisa ter um SO co
 </p>
 
 
+#### Instalando Docker no Mac.
 
+Antes de tudo se você seria bom você ter o [HomeBrew](http://brew.sh/) instalado :)
 
+	$ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-<p style="text-align: center;">
-  <img src="{{site.baseurl}}/img/posts/docker.jpg" alt="Docker">
-</p>
+Aproveitando o embalo do Brew vamos instalar o [BrewCask](http://caskroom.io/) que é um complemento do Brew só que ele te ajuda a instalar aplicacoes como FireFox, Chrome, Skype etc etc...
 
+	$ brew install caskroom/cask/brew-cask
 
+--------------
 
+Agora vamos instalar o docker:
 
-
-
-
-
-Instalando Docker no Mac
 
 $ brew cask install virtualbox
 
@@ -48,10 +47,50 @@ $ boot2docker up
 
 $ docker run mongo  (Executar ou baixar a imagem do mongo)
 
-$ docker run -it mongo bash  (Executar comandos dentro da docker)
+$ docker run -it mongo bash  (Vai executar o bash dentro do docker e com isso vc vai ter um terminal disponivél )
 
-obs: para sair da docker =  CRTL + D
+	Obs: para sair da docker =  CRTL + D
 
 $ docker ps  (Mostra dockers em execução)
+
+
+Pronto agora vc tem uma Docker rodando mongo 
+
+
+\o/
+
+<p style="text-align: center;">
+  <img src="{{site.baseurl}}/img/posts/docker.jpg" alt="Docker">
+</p>
+
+
+Para destruir um container basta fazer:
+
+$ docker rm -f [container_a_ser_destruido]
+
+Para destruir uma imagem:
+
+$ docker rmi -f [imagem_a_ser_deletada]   //Isso remove todas as imagens  
+
+
+OBS: Você não irá conseguir remover uma imagem que ainda está em uso por um container, então você precisará remover o container  primerio :)
+
+
+Caso queira saber como anda o desempenho do seu container:
+
+$ docker stats [container]  
+
+
+:>)
+
+Beleza isso foi o basicão do Docker.
+ 
+
+
+
+
+
+
+
 
 

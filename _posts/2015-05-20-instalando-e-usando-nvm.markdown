@@ -2,7 +2,7 @@
 layout: post
 title: Sopa de versoes usando NVM
 description: "Instalando e usando NVM para gerenciar suas versoes do node"
-modified: 2015-05-20
+modified: 2015-06-20
 category: docker
 tags: [nodejs,nvm]
 comments: true
@@ -38,3 +38,10 @@ Vamos usar o bicho
   $ nvm ls
 
 
+Ou para quem já tem o NodeJs instalado basta fazer:
+
+  $ npm install -g n
+
+Esse pacote "n" refere-se ao NodeVersionManager (https://www.npmjs.com/package/n)
+
+Fui...

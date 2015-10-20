@@ -1,10 +1,10 @@
 ---
 layout: post
-title: Vamos ao [R]
-description: "Vamos ao falar um pouco da linguagem R"
-modified: 2015-06-10
-category: r
-tags: [r]
+title: Listinha de padrões de projeto 
+description: "Listinha de padrões de projeto "
+modified: 2013-08-06
+category: patters
+tags: [patters]
 comments: true
 share: true
 ---
