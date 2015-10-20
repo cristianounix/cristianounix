@@ -32,30 +32,31 @@ Aproveitando o embalo do Brew vamos instalar o [BrewCask](http://caskroom.io/) q
 
 --------------
 
-Agora vamos instalar o docker:
+### Agora vamos instalar o docker:
 
+{% highlight shell %}
 
-$ brew cask install virtualbox
+	$ brew cask install virtualbox
 
-$ brew install docker
+	$ brew install docker
 
-$ brew install boot2docker
+	$ brew install boot2docker
 
-$ boot2docker init
+	$ boot2docker init
 
-$ boot2docker up
+	$ boot2docker up
 
-$ docker run mongo  (Executar ou baixar a imagem do mongo)
+	$ docker run mongo  (Executar ou baixar a imagem do mongo)
 
-$ docker run -it mongo bash  (Vai executar o bash dentro do docker e com isso vc vai ter um terminal disponivél )
+	$ docker run -it mongo bash  (Vai executar o bash dentro do docker e com isso vc vai ter um terminal disponivél )
 
-	Obs: para sair da docker =  CRTL + D
+		Obs: para sair da docker =  CRTL + D
 
-$ docker ps  (Mostra dockers em execução)
+	$ docker ps  (Mostra dockers em execução)
 
+{% endhighlight %}
 
 Pronto agora vc tem uma Docker rodando mongo 
-
 
 \o/
 
@@ -87,10 +88,64 @@ Beleza isso foi o basicão do Docker.
  
 
 
+### Bonus Dockerfile
+
+Vamos criar um Dockerfile com o nginx
+
+{% highlight shell %}
+	
+	$ mkdir nginx
+
+	$ cd nginx
+	
+	$ vim Dockerfile
+
+{% endhighlight %}
+
+```
+##
+# Dockerfile with Ubuntu 14.10
+FROM ubuntu:14.10
+MAINTAINER Seu Nome <seuemail@venturus.org.br>
+
+# Install Nginx.
+RUN apt-get update && apt-get install -y nginx && rm -rf /var/lib/apt/lists/* && echo "daemon off;" >> /etc/nginx/nginx.conf
+ 
+# Define working directory.
+WORKDIR /etc/nginx
+ 
+# Define default command.
+CMD ["nginx"]
+ 
+# Expose ports.
+EXPOSE 8080
+
+```
+
+Sobre o arquivo acima vamos as explicações:
+
+FROM: Informa a base/imagem que o docker deve usar para o container.
+ENV: Define uma variável de ambiente.
+RUN: O comando é executado como root.
+CMD: Só pode haver uma instrução CMD. Usada para informar o comando que executa quando subir o container.
+EXPOSE: Ela permite liberar acesso à portas TCP do container pelo host.
+
+Pronto agora vamos fazer build da imagem e em seguinda vamos rodar ela.
 
 
+{% highlight shell %}
+
+	$ sudo docker build -t nginx .
+
+	$ docker run -p 8080:8080 -d nginx
+
+{% endhighlight %}
 
 
+> -p indica para fazer o bind entre a porta 8080 do host e do container.
 
 
+Prontinho agora só acessar seu navegador com a url => http://localhost:8080
 
+
+Abraço !
