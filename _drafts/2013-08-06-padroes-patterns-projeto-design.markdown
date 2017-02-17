@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Listinha de padrões de projeto 
+title: Listinha de padrões de projeto
 description: "Listinha de padrões de projeto "
 modified: 2013-08-06
 category: patters
@@ -9,11 +9,7 @@ comments: true
 share: true
 ---
 
-<p style="text-align: center;">
-  <img src="{{site.baseurl}}/img/posts/R_logo.png" alt="linguagem R" style="height:350px;" >
-</p>
 
- 
 Os tipos estão divididos por afinidade. Estou definindo apenas os mais usados. Os principais tipos de padrões de projetos são :
 
 #### 1- Padrões de Criação (Creational)
