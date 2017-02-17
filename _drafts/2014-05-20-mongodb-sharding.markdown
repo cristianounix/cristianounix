@@ -32,11 +32,17 @@ Legal então já sabemos que Sharding é um mecanismo do MongoDB que nos ajuda a
 
 O que seria escalar de forma horizontal ?
 
-Escalar uma aplicação de forma **horizontal** nada mais é do que vc adicionar mais maquinas para responder aquele serviço.
+Escalar uma aplicação de forma **horizontal** nada mais é do que vc adicionar mais máquinas para responder aquele serviço.
 
 Já esclar de forma **vertical** quer dizer que você terá que por mais hardware na sua máquina afim de que ela suporte aquela demanda.
 
 Beleza, então vamos fazer esse tal de sharding:
+
+
+
+
+
+
 
 
 
