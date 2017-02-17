@@ -8,7 +8,7 @@ tags: ["gem, ruby"]
 comments: true
 ---
 
-## Vai logo abrindo o terminal para criar sua gem !
+### Vai logo abrindo o terminal.
 
 
 {% highlight bash %}
@@ -58,7 +58,7 @@ File: my_gem-0.0.1.gem
 {% endhighlight %}
 
 
-### Se prepare que agora vou te usar.
+### Vou te usar.
 
 Vamos instalar ela primeiro.
 
@@ -77,5 +77,3 @@ $ irb
 {% endhighlight %}
 
 Lindo né ?
-
- 
