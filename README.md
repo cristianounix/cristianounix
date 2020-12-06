@@ -14,3 +14,10 @@ Here are some ideas to get you started:
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
 -->
+
+## Posts that I wrote:
+
+- [Makefile](https://tableless.com.br/jaime-o-garoto-quer-make/)
+- [Correlação](https://medium.com/venturus/o-princ%C3%ADpio-da-correla%C3%A7%C3%A3o-a76dd48137b7)
+- [MongoDb User/Password](https://cristianounix.medium.com/sou-mongo-mas-sou-limpinho-14d84e7b9698)
+- [Desvio padrão](https://cristianounix.medium.com/calculando-o-desvio-padr%C3%A3o-e-o-coeficiente-de-varia%C3%A7%C3%A3o-31c87277694a)
