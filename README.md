@@ -1,7 +1,9 @@
 ### Hi there 👋
 
-<!--
-**cristianounix/cristianounix** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+I've been working as developer since 2006, today I work on web platform, and I love learn more about neural networks, IA, ML and data visualization.
+
+When I'm not working i'm study some thing about machine learning, octave, rust, etc...
+
 
 Here are some ideas to get you started:
 
