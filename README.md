@@ -21,3 +21,4 @@ When I'm not working i'm study some thing about machine learning, octave, rust, 
 - [Desvio padrão](https://cristianounix.medium.com/calculando-o-desvio-padr%C3%A3o-e-o-coeficiente-de-varia%C3%A7%C3%A3o-31c87277694a)
 - [Performence test com SIEG](https://cristianounix.medium.com/simples-teste-de-performance-com-siege-5f2e0ea2da30)
 - [Basico do R](https://cristianounix.medium.com/vamos-ao-r-b9427b7963a4)
+- [Replicas Mysql](https://cristianounix.medium.com/mmms-r%C3%A9plicas-multi-master-mysql-ec114b88258e)
