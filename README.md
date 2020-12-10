@@ -3,7 +3,7 @@
 I've been working as developer since 2006, today I work on web platform, and I love learn more about neural networks, IA, ML and data visualization.
 
 
-I use [powerlevel10k](https://github.com/romkatv/powerlevel10k) on my zsh terminal. 
+I use iTerm2 with [powerlevel10k](https://github.com/romkatv/powerlevel10k) on my zsh terminal.
 Some times I just walk on the streets take some pictures of ordinary people, I run three times every week,  
 I spend sometimes read the news paper.
 
