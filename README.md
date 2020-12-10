@@ -17,6 +17,13 @@ Here are some ideas to get you started:
 - ⚡ Fun fact: ...
 -->
 
+I use [powerlevel10k](https://github.com/romkatv/powerlevel10k) on my zsh terminal. 
+Some times I just walk on the streests take some pictures of oridinary peoples, I run three times every week,  
+I spend sometimes read the news papers.
+
+With my daughter, I play nintendo switch, we talk about planets, animals or how some thing works.
+
+
 ## Posts that I wrote:
 
 - [Makefile](https://tableless.com.br/jaime-o-garoto-quer-make/)
