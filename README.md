@@ -1,4 +1,4 @@
-## Hi there 👋
+## [WIP] Hi there 👋
 
 I've been working as developer since 2006, today I work on web platform, and I love learn more about neural networks, IA, ML and data visualization.
 
