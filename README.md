@@ -5,9 +5,9 @@ I've been working as developer since 2006, today I work on web platform, and I l
 
 I use iTerm2 with [powerlevel10k](https://github.com/romkatv/powerlevel10k) on my zsh terminal.
 Some times I just walk on the streets take some pictures of ordinary people, I run three times every week,  
-I spend sometimes read the news paper.
+I spend sometimes reading or watching something about our politics.
 
-With my daughter, I play nintendo switch, we talk about planets, cartoon or movie the she's watching, animals or how some thing works.
+With my daughter, I play nintendo switch, we talk about, cartoon, movie and all nerd things.
 
 
 When I'm not working i'm study some thing about machine learning, octave, rust, etc...
